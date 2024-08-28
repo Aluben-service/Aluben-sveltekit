@@ -1,0 +1,74 @@
+<script>
+    import Swal from '../utils/sweetAlerts.js'; // Adjust the path as needed
+
+	const Byblk = () => open("./byeblock", "_self");
+	const discord = () => open("https://discord.gg/sR94jHBU", "_self");
+	const games = () => open("/games", "_self");
+	const proxylist = () => open("/list", "_self");
+	const settings = () => open("/settings", "_self");
+	const home = () => open("/index", "_self");
+	const calculator = async () => {
+		// Prompt the user for input using SweetAlert2
+		const { value: calculation } = await Swal.fire({
+			title: "Enter a calculation",
+			input: "text",
+			inputLabel:
+				"Calculation (only +, -, *, /, whatever else will be ignored):",
+			inputPlaceholder: "e.g., 3 + 5 * (2 - 8)",
+			showCancelButton: true,
+			confirmButtonText: "Calculate",
+			cancelButtonText: "Cancel",
+		});
+
+		// Check if the user pressed "Cancel" or entered nothing
+		if (calculation !== null && calculation.trim() !== "") {
+			// Sanitize the input
+			const sanitizedCalculation = calculation.replace(
+				/[^-()\d/*+.]/g,
+				"",
+			);
+
+			// Perform the calculation
+			try {
+				// Use Function constructor safely
+				const result = Function(
+					'"use strict"; return (' + sanitizedCalculation + ")",
+				)();
+				// Show the result using SweetAlert2
+				await Swal.fire({
+					title: "Result",
+					text: `The result is: ${result}`,
+					icon: "info",
+					confirmButtonText: "OK",
+				});
+			} catch (error) {
+				// Handle any errors
+				await Swal.fire({
+					title: "Error",
+					text: "There was an error with the calculation.",
+					icon: "error",
+					confirmButtonText: "OK",
+				});
+			}
+		}
+	};
+</script>
+
+<div class="navbar" id="navbar">
+	<button class="button" type="button" on:click={() => home()}>Home</button>
+	<button class="button" type="button" on:click={() => calculator()}
+		>Calculator</button
+	>
+	<button class="button" type="button" on:click={() => Byblk()}
+		>Byeblocker</button
+	>
+	<button class="button" type="button" on:click={() => games()}
+		>Iceland games</button
+	>
+	<button class="button" type="button" on:click={() => proxylist()}
+		>Proxy list</button
+	>
+	<button class="button" type="button" on:click={() => settings()}
+		>Settings</button
+	>
+</div>

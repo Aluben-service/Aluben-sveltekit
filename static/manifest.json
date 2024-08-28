@@ -1,0 +1,9 @@
+
+{
+    "name": "Aluben Node",
+    "short_name": "Aluben",
+    "display": "browser",
+    "scope": "/",
+    "start_url": "/"
+  }
+  
