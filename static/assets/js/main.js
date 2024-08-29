@@ -170,7 +170,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
 window.addEventListener("keydown", function (event) {
 	console.log("Typed key: " + event.key);
-	if (event.key == localStorage.getItem("panickey") || "`") window.parent.window.location.replace(localStorage.getItem("panicurl") || "https://google.com");
+//	if (event.key == localStorage.getItem("panickey") || "`") window.parent.window.location.replace(localStorage.getItem("panicurl") || "https://google.com");
 });
 
 function handleVisibilityChange() {

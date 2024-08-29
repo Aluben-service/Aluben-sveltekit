@@ -1,6 +1,6 @@
     <script>
         import { onMount } from 'svelte';
-        import Navbar from '../../lib/components/Navbar.svelte';
+        import Navbar from '$lib/components/Navbar.svelte';
 
         // Function to handle gcloak
         function gcloak() {
@@ -42,8 +42,8 @@
     <link rel="stylesheet" href="assets/css/gamecard.css" />
     <meta name="description" content="A good proxy with custom unblockers (that are completely different proxies) and a proxy list built in games it's amazing" />
     <meta name="viewport" content="width=device-width" />
-    <title>Games - Aluben</title>
-    <link rel="icon" type="image/x-icon" href="https://cdn.jsdelivr.net/gh/Aluben-service/Aluben_icons/favicon.ico" />
+    <title>Error Page | Ebay</title>
+    <link rel="icon" type="image/x-icon" href="https://www.ebay.com/favicon.ico" />
     <link rel="manifest" href="manifest.json">
     </svelte:head>
     <Navbar/>
