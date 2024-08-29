@@ -1,7 +1,7 @@
 .bounce {
 	background-color: #0b0724;
-	color: #fffaf0;
-	border: 1px dotted #2bcf15;
+	color: floralwhite;
+	border: 1px dotted rgb(43, 207, 21);
 	border-radius: 5px;
 	padding: 2px 4px;
 	margin: 5px;
@@ -9,12 +9,14 @@
 	z-index: 1;
 	font-size: inherit;
 	font-family: inherit;
-	outline: 0;
+	outline: none;
 }
+
 .bounce:hover {
 	cursor: pointer;
 	animation: jelly 0.5s;
 }
+
 @keyframes jelly {
 	0%,
 	100% {
@@ -30,9 +32,10 @@
 		transform: scale(0.95, 1.05);
 	}
 }
+
 .icon-button {
 	background-color: #ff4d4d;
-	color: #fff;
+	color: white;
 	border: none;
 	border-radius: 5px;
 	padding: 15px;
@@ -42,11 +45,13 @@
 		background-color 0.3s,
 		transform 0.2s;
 }
+
 .icon-button:hover {
-	background-color: #c00;
+	background-color: #cc0000;
 	transform: scale(1.05);
 }
+
 .icon-button:active {
-	background-color: #900;
+	background-color: #990000;
 	transform: scale(0.98);
 }

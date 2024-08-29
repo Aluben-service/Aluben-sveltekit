@@ -63,6 +63,9 @@ function passcodeask() {
 		},
 		showCancelButton: false,
 		confirmButtonText: "Ok!",
+                customClass: {
+                    popup: 'passcode'
+                },
 		showLoaderOnConfirm: true,
 		preConfirm: async (login) => {
 			try {
@@ -70,7 +73,7 @@ function passcodeask() {
 				if (passcode && passcode == login) {
 					Toast.fire({
 						icon: "success",
-						title: "Signed in successfully"
+						title: "HAHA YOU CANT READ THIS"
 					});
 				} else if (passcode && passcode !== login) {
 					Swal.fire({
