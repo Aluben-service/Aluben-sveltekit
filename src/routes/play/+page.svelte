@@ -1,6 +1,7 @@
 <script>
-	import { Navbar } from '$lib/components/Navbar.svelte';
   import { onMount } from 'svelte';
+  import Navbar from '$lib/components/Navbar.svelte'; // Adjust the import path as necessary
+  import localforage from 'localforage';
 
   // Function definitions
   function fullscreen() {
@@ -13,36 +14,26 @@
     else if (iframe.msRequestFullscreen) iframe.msRequestFullscreen();
   }
 
-  onMount(() => {
-    const iframe = document.getElementById("game-frame");
-    const currentGameUrl = localStorage.getItem("currentgame") || "";
-    iframe.src = currentGameUrl;
-
-    document.getElementById("gamename").innerText = localStorage.getItem("currentgamename") || "";
-    document.getElementById("gamedesc").innerText = localStorage.getItem("currentgamedesc") || "";
-/*
-    const gameHacks = JSON.parse(localStorage.getItem("hacks")) || [];
-    const game = localStorage.getItem("currentgamecheat");
-
-    const gameFunctions = {
-      retrobowl: retroBowl,
-      vexsix: vexSix,
-      templeruntwo: templeRunTwo,
-      bobtherobbertwo: bobTheRobberTwo,
-      cookie: cookie,
-      jetpackjoyride: jetPackJoyride,
-      monkeymart: monkeyMart,
-      eggycar: eggyCar,
-      wordle: Wordle,
-      subwaysurfers: subwaySurfers,
-    };
-
-    if (gameHacks.includes(game)) {
-      const hackButton = document.getElementById("hack");
-      hackButton.style.display = "block";
-      hackButton.onclick = gameFunctions[game];
+  onMount(async () => {
+    try {
+      // Set driver explicitly
+      await localforage.setDriver([
+        localforage.INDEXEDDB,
+        localforage.LOCALSTORAGE,
+        localforage.WEBSQL
+      ]);
+      console.log('Driver set to IndexedDB or LocalStorage or WebSQL');
+      
+      const game = await localforage.getItem('currentgame');
+      if (game) {
+        document.getElementById('gamename').textContent = game.name || "";
+        document.getElementById('gamedesc').textContent = game.desc || "";
+        document.getElementById('game-frame').src = game.url || "";
+      }
+    } catch (err) {
+      console.error('Error with localForage:', err);
     }
-copied from old code*/
+
     document.addEventListener("keydown", (event) => {
       if (event.code === "KeyF") fullscreen();
     });
@@ -55,6 +46,9 @@ copied from old code*/
     height: 100%;
     background-color: black;
     text-align: center;
+    font-family: "Montserrat", sans-serif;
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
   }
   
   .container {
@@ -77,25 +71,27 @@ copied from old code*/
     display: inline-block;
     font-size: 16px;
     padding: 8px 16px;
+    background-color: #2e2e2e; /* Darker background color for normal state */
+    color: white;
   }
   
   .flbtn:hover {
-    background-color: #2e2e2e;
+    background-color: #3e3e3e;
     color: white;
   }
   
   .flbtn:active {
-    background-color: #2e2e2e;
-    color: black;
+    background-color: #3e3e3e;
+      color: black;
   }
   
   #flbutton {
     position: fixed;
     bottom: 20px;
     left: 6px;
-  }
+      }
   
-  .controls #hack {
+  :global(.controls #hack) {
     position: relative;
     display: none;
   }
@@ -111,13 +107,13 @@ copied from old code*/
     padding: 8px;
   }
   
-  .controls #hack:hover h3 {
+  :global(.controls #hack:hover h3) {
     opacity: 1;
     z-index: 9999;
     transition: opacity 0.2s ease;
   }
   
-  .controls span h3 {
+  :global(.controls span h3) {
     position: absolute;
     left: 50%;
     transform: translate(-50%);
@@ -134,7 +130,7 @@ copied from old code*/
     text-align: center;
   }
   
-  #closeButton {
+  :global(#closeButton) {
     position: absolute;
     right: 15px;
     top: 15px;
@@ -151,25 +147,30 @@ copied from old code*/
     border: 2vw solid black;
     border-radius: 1vw;
   }
+
 </style>
+<!--<Head/>-->
+<svelte:head>
+  <link rel="canonical" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <link rel="icon" type="image/x-icon" href="https://www.ebay.com/favicon.ico" />
+  <title>Error Page | Ebay</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="manifest" href="manifest.json" />
+  <meta name="description" content="A good proxy with custom unblockers(that are completly different proxies) and a proxy list built in games it's amazing" />
+  <script src="/assets/js/scripts.js" defer></script>
+</svelte:head>
 
 <Navbar/>
 <div class="container">
-  <!-- svelte-ignore a11y-missing-content -->
   <h1 style="color: white;" id="gamename"></h1>
-  <!-- svelte-ignore a11y-missing-content -->
   <h5 style="color: white;" id="gamedesc"></h5>
-  <iframe title="Game Frame" id="game-frame" scrolling="yes" frameborder="0" cellspacing="0"></iframe>
+  <iframe src="" title="Game Frame" id="game-frame" scrolling="yes" frameborder="0" cellspacing="0"></iframe>
   <div class="controls">
     <div id="flbutton">
-      <!-- svelte-ignore a11y-invalid-attribute -->
       <a href="#" class="flbtn" on:click={() => fullscreen()}><i class="fa-solid fa-expand"></i></a>
     </div>
     <i class="fa-solid fa-code hack"></i>
   </div>
 </div>
-
-<!--<script async defer src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
-<noscript>
-  <img src="https://queue.simpleanalyticscdn.com/noscript.gif" alt="" referrerpolicy="no-referrer-when-downgrade" />
-</noscript>-->

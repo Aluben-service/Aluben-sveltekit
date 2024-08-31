@@ -22,16 +22,6 @@
       font-weight: bolder;
     }
   
-    .navbar {
-      display: flex;
-      flex-wrap: wrap;
-    }
-  
-    .button {
-      margin: 5px;
-      padding: 10px;
-      cursor: pointer;
-    }
   
     .flex-center {
       display: flex;
@@ -48,7 +38,6 @@
  <Head/>
   
   <!-- Body content -->
-  <body style="background-color: black;">
     <Navbar/>
   
     <div id="grass" style="display: none;">
@@ -114,21 +103,4 @@
       </div>
     </div>
   
-    <!-- Include external JavaScript files -->
-    <script src="assets/js/proxies.js" async defer></script>
-    <script src="assets/js/settings.js" async defer></script>
-    <script src="assets/js/scripts.js"></script>
-    <script src="baremux/index.js" defer></script>
-    <script src="epoxy/index.js" defer></script>
-    <script src="ultraviolet/uv.bundle.js" async defer></script>
-    <script src="error.js" async defer></script>
-    <script src="index.js" async defer></script>
-    <script src="register-sw.js" async defer></script>
-    <script src="search.js" async defer></script>
-    <script src="assets/lib/jquery.js" async defer></script>
-  
-    <!-- Privacy-first analytics -->
-    <script async defer src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
-    <noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif" alt="" referrerpolicy="no-referrer-when-downgrade" /></noscript>
-  </body>
   

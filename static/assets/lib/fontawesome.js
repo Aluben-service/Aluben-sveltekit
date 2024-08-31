@@ -1,3 +1,4 @@
+document.addEventListener("DOMContentLoaded", function() {
 window.FontAwesomeKitConfig = {
 	id: 131874150,
 	version: "6.6.0",
@@ -877,4 +878,5 @@ window.FontAwesomeKitConfig = {
 	} catch (f) {
 		console.error("".concat("Font Awesome Kit:", " ").concat(f));
 	}
+});
 });

@@ -1,7 +1,4 @@
-(function () {
-	// Initialize Toast if it doesn't already exist
-	if (typeof window.Toast === 'undefined') {
-		window.Toast = Swal.mixin({
+	const Toast = Swal.mixin({
 			toast: true,
 			position: "top-end",
 			showConfirmButton: false,
@@ -12,8 +9,7 @@
 				toast.onmouseleave = Swal.resumeTimer;
 			}
 		});
-	}
-})();
+
 
 // Password validation function
 typeof validatePassword === 'undefined'
@@ -63,9 +59,6 @@ function passcodeask() {
 		},
 		showCancelButton: false,
 		confirmButtonText: "Ok!",
-                customClass: {
-                    popup: 'passcode'
-                },
 		showLoaderOnConfirm: true,
 		preConfirm: async (login) => {
 			try {

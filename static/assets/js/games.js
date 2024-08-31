@@ -107,6 +107,7 @@ async function fixJSON(json) {
 }
 
 // Fetch and display games
+// Fetch and display games
 async function loadGames() {
     try {
         const response = await fetch("assets/json/games.json");
@@ -119,11 +120,12 @@ async function loadGames() {
         games.forEach(async (game) => {
             const gameEl = document.createElement("li");
             const gameDesc = game.desc || "There is no set description";
-            const gameCategories = game.categories || "all"
+            const gameCategories = game.categories || "all";
+            const gameImg = game.img || "/web.png";
             gameEl.innerHTML = `
                 <div class="gamecard" data-category="${gameCategories}">
-                  <a href="#" onclick="(async () => { await saveGame('${game.url}', '${game.name}', '${game.cheat}'); })();">
-                    <img title='${game.name}' src="${game.img}" class="gameimage"/>
+                  <a href="#" onclick='(async () => { await saveGame(${JSON.stringify(game)}); })();'>
+                    <img title='${game.name}' src="${gameImg}" class="gameimage"/>
                   </a>
                   <i onclick="pin('${game.name}');" style="color:white;" class="fa fa-map-pin" aria-hidden="true"></i>
                   <a href="#">
@@ -141,11 +143,12 @@ async function loadGames() {
             if (await localforage.getItem(game.name) === "pinned") {
                 const pinnedEl = document.createElement("li");
                 const pinnedDesc = game.desc || " ";
-                const pinnedCategories = game.categories || "all"
+                const pinnedCategories = game.categories || "all";
+                const pinnedImg = game.img || "/web.png";
                 pinnedEl.innerHTML = `
                     <div class="gamecard" data-category="${pinnedCategories}">
-                      <a href="#" onclick="(async () => { await saveGame('${game.url}', '${game.name}', '${game.cheat}'); })();">
-                        <img title='${game.name}' src="${game.img}" class="gameimage"/>
+                      <a href="#" onclick='(async () => { await saveGame(${JSON.stringify(game)}); })();'>
+                        <img title='${game.name}' src="${pinnedImg}" class="gameimage"/>
                       </a>
                       <i onclick="pin('${game.name}');" style="color:white;" class="fa fa-map-pin" aria-hidden="true"></i>
                       <a href="#">
@@ -167,16 +170,16 @@ async function loadGames() {
 }
 
 // Save game data with localforage
-async function saveGame(url, name, cheat) {
-    try {
-        await localforage.setItem('currentgame', url);
-        await localforage.setItem('currentgamename', name);
-        await localforage.setItem('currentgamecheat', cheat);
+function saveGame(game) {
+    return localforage.setItem('currentgame', game)
+    .then(() => {
         window.location.href = 'play';
-    } catch (err) {
-        console.error('Error saving game data:', err);
-    }
+    })
+    .catch(error => {
+        console.error('Error saving game:', error);
+    });
 }
+
 
 // Show category filter
 function showCategory() {
@@ -205,7 +208,8 @@ async function pin(name) {
     async function attemptPin() {
         try {
             await localforage.setItem(name, isPinned ? "" : "pinned");
-            if ((await localforage.getItem("gamenotice")) !== "true") {
+            const gameNotice = await localforage.getItem("gamenotice");
+            if (gameNotice === null || gameNotice !== "true") {
                 const result = await Swal.fire({
                     title: isPinned ? "Unpinned!" : "Pinned!",
                     text: `This game has been ${isPinned ? "unpinned" : "pinned"}!`,
