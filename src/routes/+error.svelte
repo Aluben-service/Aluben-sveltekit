@@ -61,7 +61,7 @@
 <Head />
 
 <style>
-    body {
+    :global(body) {
         text-align: center;
     }
     h1 {

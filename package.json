@@ -19,6 +19,7 @@
 		"@mercuryworkshop/bare-mux": "^2.0.4",
 		"@mercuryworkshop/epoxy-transport": "^2.1.8",
 		"@titaniumnetwork-dev/ultraviolet": "^3.2.7",
+		"localforage": "^1.10.0",
 		"sweetalert2": "^11.12.4"
 	}
 }

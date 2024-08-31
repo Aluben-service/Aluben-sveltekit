@@ -30,5 +30,5 @@ async function registerSW() {
        // This is the line you change to change the wisp server (essential for static hosting ofc)
        let wispUrl = `wss://tomp.app/wisp/`;
        window.connection = new BareMux.BareMuxConnection();
-       connection.setTransport("/epoxy/index.js", { wisp: `wss://${location.origin}/wisp/` });
+       connection.setTransport("/epoxy/index.js", { wisp: wispUrl});
 }
