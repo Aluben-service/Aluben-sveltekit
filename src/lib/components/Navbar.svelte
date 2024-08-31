@@ -1,12 +1,10 @@
 <script>
-    import Swal from '../utils/sweetAlerts.js'; // Adjust the path as needed
+	import Swal from "../utils/sweetAlerts.js"; // Adjust the path as needed
 
 	const Byblk = () => open("./byeblock", "_self");
-	const discord = () => open("https://discord.gg/sR94jHBU", "_self");
 	const games = () => open("/games", "_self");
-	const proxylist = () => open("/list", "_self");
 	const settings = () => open("/settings", "_self");
-	const home = () => open("/index", "_self");
+	const home = () => open("/", "_self");
 	const calculator = async () => {
 		// Prompt the user for input using SweetAlert2
 		const { value: calculation } = await Swal.fire({
@@ -63,12 +61,40 @@
 		>Byeblocker</button
 	>
 	<button class="button" type="button" on:click={() => games()}
-		>Iceland games</button
-	>
-	<button class="button" type="button" on:click={() => proxylist()}
-		>Proxy list</button
+		>Games</button
 	>
 	<button class="button" type="button" on:click={() => settings()}
 		>Settings</button
 	>
 </div>
+
+<style>
+	.button {
+		background-color: #0b0724;
+		color: floralwhite;
+		border: 1px dotted rgb(43, 207, 21);
+		border-radius: 5px;
+		padding: 2px 4px;
+		margin: 5px;
+		cursor: pointer;
+	}
+
+	.button:hover {
+		transition: 1000ms;
+		padding: 2px 8px;
+		transform: translateY(-0px);
+		background-color: #0b0724;
+		color: floralwhite;
+		border: solid 3px rgb(252, 245, 115);
+	}
+	.navbar {
+		color: rgb(255, 255, 255);
+		background-color: rgb(36, 36, 36);
+		text-align: center;
+		left: 0%;
+		position: fixed;
+		width: 100%;
+		top: 0px;
+		z-index: 1000;
+	}
+</style>

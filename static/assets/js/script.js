@@ -1,7 +1,4 @@
-(function () {
-	// Initialize Toast if it doesn't already exist
-	if (typeof window.Toast === 'undefined') {
-		window.Toast = Swal.mixin({
+	const Toast = Swal.mixin({
 			toast: true,
 			position: "top-end",
 			showConfirmButton: false,
@@ -12,8 +9,7 @@
 				toast.onmouseleave = Swal.resumeTimer;
 			}
 		});
-	}
-})();
+
 
 // Password validation function
 typeof validatePassword === 'undefined'
@@ -70,7 +66,7 @@ function passcodeask() {
 				if (passcode && passcode == login) {
 					Toast.fire({
 						icon: "success",
-						title: "Signed in successfully"
+						title: "HAHA YOU CANT READ THIS"
 					});
 				} else if (passcode && passcode !== login) {
 					Swal.fire({

@@ -2,7 +2,7 @@
 /**
  * Distributed with Ultraviolet and compatible with most configurations.
  */
-const stockSW = "/ultraviolet/sw.js";
+//const stockSW = "/ultraviolet/sw.js";
 
 /**
  * List of hostnames that are allowed to run serviceworkers on http://
@@ -26,9 +26,9 @@ async function registerSW() {
 		throw new Error("Your browser doesn't support service workers.");
 	}
 
-	await navigator.serviceWorker.register(stockSW);
+	await navigator.serviceWorker.register("/ultraviolet/sw.js");
        // This is the line you change to change the wisp server (essential for static hosting ofc)
-       let wispUrl = `wss://${location.origin}/wisp/`;
+       let wispUrl = `wss://tomp.app/wisp/`;
        window.connection = new BareMux.BareMuxConnection();
-       connection.setTransport("/epoxy/index.js", { wisp: `wss://${location.origin}/wisp/` });
+       connection.setTransport("/epoxy/index.js", { wisp: wispUrl});
 }
