@@ -7,7 +7,7 @@
  */
 importScripts('/ultraviolet/uv.bundle.js');
 importScripts('/ultraviolet/uv.config.js');
-importScripts'/ultraviolet/uv.sw.js');
+importScripts('/ultraviolet/uv.sw.js');
 
 const uv = new UVServiceWorker();
 
