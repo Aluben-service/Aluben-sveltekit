@@ -4,36 +4,94 @@
   
     import Head from '$lib/components/Head.svelte';
     import Navbar from '$lib/components/Navbar.svelte';
-
-    onMount(() => {
-      // External scripts will handle logic upon mounting
-      // For example, loading the JavaScript code
-    });
   </script>
   
   <style>
     body {
-      background-color: black;
-      color: white;
+        background-color: black;
+        color: white;
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
     }
-  
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+    }
+
+    .navbar {
+        flex-shrink: 0;
+    }
+
+    .browser-interface {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        overflow: hidden;
+    }
+
+    .url-bar {
+        background-color: #333;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+
+    .url-bar input[type="text"] {
+        width: 80%;
+        padding: 8px;
+        border-radius: 4px;
+        border: none;
+        margin-right: 10px;
+    }
+
+    .url-bar button {
+        padding: 8px 16px;
+        border-radius: 4px;
+        border: none;
+        background-color: #555;
+        color: white;
+        cursor: pointer;
+    }
+
+    .url-bar button:hover {
+        background-color: #777;
+    }
+
+    .iframe-container {
+        flex-grow: 1;
+        overflow: hidden;
+        position: relative;
+    }
+
+    #uv-frame {
+        width: 100%;
+        height: 100%;
+        border: none;
+        display: none;
+    }
+
+    .desc {
+        color: red;
+        font-weight: bold;
+        text-align: center;
+    }
+
     #txt {
-      color: red;
-      font-weight: bolder;
+        color: red;
+        font-weight: bolder;
+        text-align: center;
     }
-  
-  
-    .flex-center {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin: 20px;
+
+    section {
+        margin: 20px;
+        text-align: center;
     }
-  
-    .left-margin {
-      margin-left: 20px;
-    }
-  </style>
+</style>
   
  <Head/>
   
@@ -102,4 +160,4 @@
       </div>
     </div>
   
-  
+      <iframe title="proxied" style="display: none;" id="uv-frame"></iframe>

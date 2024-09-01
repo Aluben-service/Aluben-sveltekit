@@ -50,12 +50,14 @@
 }
 
 .gamedesc {
-	font-size: 14px;
+	font-size: 10px;
 	color: #b9bbbe;
 }
 
-.gamecontainer, .pinned {
+.gamecontainer,
+.pinned {
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-	gap: 0px; /* Space between cards */
+	gap: 0px;
+	/* Space between cards */
 }

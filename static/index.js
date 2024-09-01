@@ -1,4 +1,5 @@
 "use strict";
+
 /**
  * @type {HTMLFormElement}
  */
@@ -33,7 +34,17 @@ form.addEventListener("submit", async (event) => {
 
   const url = search(address.value, searchEngine.value);
 
-  let frame = document.createElement("uv-frame");
+
+  let frame = document.getElementById("uv-frame");
   frame.style.display = "block";
   frame.src = __uv$config.prefix + __uv$config.encodeUrl(url);
+  /*
+    let game = {
+      url: __uv$config.prefix + __uv$config.encodeUrl(url),
+      img: '/web.png',
+      name: "Pr0xied Website",
+      desc: "Pr0xied Website"
+    }
+    localforage.setItem("currentgame", game);
+    location.href = "/play"*/
 });
