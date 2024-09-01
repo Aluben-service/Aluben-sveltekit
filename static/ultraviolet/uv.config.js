@@ -1,6 +1,7 @@
 /*global Ultraviolet*/
 self.__uv$config = {
-    prefix: '/service/',
+    prefix: '/ultraviolet/service/',
+    bare: "https://gointerstellar.app/ov/",
     encodeUrl: Ultraviolet.codec.plain.encode,
     decodeUrl: Ultraviolet.codec.plain.decode,
     handler: '/ultraviolet/uv.handler.js',

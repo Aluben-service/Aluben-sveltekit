@@ -48,19 +48,18 @@
     <div id="main" style="display: block;">
         <br/>
         <br/>
-      <form id="ultraviolet-form" class="flex-center">
-        <input
-          id="ultraviolet-search-engine"
-          value="https://www.google.com/search?q=%s"
-          type="hidden"
-        />
-        <input id="ultraviolet-address" type="text" placeholder="Search the web freely" />
-      </form>
-  
-      <div class="desc left-margin">
-        <p id="ultraviolet-error"></p>
-        <pre id="ultraviolet-error-code"></pre>
-      </div>
+        <form id="uv-form" class="flex-center">
+          <input
+            id="uv-search-engine"
+            value="https://www.google.com/search?q=%s"
+            type="hidden"
+          />
+          <input id="uv-address" type="text" placeholder="Search the web freely" />
+        </form>
+        <div class="desc left-margin">
+          <p id="uv-error"></p>
+          <pre id="uv-error-code"></pre>
+        </div>
   
       <p id="say"></p>
   

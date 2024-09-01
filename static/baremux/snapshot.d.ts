@@ -1,6 +1,6 @@
 export declare const fetch: typeof globalThis.fetch;
 export declare const WebSocket: {
-    new (url: string | URL, protocols?: string | string[]): WebSocket;
+    new (url: string | URL, protocols?: string | string[] | undefined): WebSocket;
     prototype: WebSocket;
     readonly CONNECTING: 0;
     readonly OPEN: 1;
@@ -8,15 +8,15 @@ export declare const WebSocket: {
     readonly CLOSED: 3;
 };
 export declare const Request: {
-    new (input: RequestInfo | URL, init?: RequestInit): Request;
+    new (input: URL | RequestInfo, init?: RequestInit | undefined): Request;
     prototype: Request;
 };
 export declare const Response: {
-    new (body?: BodyInit | null, init?: ResponseInit): Response;
+    new (body?: BodyInit | null | undefined, init?: ResponseInit | undefined): Response;
     prototype: Response;
     error(): Response;
-    json(data: any, init?: ResponseInit): Response;
-    redirect(url: string | URL, status?: number): Response;
+    json(data: any, init?: ResponseInit | undefined): Response;
+    redirect(url: string | URL, status?: number | undefined): Response;
 };
 export declare const XMLHttpRequest: {
     new (): XMLHttpRequest;
@@ -27,15 +27,12 @@ export declare const XMLHttpRequest: {
     readonly LOADING: 3;
     readonly DONE: 4;
 };
-export declare const SharedWorker: {
-    new (scriptURL: string | URL, options?: string | WorkerOptions): SharedWorker;
-    prototype: SharedWorker;
-};
-export declare const localStorage: Storage;
-export declare const serviceWorker: ServiceWorkerContainer;
 export declare const WebSocketFields: {
     prototype: {
-        send: (data: string | ArrayBufferLike | Blob | ArrayBufferView) => void;
+        send: {
+            (data: string | Blob | ArrayBufferView | ArrayBufferLike): void;
+            (data: string | Blob | ArrayBufferView | ArrayBufferLike): void;
+        };
     };
     CLOSED: 3;
     CLOSING: 2;
