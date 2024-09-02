@@ -1,7 +1,7 @@
 <script>
     // Import the necessary external scripts (handled outside of Svelte)
     import { onMount } from "svelte";
-  
+
     import Head from '$lib/components/Head.svelte';
     import Navbar from '$lib/components/Navbar.svelte';
 
