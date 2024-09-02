@@ -2,7 +2,14 @@
   import { onMount } from 'svelte';
   import Navbar from '$lib/components/Navbar.svelte'; // Adjust the import path as necessary
   import localforage from 'localforage';
+  import Flamethrower from 'flamethrower-router';
 
+  onMount(() => {
+    const router = new Flamethrower({
+      prefetch: 'all', // or 'hover', 'intent', 'none'
+      log: true,         // Enable or disable logging
+      pageTransition: false // Enable page transitions
+    })});
   // Function definitions
   function fullscreen() {
     const iframe = document.getElementById("game-frame");

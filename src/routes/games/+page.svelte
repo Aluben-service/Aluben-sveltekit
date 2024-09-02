@@ -1,3 +1,38 @@
+<script>
+  import { onMount } from 'svelte';
+  import Flamethrower from 'flamethrower-router';
+  import Navbar from "$lib/components/Navbar.svelte";
+
+  onMount(() => {
+    const router = new Flamethrower({
+      prefetch: 'all',
+      log: true,
+      pageTransition: false
+    });
+	// Load external scripts
+	const script1 = document.createElement("script");
+	script1.src = "assets/js/games.js";
+	script1.async = true;
+	script1.defer = true;
+	document.head.appendChild(script1);
+
+	const script2 = document.createElement("script");
+	script2.src = "https://scripts.simpleanalyticscdn.com/latest.js";
+	script2.async = true;
+	script2.defer = true;
+	document.head.appendChild(script2);
+
+	const noscript = document.createElement("noscript");
+	const img = document.createElement("img");
+	img.src = "https://queue.simpleanalyticscdn.com/noscript.gif";
+	img.alt = "noscript";
+	img.referrerPolicy = "no-referrer-when-downgrade";
+	noscript.appendChild(img);
+	document.body.appendChild(noscript);
+	return () => clearInterval(interval);
+});
+</script>
+
 <style>
 	:global(html) {
 		width: 100%;
@@ -43,34 +78,6 @@
 	}
 </style>
 
-<script>
-	import { onMount } from "svelte";
-	import Navbar from "$lib/components/Navbar.svelte";
-
-	onMount(() => {
-		// Load external scripts
-		const script1 = document.createElement("script");
-		script1.src = "assets/js/games.js";
-		script1.async = true;
-		script1.defer = true;
-		document.head.appendChild(script1);
-
-		const script2 = document.createElement("script");
-		script2.src = "https://scripts.simpleanalyticscdn.com/latest.js";
-		script2.async = true;
-		script2.defer = true;
-		document.head.appendChild(script2);
-
-		const noscript = document.createElement("noscript");
-		const img = document.createElement("img");
-		img.src = "https://queue.simpleanalyticscdn.com/noscript.gif";
-		img.alt = "noscript";
-		img.referrerPolicy = "no-referrer-when-downgrade";
-		noscript.appendChild(img);
-		document.body.appendChild(noscript);
-		return () => clearInterval(interval);
-	});
-</script>
 
 <svelte:head>
 	<meta charset="utf-8" />

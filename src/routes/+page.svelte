@@ -1,7 +1,14 @@
 <script>
     // Import the necessary external scripts (handled outside of Svelte)
     import { onMount } from "svelte";
+    import Flamethrower from 'flamethrower-router';
 
+  onMount(() => {
+    const router = new Flamethrower({
+      prefetch: 'all', // or 'hover', 'intent', 'none'
+      log: true,         // Enable or disable logging
+      pageTransition: false // Enable page transitions
+    })});
     import Head from '$lib/components/Head.svelte';
     import Navbar from '$lib/components/Navbar.svelte';
   </script>
