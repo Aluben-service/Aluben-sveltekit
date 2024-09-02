@@ -159,13 +159,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="manifest" href="manifest.json" />
   <meta name="description" content="A good proxy with custom unblockers(that are completly different proxies) and a proxy list built in games it's amazing" />
-  <script src="/assets/js/scripts.js" defer></script>
 </svelte:head>
 
 <Navbar/>
 <div class="container">
-  <h1 style="color: white;" id="gamename"></h1>
-  <h5 style="color: white;" id="gamedesc"></h5>
+  <h3 style="color: white;" id="gamename"></h3>
+  <p style="color: white;" id="gamedesc"></p>
   <iframe src="" title="Game Frame" id="game-frame" scrolling="yes" frameborder="0" cellspacing="0"></iframe>
   <div class="controls">
     <div id="flbutton">

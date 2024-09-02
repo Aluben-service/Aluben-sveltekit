@@ -1,7 +1,0 @@
-import { c as create_ssr_component } from "./ssr.js";
-const Head = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  return `${$$result.head += `<!-- HEAD_svelte-1pn8zu_START --><link rel="canonical"><meta name="apple-mobile-web-app-capable" content="yes"><link rel="icon" type="image/x-icon" href="https://www.ebay.com/favicon.ico">${$$result.title = `<title>Error Page | Ebay</title>`, ""}<link rel="stylesheet" href="assets/css/styles.css"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="manifest" href="manifest.json"><meta name="description" content="A good proxy with custom unblockers(that are completly different proxies) and a proxy list built in games it's amazing"><script src="/assets/js/scripts.js" defer data-svelte-h="svelte-f2yjqf"><\/script><script src="baremux/bare.cjs" defer data-svelte-h="svelte-15usl7i"><\/script><script src="epoxy/index.js" defer data-svelte-h="svelte-mbqh3e"><\/script><script src="ultraviolet/uv.bundle.js" defer data-svelte-h="svelte-1azl7al"><\/script><script src="ultraviolet/uv.config.js" defer data-svelte-h="svelte-gmenmb"><\/script><script src="register-sw.js" defer data-svelte-h="svelte-1f8f99a"><\/script><script src="search.js" defer data-svelte-h="svelte-25by5w"><\/script><script src="index.js" defer data-svelte-h="svelte-ghsnw8"><\/script><!-- HEAD_svelte-1pn8zu_END -->`, ""}`;
-});
-export {
-  Head as H
-};

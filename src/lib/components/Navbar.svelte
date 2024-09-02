@@ -93,6 +93,7 @@
 		text-align: center;
 		left: 0%;
 		position: fixed;
+		height: 35px;
 		width: 100%;
 		top: 0px;
 		z-index: 1000;
