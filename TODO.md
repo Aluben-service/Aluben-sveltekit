@@ -1,6 +1,5 @@
-#todo
+# TODOs
 
-click off cloaking
 settings
 Proxy
 Music
@@ -22,3 +21,4 @@ particle versions
 bookmarklets
 custom styles
 offline use
+click off cloaking
