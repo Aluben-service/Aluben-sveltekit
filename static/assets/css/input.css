@@ -1,18 +1,17 @@
-input {
-	height: 14px;
-	width: 480px;
+/* Default styles for inputs not of type 'color' or 'checkbox' */
+input:not([type="color"]):not([type="checkbox"]) {
+	width: clamp(120px, 90%, 480px);
 	padding: 5px;
-	border: 1px dotted rgba(235, 214, 109, 0.894);
+	border: rgba(235, 214, 109, 0.894);
 	border-radius: 5px;
 	background-color: #141414;
 	color: rgb(255, 245, 225);
 	font-size: 13px;
+	transition: padding 1000ms, background-color 1000ms, color 1000ms, border 1000ms;
 }
 
-input:hover {
-	transition: 1000ms;
-	padding: 4px 10px;
-	transform: translateY(-0px);
+/* Hover styles for inputs not of type 'color' or 'checkbox' */
+input:not([type="color"]):not([type="checkbox"]):hover {
 	background-color: #0b0724;
 	color: floralwhite;
 	border: solid 2px rgb(47, 255, 0);
