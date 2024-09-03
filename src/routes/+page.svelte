@@ -1,4 +1,5 @@
 <script>
+
 	// Import the necessary external scripts (handled outside of Svelte)
 	import { onMount } from "svelte";
 
