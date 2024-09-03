@@ -1,0 +1,6 @@
+[build]
+command = "npm run build"
+cwd = "./"
+upload = { 
+  dir = ".svelte-kit/cloudflare" 
+}
