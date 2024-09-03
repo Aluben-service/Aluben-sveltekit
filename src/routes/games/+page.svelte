@@ -1,53 +1,15 @@
-<style>
-	:global(html) {
-		width: 100%;
-		height: 100%;
-		background-color: black;
-		text-align: center;
-	}
-
-	:global(.button) {
-		background-color: #0b0724;
-		color: floralwhite;
-		border: 1px dotted rgb(43, 207, 21);
-		border-radius: 5px;
-		padding: 2px 4px;
-		margin: 5px;
-		cursor: pointer;
-	}
-
-	:global(.button:hover) {
-		transition: 1000ms;
-		padding: 2px 8px;
-		transform: translateY(-0px);
-		background-color: #0b0724;
-		color: floralwhite;
-		border: solid 3px rgb(252, 245, 115);
-	}
-
-	input[type="text"] {
-		height: 2px;
-		width: 480px;
-		padding: 10px;
-		border: 2px solid skyblue;
-		border-radius: 5px;
-	}
-
-	#copyright {
-		color: floralwhite;
-	}
-
-	#logo {
-		width: 400px;
-		height: 200px;
-	}
-</style>
-
 <script>
 	import { onMount } from "svelte";
+	import Flamethrower from "flamethrower-router";
+
 	import Navbar from "$lib/components/Navbar.svelte";
 
 	onMount(() => {
+		const router = new Flamethrower({
+			prefetch: "all", // or 'hover', 'intent', 'none'
+			log: true, // Enable or disable logging
+			pageTransition: false, // Enable page transitions
+		});
 		// Load external scripts
 		const script1 = document.createElement("script");
 		script1.src = "assets/js/games.js";
@@ -112,8 +74,7 @@
 	title="Search for a game"
 />
 <br />
-<button onclick="searchGames();"
-class="button"
+<button onclick="searchGames();" class="button"
 	>Search(For some reason onkeydown wont work)</button
 >
 <!-- <select id="category" name="category" on:change={showCategory}>
@@ -132,3 +93,47 @@ class="button"
 
 <p id="copyright">© Aluben Services 2024 inc all rights reserved</p>
 
+<style>
+	:global(html) {
+		width: 100%;
+		height: 100%;
+		background-color: black;
+		text-align: center;
+	}
+
+	:global(.button) {
+		background-color: #0b0724;
+		color: floralwhite;
+		border: 1px dotted rgb(43, 207, 21);
+		border-radius: 5px;
+		padding: 2px 4px;
+		margin: 5px;
+		cursor: pointer;
+	}
+
+	:global(.button:hover) {
+		transition: 1000ms;
+		padding: 2px 8px;
+		transform: translateY(-0px);
+		background-color: #0b0724;
+		color: floralwhite;
+		border: solid 3px rgb(252, 245, 115);
+	}
+
+	input[type="text"] {
+		height: 2px;
+		width: 480px;
+		padding: 10px;
+		border: 2px solid skyblue;
+		border-radius: 5px;
+	}
+
+	#copyright {
+		color: floralwhite;
+	}
+
+	#logo {
+		width: 400px;
+		height: 200px;
+	}
+</style>

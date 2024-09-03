@@ -60,9 +60,7 @@
 	<button class="button" type="button" on:click={() => Byblk()}
 		>Byeblocker</button
 	>
-	<button class="button" type="button" on:click={() => games()}
-		>Games</button
-	>
+	<button class="button" type="button" on:click={() => games()}>Games</button>
 	<button class="button" type="button" on:click={() => settings()}
 		>Settings</button
 	>
@@ -87,15 +85,24 @@
 		color: floralwhite;
 		border: solid 3px rgb(252, 245, 115);
 	}
+
 	.navbar {
 		color: rgb(255, 255, 255);
 		background-color: rgb(36, 36, 36);
+		/*opacity: 0.8; /* Adjust the value between 0 and 1 to control transparency */
 		text-align: center;
-		left: 0%;
 		position: fixed;
 		height: 35px;
 		width: 100%;
-		top: 0px;
-		z-index: 1000;
+		top: 0;
+		z-index: 10;
+		left: 0;
+		backdrop-filter: blur(10px);
+		background: rgba(255, 255, 255, 0.3);
+	}
+
+	/* Add margin to the top of the content to prevent it from overlapping with the navbar */
+	:global(body) {
+		margin-top: 35px; /* Same height as the navbar */
 	}
 </style>

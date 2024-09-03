@@ -29,6 +29,7 @@ async function registerSW() {
   });
 
   // This is the line you change to change the wisp server (essential for static hosting ofc)
-  let wispUrl = "wss://nebulaproxy.io/wisp/"
+  let wispUrl = "wss://nebulaproxy.io/wisp/";
   BareMux.SetTransport("EpxMod.EpoxyClient", { wisp: wispUrl });
+  //BareMux.SetTransport("CurlMod.LibcurlClient", { wisp: wispUrl });
 }
