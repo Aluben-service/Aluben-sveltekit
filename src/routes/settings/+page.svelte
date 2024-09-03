@@ -143,6 +143,7 @@
 					<option value="Khan">Khan Academy</option>
 					<option value="Ebay">Ebay</option>
 				</select>
+				<br />
 				<input
 					class="custom-input"
 					type="text"
