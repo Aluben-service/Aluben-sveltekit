@@ -1,4 +1,5 @@
 import adapter from '@sveltejs/adapter-netlify';
+import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 
 export default {
 	kit: {
@@ -13,5 +14,6 @@ export default {
 			// if `edge` is true, this option cannot be used
 			split: false
 		})
-	}
+	},
+        preprocess: vitePreprocess()
 };

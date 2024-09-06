@@ -1,20 +1,8 @@
 <script>
-
-	// Import the necessary external scripts (handled outside of Svelte)
-	import { onMount } from "svelte";
-
 	import Head from "$lib/components/Head.svelte";
 	import Navbar from "$lib/components/Navbar.svelte";
+        import "../app.css"
 
-	import Flamethrower from "flamethrower-router";
-
-	onMount(() => {
-		const router = new Flamethrower({
-			prefetch: "all", // or 'hover', 'intent', 'none'
-			log: true, // Enable or disable logging
-			pageTransition: false, // Enable page transitions
-		});
-	});
 </script>
 
 <Head />
@@ -136,3 +124,7 @@
 		text-align: center;
 	}
 </style>
+
+<h1 class="text-3xl font-bold underline">
+  Hello world!
+</h1>
