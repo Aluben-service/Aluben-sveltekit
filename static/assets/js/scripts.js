@@ -42,7 +42,7 @@ try {
 
 	const sweetAlerts = document.createElement("script");
 	sweetAlerts.setAttribute("src", "/assets/lib/sweetAlerts.js");
-	sweetAlerts.setAttribute("onload", "main();")
+	sweetAlerts.setAttribute("onload", "main();");
 	document.head.append(sweetAlerts);
 	script("SweetAlerts2");
 
@@ -57,11 +57,12 @@ try {
 		// Create and style the dialog element
 		const dialog = document.createElement("dialog");
 		dialog.setAttribute("id", "notice");
-		dialog.innerHTML = "<p>This tool, Aluben, is only meant for computers!</p>";
+		dialog.innerHTML =
+			"<p>This tool, Aluben, is only meant for computers!</p>";
 		document.body.appendChild(dialog);
 
 		// Style the dialog
-		const style = document.createElement('style');
+		const style = document.createElement("style");
 		style.textContent = `
 		dialog {
 			width: 80%;

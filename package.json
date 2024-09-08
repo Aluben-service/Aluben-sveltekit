@@ -6,7 +6,8 @@
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
-		"preview": "vite preview"
+		"preview": "vite preview",
+		"format": "echo 'Svelte will automatically minify!'; prettier --write ."
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-netlify": "^4.3.3",
@@ -16,14 +17,13 @@
 		"postcss": "^8.4.45",
 		"svelte": "^4.2.7",
 		"tailwindcss": "^3.4.10",
+		"prettier": "^3.3.3",
 		"vite": "^5.0.3"
 	},
 	"dependencies": {
 		"@mercuryworkshop/bare-mux": "^2.0.4",
 		"@mercuryworkshop/epoxy-transport": "^2.1.8",
 		"@titaniumnetwork-dev/ultraviolet": "^3.2.7",
-		"flamethrower-router": "^0.0.0-meme.12",
-		"franken-ui": "^0.2.0",
 		"localforage": "^1.10.0",
 		"sweetalert2": "^11.12.4"
 	}

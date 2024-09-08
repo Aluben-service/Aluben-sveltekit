@@ -1,8 +1,7 @@
 <script>
 	import Head from "$lib/components/Head.svelte";
 	import Navbar from "$lib/components/Navbar.svelte";
-        import "../app.css"
-
+	import "../app.css";
 </script>
 
 <Head />
@@ -88,6 +87,8 @@
 
 <iframe title="proxied" style="display: none;" id="uv-frame"></iframe>
 
+<h1 class="text-3xl font-bold underline">Hello world!</h1>
+
 <style>
 	:global(body) {
 		background-color: black;
@@ -124,7 +125,3 @@
 		text-align: center;
 	}
 </style>
-
-<h1 class="text-3xl font-bold underline">
-  Hello world!
-</h1>

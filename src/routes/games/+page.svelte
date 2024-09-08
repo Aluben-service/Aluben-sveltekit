@@ -1,15 +1,10 @@
 <script>
 	import { onMount } from "svelte";
-	import Flamethrower from "flamethrower-router";
-
+import "../../app.css"
 	import Navbar from "$lib/components/Navbar.svelte";
 
 	onMount(() => {
-		const router = new Flamethrower({
-			prefetch: "all", // or 'hover', 'intent', 'none'
-			log: true, // Enable or disable logging
-			pageTransition: false, // Enable page transitions
-		});
+
 		// Load external scripts
 		const script1 = document.createElement("script");
 		script1.src = "assets/js/games.js";

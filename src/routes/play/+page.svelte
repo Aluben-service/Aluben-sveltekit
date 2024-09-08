@@ -2,7 +2,7 @@
 	import { onMount } from "svelte";
 	import Navbar from "$lib/components/Navbar.svelte"; // Adjust the import path as necessary
 	import localforage from "localforage";
-	import Flamethrower from "flamethrower-router";
+import "../../app.css"
 
 	// Function definitions
 	function fullscreen() {
@@ -17,11 +17,6 @@
 	}
 
 	onMount(async () => {
-		const router = new Flamethrower({
-			prefetch: "all", // or 'hover', 'intent', 'none'
-			log: true, // Enable or disable logging
-			pageTransition: false, // Enable page transitions
-		});
 		try {
 			// Set driver explicitly
 			await localforage.setDriver([

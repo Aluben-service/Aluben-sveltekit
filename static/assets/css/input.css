@@ -7,7 +7,11 @@ input:not([type="color"]):not([type="checkbox"]) {
 	background-color: #141414;
 	color: rgb(255, 245, 225);
 	font-size: 13px;
-	transition: padding 1000ms, background-color 1000ms, color 1000ms, border 1000ms;
+	transition:
+		padding 1000ms,
+		background-color 1000ms,
+		color 1000ms,
+		border 1000ms;
 }
 
 /* Hover styles for inputs not of type 'color' or 'checkbox' */

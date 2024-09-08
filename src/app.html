@@ -1,11 +1,26 @@
 <!doctype html>
 <html lang="en">
 	<head>
-		<script src="https://cdn.jsdelivr.net/npm/uikit@3.21.6/dist/js/uikit.min.js" defer></script>
-		<script src="https://cdn.jsdelivr.net/npm/uikit@3.21.6/dist/js/uikit-icons.min.js" defer></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/localforage/1.10.0/localforage.min.js" defer></script>
+		<script>
+			document.documentElement.classList.add("dark");
+		</script>
+		<link
+			rel="stylesheet"
+			href="https://unpkg.com/franken-wc@latest/dist/css/zinc.min.css"
+		/>
+		<script src="https://cdn.jsdelivr.net/npm/uikit@latest/dist/js/uikit.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/uikit@latest/dist/js/uikit-icons.min.js"></script>
+		<script
+			type="module"
+			src="https://unpkg.com/franken-wc@latest/dist/js/wc.iife.js"
+		></script>
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/localforage/1.10.0/localforage.min.js"
+			defer
+		></script>
 		%sveltekit.head%
 	</head>
+
 	<body data-sveltekit-preload-data="hover">
 		<div style="display: contents">%sveltekit.body%</div>
 	</body>
