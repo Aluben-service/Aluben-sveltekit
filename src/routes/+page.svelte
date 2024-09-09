@@ -49,9 +49,7 @@
 	<h1>touch grass</h1>
 </div>
 
-<div id="main" style="display: block;">
-	<br />
-	<br />
+<main id="main" style="display: block;">
 	<form id="uv-form" class="flex-center">
 		<input
 			id="uv-search-engine"
@@ -112,16 +110,13 @@
 		>
 	</section>
 
-	<div id="traf-say">
-		<a href="Fart"><span class="stinky">traf</span></a>
-	</div>
-	<div id="7689" style="display: none;">
-		go to the Aluben discord server and go to claim then type "7689" for a
+	<p id="s!lol">
+		go to the Aluben discord server and go to claim then type "s!lol" for a
 		reward
-	</div>
-</div>
+	</p>
+	<iframe title="proxied" style="display: none;" id="uv-frame"></iframe>
+</main>
 
-<iframe title="proxied" style="display: none;" id="uv-frame"></iframe>
 
 <style>
 	:global(body) {
