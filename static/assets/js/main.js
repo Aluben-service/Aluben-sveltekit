@@ -1,43 +1,61 @@
-const cloaks = {
-	"Ebay": {
-		favicon: "https://www.ebay.com/favicon.ico",
-		title: "Error Page | Ebay"
-	},
-	"Drive": {
-		favicon: "https://raw.githack.com/Aluben-service/Aluben_icons/main/drive.png",
-		title: "My Drive - Google Drive"
-	},
-	"Classroom": {
-		favicon: "https://raw.githack.com/Aluben-service/Aluben_icons/main/classroom.png",
-		title: "Home"
-	},
-	"Schoology": {
-		favicon: "https://raw.githack.com/Aluben-service/Aluben_icons/main/schoology.png",
-		title: "Home | Schoology"
-	},
-	"Gmail": {
-		favicon: "https://raw.githack.com/Aluben-service/Aluben_icons/main/gmail.png",
-		title: "Gmail"
-	},
-	"Clever": {
-		favicon: "https://raw.githack.com/Aluben-service/Aluben_icons/main/clever.png",
-		title: "Clever | Portal"
-	},
-	"Khan": {
-		favicon: "https://raw.githack.com/Aluben-service/Aluben_icons/main/khan.png",
-		title: "Dashboard | Khan Academy"
-	},
-	"Google": {
-		favicon: "https://raw.githack.com/Aluben-service/Aluben_icons/main/google.png",
-		title: "Google"
-	}
-};
-
 localforage.setDriver([
 	localforage.INDEXEDDB, // Use IndexedDB first
-	localforage.WEBSQL,    // If IndexedDB is unavailable, use WebSQL
-	localforage.LOCALSTORAGE // If both IndexedDB and WebSQL are unavailable, use LocalStorage
-])
+	localforage.WEBSQL, // If IndexedDB is unavailable, use WebSQL
+	localforage.LOCALSTORAGE, // If both IndexedDB and WebSQL are unavailable, use LocalStorage
+]);
+
+
+let cloaks;
+
+localforage.getItem("customcloak").then((customCloak) => {
+	cloaks = {
+		Ebay: {
+			favicon: "https://www.ebay.com/favicon.ico",
+			title: "Error Page | Ebay",
+		},
+		Drive: {
+			favicon:
+				"https://raw.githack.com/Aluben-service/Aluben_icons/main/drive.png",
+			title: "My Drive - Google Drive",
+		},
+		Classroom: {
+			favicon:
+				"https://raw.githack.com/Aluben-service/Aluben_icons/main/classroom.png",
+			title: "Home",
+		},
+		Schoology: {
+			favicon:
+				"https://raw.githack.com/Aluben-service/Aluben_icons/main/schoology.png",
+			title: "Home | Schoology",
+		},
+		Gmail: {
+			favicon:
+				"https://raw.githack.com/Aluben-service/Aluben_icons/main/gmail.png",
+			title: "Gmail",
+		},
+		Clever: {
+			favicon:
+				"https://raw.githack.com/Aluben-service/Aluben_icons/main/clever.png",
+			title: "Clever | Portal",
+		},
+		Khan: {
+			favicon:
+				"https://raw.githack.com/Aluben-service/Aluben_icons/main/khan.png",
+			title: "Dashboard | Khan Academy",
+		},
+		Google: {
+			favicon:
+				"https://raw.githack.com/Aluben-service/Aluben_icons/main/google.png",
+			title: "Google",
+		},
+		Custom: {
+			title: customCloak.title || "Google",
+			favicon: customCloak.favicon || "https://raw.githack.com/Aluben-service/Aluben_icons/main/google.png"
+		},
+	};
+});
+
+Object.freeze(cloaks);
 
 function changeFavicon(src) {
 	try {
@@ -45,14 +63,14 @@ function changeFavicon(src) {
 		let faviconLink = document.querySelector("link[rel*='icon']");
 
 		if (!faviconLink) {
-			faviconLink = document.createElement('link');
-			faviconLink.rel = 'icon';
+			faviconLink = document.createElement("link");
+			faviconLink.rel = "icon";
 			document.head.appendChild(faviconLink);
 		}
 
 		faviconLink.href = src;
 	} catch (error) {
-		console.error('Error fetching favicon from localforage:', error);
+		console.error("Error fetching favicon from localforage:", error);
 	}
 }
 
@@ -60,12 +78,9 @@ function changeFavicon(src) {
 	const cloak = await localforage.getItem("cloak");
 	const customcloak = await localforage.getItem("customcloak");
 
-
 	const settings = cloaks[cloak] || customcloak;
 	changeFavicon(settings.favicon);
 	document.title = settings.title;
-
-
 
 	const theme = await localforage.getItem("theme");
 
@@ -107,12 +122,14 @@ function changeFavicon(src) {
 			break;
 		case "Grassland":
 			document.body.style.color = "#f45faf";
-			document.body.style.backgroundImage = "url(assets/images/gashopper.jpg)";
+			document.body.style.backgroundImage =
+				"url(assets/images/gashopper.jpg)";
 			document.getElementById("grass").style.display = "block";
 			break;
 		case "StormyDay":
 			document.body.style.color = "#b0afb1";
-			document.body.style.backgroundImage = "url(assets/images/StormyDay.gif)";
+			document.body.style.backgroundImage =
+				"url(assets/images/StormyDay.gif)";
 			break;
 		case "custom":
 			const customTheme = await localforage.getItem("customTheme");
@@ -125,25 +142,8 @@ function changeFavicon(src) {
 			break;
 		default:
 			break;
-
 	}
-
-
-	const response = await fetch("assets/json/say.json");
-	const says = await response.json();
-	let randomSplash = says[Math.floor(Math.random() * says.length)];
-
-	if (randomSplash === "%GAMES_NUMBER%") {
-		const games = await fetch(location.origin + "assets/json/games.json").json();
-		randomSplash = `There are ${games.length} games currently`;
-	} else if (randomSplash === "%SPLASH_NUMBER%") {
-		const splashCacheAll = await fetch("assets/json/say.json").json();
-		randomSplash = `There are ${splashCacheAll.length} of these messages!`;
-	}
-
-	document.querySelector("#splash").textContent = randomSplash;
 })();
-
 
 window.addEventListener("keydown", function (event) {
 	console.log("Typed key: " + event.key);
@@ -152,12 +152,14 @@ window.addEventListener("keydown", function (event) {
 });
 
 function handleVisibilityChange() {
-	localforage.getItem("clickoff_cloaking").then(clickoffCloaking => {
+	localforage.getItem("clickoff_cloaking").then((clickoffCloaking) => {
 		if (clickoffCloaking === "true") {
 			if (document.hidden) {
 				document.title = "Google";
-				const originalFavicon = document.querySelector("link[rel*='icon']").href;
-				document.querySelector("link[rel*='icon']").href = "https://raw.githubusercontent.com/whitespider-dev/whitespider/Main/res/google.ico";
+				const originalFavicon =
+					document.querySelector("link[rel*='icon']").href;
+				document.querySelector("link[rel*='icon']").href =
+					"https://raw.githubusercontent.com/whitespider-dev/whitespider/Main/res/google.ico";
 			} else {
 				document.title = "Aluben";
 				document.getElementById("favicon").href = originalFavicon;

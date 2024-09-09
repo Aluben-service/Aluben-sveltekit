@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<script>
+			// On page load or when changing themes, best to add inline in `head` to avoid FOUC
+
+			document.documentElement.classList.add("dark");
+		</script>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		<title>Franken UI</title>
+		<link rel="preconnect" href="https://rsms.me/" />
+		<link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+
+		<style>
+			:root {
+				font-family: Inter, sans-serif;
+				font-feature-settings:
+					"liga" 1,
+					"calt" 1; /* fix for Chrome */
+			}
+			@supports (font-variation-settings: normal) {
+				:root {
+					font-family: InterVariable, sans-serif;
+				}
+			}
+		</style>
+
+		<!-- For stability in production, it's recommended that you hardcode the latest version in the CDN link. -->
+
+		<link
+			rel="stylesheet"
+			href="https://unpkg.com/franken-wc@latest/dist/css/zinc.min.css"
+		/>
+
+		<script src="https://cdn.jsdelivr.net/npm/uikit@latest/dist/js/uikit.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/uikit@latest/dist/js/uikit-icons.min.js"></script>
+		<script
+			type="module"
+			src="https://unpkg.com/franken-wc@latest/dist/js/wc.iife.js"
+		></script>
+	</head>
+	<body class="bg-background text-foreground">
+		<!-- START CODING HERE -->
+		<div class="uk-child-width-1-2@m uk-grid-small uk-grid-match" uk-grid>
+			<div>
+				<div class="uk-card uk-card-body uk-card-default">
+					<h3 class="uk-card-title">Default</h3>
+					<p class="uk-margin">
+						Lorem ipsum dolor sit amet, consectetur adipisicing
+						elit.
+					</p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

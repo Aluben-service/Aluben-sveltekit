@@ -14,22 +14,24 @@ const swAllowedHostnames = ["localhost", "127.0.0.1"];
  * Used in 404.html and index.html
  */
 async function registerSW() {
-  if (!navigator.serviceWorker) {
-    if (
-      location.protocol !== "https:" &&
-      !swAllowedHostnames.includes(location.hostname)
-    )
-      throw new Error("Service workers cannot be registered without https.");
+	if (!navigator.serviceWorker) {
+		if (
+			location.protocol !== "https:" &&
+			!swAllowedHostnames.includes(location.hostname)
+		)
+			throw new Error(
+				"Service workers cannot be registered without https.",
+			);
 
-    throw new Error("Your browser doesn't support service workers.");
-  }
+		throw new Error("Your browser doesn't support service workers.");
+	}
 
-  await navigator.serviceWorker.register(stockSW, {
-    scope: __uv$config.prefix,
-  });
+	await navigator.serviceWorker.register(stockSW, {
+		scope: __uv$config.prefix,
+	});
 
-  // This is the line you change to change the wisp server (essential for static hosting ofc)
-  let wispUrl = "wss://phantom.lol/wisp/";
-  BareMux.SetTransport("EpxMod.EpoxyClient", { wisp: wispUrl });
-  //BareMux.SetTransport("CurlMod.LibcurlClient", { wisp: wispUrl });
+	// This is the line you change to change the wisp server (essential for static hosting ofc)
+	let wispUrl = "wss://phantom.lol/wisp/";
+	BareMux.SetTransport("EpxMod.EpoxyClient", { wisp: wispUrl });
+	//BareMux.SetTransport("CurlMod.LibcurlClient", { wisp: wispUrl });
 }

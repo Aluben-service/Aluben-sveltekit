@@ -1,29 +1,33 @@
-	const Toast = Swal.mixin({
-			toast: true,
-			position: "top-end",
-			showConfirmButton: false,
-			timer: 3000,
-			timerProgressBar: true,
-			didOpen: (toast) => {
-				toast.onmouseenter = Swal.stopTimer;
-				toast.onmouseleave = Swal.resumeTimer;
-			}
-		});
-
+const Toast = Swal.mixin({
+	toast: true,
+	position: "top-end",
+	showConfirmButton: false,
+	timer: 3000,
+	timerProgressBar: true,
+	didOpen: (toast) => {
+		toast.onmouseenter = Swal.stopTimer;
+		toast.onmouseleave = Swal.resumeTimer;
+	},
+});
 
 // Password validation function
-typeof validatePassword === 'undefined'
+typeof validatePassword === "undefined"
 	? (validatePassword = function () {
-		let enteredPassword = document.getElementById("enterPassword").value;
-		let storedPassword = localStorage.getItem("passcode");
-		if (enteredPassword === storedPassword) {
-			document.getElementById("enterPassword").style.display = "none";
-		}
-	})
+			let enteredPassword =
+				document.getElementById("enterPassword").value;
+			let storedPassword = localStorage.getItem("passcode");
+			if (enteredPassword === storedPassword) {
+				document.getElementById("enterPassword").style.display = "none";
+			}
+		})
 	: null;
 
-if (Math.floor(Math.random() * 1000001) === 9933) if (document.getElementById("7689")) document.getElementById("7689").style.display = "block";
-if (Math.floor(Math.random() * 101) === 43) if (document.getElementById("traf-say")) document.getElementById("traf-say").style.display = "block";
+if (Math.floor(Math.random() * 1000001) === 9933)
+	if (document.getElementById("7689"))
+		document.getElementById("7689").style.display = "block";
+if (Math.floor(Math.random() * 101) === 43)
+	if (document.getElementById("traf-say"))
+		document.getElementById("traf-say").style.display = "block";
 
 // Function to start time and update every second
 function startTime() {
@@ -66,7 +70,7 @@ function passcodeask() {
 				if (passcode && passcode == login) {
 					Toast.fire({
 						icon: "success",
-						title: "HAHA YOU CANT READ THIS"
+						title: "HAHA YOU CANT READ THIS",
 					});
 				} else if (passcode && passcode !== login) {
 					Swal.fire({
@@ -97,5 +101,3 @@ function passcodeask() {
 }
 
 passcodeask();
-
-

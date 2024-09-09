@@ -102,7 +102,7 @@
 	}
 
 	/* Add margin to the top of the content to prevent it from overlapping with the navbar */
-	:global(body) {
+	:global(html) {
 		margin-top: 35px; /* Same height as the navbar */
 	}
 </style>

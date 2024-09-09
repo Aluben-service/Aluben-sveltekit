@@ -1,20 +1,42 @@
 <script>
-
-	// Import the necessary external scripts (handled outside of Svelte)
-	import { onMount } from "svelte";
-
+	  import { onMount } from 'svelte';
 	import Head from "$lib/components/Head.svelte";
 	import Navbar from "$lib/components/Navbar.svelte";
+	import "../app.css";
 
-	import Flamethrower from "flamethrower-router";
+	onMount(async () => {
+	const response = await fetch("assets/json/say.json");
+	const says = await response.json();
+	let randomSplash = says[Math.floor(Math.random() * says.length)];
 
-	onMount(() => {
-		const router = new Flamethrower({
-			prefetch: "all", // or 'hover', 'intent', 'none'
-			log: true, // Enable or disable logging
-			pageTransition: false, // Enable page transitions
-		});
-	});
+	if (randomSplash === "%GAMES_NUMBER%") {
+		const games = await fetch(
+			location.origin + "assets/json/games.json",
+		).json();
+		randomSplash = `There are ${games.length} games currently`;
+	} else if (randomSplash === "%SPLASH_NUMBER%") {
+		const splashCacheAll = await fetch("assets/json/say.json").json();
+		randomSplash = `There are ${splashCacheAll.length} of these messages!`;
+	}
+
+	document.querySelector("#splash").textContent = randomSplash;
+	var currentlink = 1;
+		const proxiesContainer = document.getElementById("rammy");
+
+		fetch("assets/json/rammerhead.json")
+			.then((res) => res.json())
+			.then((proxies) => {
+				proxies.forEach((proxy) => {
+					const proxyEl = document.createElement("option");
+					proxyEl.textContent = "Link " + currentlink.toString();
+					proxyEl.value = proxy;
+					proxiesContainer.appendChild(proxyEl);
+					currentlink++;
+				});
+			});
+	
+
+});
 </script>
 
 <Head />
@@ -27,9 +49,7 @@
 	<h1>touch grass</h1>
 </div>
 
-<div id="main" style="display: block;">
-	<br />
-	<br />
+<main id="main" style="display: block;">
 	<form id="uv-form" class="flex-center">
 		<input
 			id="uv-search-engine"
@@ -58,8 +78,11 @@
 
 	<section>
 		<h2>Rammerhead</h2>
-		<select id="rammy"></select>
+		<select id="rammy">
+			<option disabled selected value="">Select a Link...</option>
+		</select>
 		<button
+			class="button"
 			onclick="window.location = (v => v && v)(document.getElementById('rammy').value);"
 			>Go</button
 		>
@@ -68,10 +91,7 @@
 	<section>
 		<h2>Holy Unblocker</h2>
 		<select id="holyub">
-			<option value="">Select a Link...</option>
-			<option value="https://www.holyubofficial.net/"
-				>Holy Unblocker</option
-			>
+			<option disabled selected value="">Select a Link...</option>
 			<option value="https://campusdirections.org/">Link 1</option>
 			<option value="https://mathematicalsols.org/">Link 2</option>
 			<option value="https://historicalanime.org/">Link 3</option>
@@ -84,21 +104,19 @@
 			<option value="https://ur2ndlibrary.com/">Link 10</option>
 		</select>
 		<button
+			class="button"
 			onclick="window.location = (v => v && v)(document.getElementById('holyub').value);"
 			>Go</button
 		>
 	</section>
 
-	<div id="traf-say">
-		<a href="Fart"><span class="stinky">traf</span></a>
-	</div>
-	<div id="7689" style="display: none;">
-		go to the Aluben discord server and go to claim then type "7689" for a
+	<p id="s!lol">
+		go to the Aluben discord server and go to claim then type "s!lol" for a
 		reward
-	</div>
-</div>
+	</p>
+	<iframe title="proxied" style="display: none;" id="uv-frame"></iframe>
+</main>
 
-<iframe title="proxied" style="display: none;" id="uv-frame"></iframe>
 
 <style>
 	:global(body) {

@@ -1,4 +1,3 @@
-document.addEventListener("DOMContentLoaded", function (event) {
 	var currentlink = 1;
 	// Function to fetch JSON and populate select options
 	function populateproxyOptions() {
@@ -16,7 +15,3 @@ document.addEventListener("DOMContentLoaded", function (event) {
 				});
 			});
 	}
-
-	// Call the function to populate the select options
-	populateproxyOptions();
-});
