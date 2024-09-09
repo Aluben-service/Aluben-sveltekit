@@ -1,7 +1,42 @@
 <script>
+	  import { onMount } from 'svelte';
 	import Head from "$lib/components/Head.svelte";
 	import Navbar from "$lib/components/Navbar.svelte";
 	import "../app.css";
+
+	onMount(async () => {
+	const response = await fetch("assets/json/say.json");
+	const says = await response.json();
+	let randomSplash = says[Math.floor(Math.random() * says.length)];
+
+	if (randomSplash === "%GAMES_NUMBER%") {
+		const games = await fetch(
+			location.origin + "assets/json/games.json",
+		).json();
+		randomSplash = `There are ${games.length} games currently`;
+	} else if (randomSplash === "%SPLASH_NUMBER%") {
+		const splashCacheAll = await fetch("assets/json/say.json").json();
+		randomSplash = `There are ${splashCacheAll.length} of these messages!`;
+	}
+
+	document.querySelector("#splash").textContent = randomSplash;
+	var currentlink = 1;
+		const proxiesContainer = document.getElementById("rammy");
+
+		fetch("assets/json/rammerhead.json")
+			.then((res) => res.json())
+			.then((proxies) => {
+				proxies.forEach((proxy) => {
+					const proxyEl = document.createElement("option");
+					proxyEl.textContent = "Link " + currentlink.toString();
+					proxyEl.value = proxy;
+					proxiesContainer.appendChild(proxyEl);
+					currentlink++;
+				});
+			});
+	
+
+});
 </script>
 
 <Head />
@@ -45,8 +80,11 @@
 
 	<section>
 		<h2>Rammerhead</h2>
-		<select id="rammy"></select>
+		<select id="rammy">
+			<option disabled selected value="">Select a Link...</option>
+		</select>
 		<button
+			class="button"
 			onclick="window.location = (v => v && v)(document.getElementById('rammy').value);"
 			>Go</button
 		>
@@ -55,10 +93,7 @@
 	<section>
 		<h2>Holy Unblocker</h2>
 		<select id="holyub">
-			<option value="">Select a Link...</option>
-			<option value="https://www.holyubofficial.net/"
-				>Holy Unblocker</option
-			>
+			<option disabled selected value="">Select a Link...</option>
 			<option value="https://campusdirections.org/">Link 1</option>
 			<option value="https://mathematicalsols.org/">Link 2</option>
 			<option value="https://historicalanime.org/">Link 3</option>
@@ -71,6 +106,7 @@
 			<option value="https://ur2ndlibrary.com/">Link 10</option>
 		</select>
 		<button
+			class="button"
 			onclick="window.location = (v => v && v)(document.getElementById('holyub').value);"
 			>Go</button
 		>
@@ -86,8 +122,6 @@
 </div>
 
 <iframe title="proxied" style="display: none;" id="uv-frame"></iframe>
-
-<h1 class="text-3xl font-bold underline">Hello world!</h1>
 
 <style>
 	:global(body) {
