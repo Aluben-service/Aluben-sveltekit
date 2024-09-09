@@ -175,7 +175,7 @@ import "../../app.css"
 	}}>Save</button
 >
 
-
+<!--
 		<button
 			class=".button"
 			on:click={() =>
@@ -201,4 +201,4 @@ import "../../app.css"
 			on:click={() => setEngine("Bing", "https://www.bing.com/search?q=")}
 			>Bing</button
 		>
-<button on:click={set_browser}>Set Search Engine</button>
+<button on:click={set_browser}>Set Search Engine</button>-->
