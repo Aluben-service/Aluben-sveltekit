@@ -162,7 +162,7 @@
 		);
 	}}>Save</button
 >
-
+<!-- 
 <button
 	class=".button"
 	on:click={() => setEngine("Google", "https://www.google.com/search?q=")}
@@ -184,4 +184,4 @@
 	on:click={() => setEngine("Bing", "https://www.bing.com/search?q=")}
 	>Bing</button
 >
-<button on:click={set_browser}>Set Search Engine</button>
+<button on:click={set_browser}>Set Search Engine</button> -->
