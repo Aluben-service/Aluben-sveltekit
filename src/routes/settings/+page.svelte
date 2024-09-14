@@ -2,7 +2,7 @@
 	import Navbar from "$lib/components/Navbar.svelte";
 	import Head from "$lib/components/Head.svelte";
 	import { onMount } from "svelte";
-import "../../app.css"
+	import "../../app.css";
 	import Swal from "sweetalert2";
 	import localforage from "localforage";
 
@@ -24,7 +24,7 @@ import "../../app.css"
 			]);
 
 			selectedTheme = theme || "N/A";
-			currentCloak = cloak === "Custom" ? "N/A" : (cloak || "N/A");
+			currentCloak = cloak === "Custom" ? "N/A" : cloak || "N/A";
 
 			// Use selectedTheme and currentCloak here
 		} catch (error) {
@@ -34,7 +34,7 @@ import "../../app.css"
 
 	async function customcloak(event) {
 		await localforage.setItem("cloak", "Custom");
-		await localforage.setItem("customcloak", {title: event.target.value});
+		await localforage.setItem("customcloak", { title: event.target.value });
 	}
 
 	async function customcloakfavicon(event) {
@@ -43,7 +43,6 @@ import "../../app.css"
 		CustomCloak.favicon = event.target.value;
 		await localforage.setItem("customcloakfavicon", CustomCloak);
 	}
-
 
 	async function set_theme() {
 		try {
@@ -102,43 +101,40 @@ import "../../app.css"
 
 <h1>Settings</h1>
 
-
-  
-
 <div class="uk-child-width-1-2@m uk-grid-small uk-grid-match" uk-grid>
 	<div>
-	  <div class="uk-card uk-card-body uk-card-default">
-		<h3 class="uk-card-title">Tab Cloak</h3>
-		<p style="font-size: 11px;">
-			This will disguise your tabs and make them look like Clever, Google
-			Classroom, Schoology, etc.
-		</p>
-		<select bind:value={currentCloak} on:change={set_cloak}>
-			<option selected disabled value="N/A">Choose one</option>
-			<option value="Google">Google</option>
-			<option value="Drive">Drive</option>
-			<option value="Classroom">Google Classroom</option>
-			<option value="Schoology">Schoology</option>
-			<option value="Gmail">Gmail</option>
-			<option value="Clever">Clever</option>
-			<option value="Khan">Khan Academy</option>
-			<option value="Ebay">Ebay</option>
-		</select>
-		<br/>
-		<input
-			type="text"
-			on:input={customcloak}
-			placeholder="Enter a custom tab name"
-		/>
-		<br/>
-		<input
-		type="text"
-		on:input={customcloakfavicon}
-		placeholder="Enter a custom tab favicon URL"
-	/>
-	  </div>
+		<div class="uk-card uk-card-body uk-card-default">
+			<h3 class="uk-card-title">Tab Cloak</h3>
+			<p style="font-size: 11px;">
+				This will disguise your tabs and make them look like Clever,
+				Google Classroom, Schoology, etc.
+			</p>
+			<select bind:value={currentCloak} on:change={set_cloak}>
+				<option selected disabled value="N/A">Choose one</option>
+				<option value="Google">Google</option>
+				<option value="Drive">Drive</option>
+				<option value="Classroom">Google Classroom</option>
+				<option value="Schoology">Schoology</option>
+				<option value="Gmail">Gmail</option>
+				<option value="Clever">Clever</option>
+				<option value="Khan">Khan Academy</option>
+				<option value="Ebay">Ebay</option>
+			</select>
+			<br />
+			<input
+				type="text"
+				on:input={customcloak}
+				placeholder="Enter a custom tab name"
+			/>
+			<br />
+			<input
+				type="text"
+				on:input={customcloakfavicon}
+				placeholder="Enter a custom tab favicon URL"
+			/>
+		</div>
 	</div>
-</div> 
+</div>
 
 <!--
 <h3>Themes:</h3>
@@ -158,7 +154,6 @@ import "../../app.css"
 <button on:click={set_theme}>Save</button>
 -->
 
-
 <h3>Panic key/url</h3>
 <input id="panickey" placeholder="key..." />
 <input id="panicurl" placeholder="url..." />
@@ -175,30 +170,25 @@ import "../../app.css"
 	}}>Save</button
 >
 
-
-		<button
-			class=".button"
-			on:click={() =>
-				setEngine("Google", "https://www.google.com/search?q=")}
-			>Google (Default)</button
-		>
-		<button
-			class=".button"
-			on:click={() =>
-				setEngine("Wikipedia", "https://en.wikipedia.org/wiki/")}
-			>Wikipedia</button
-		>
-		<button
-			class=".button"
-			on:click={() =>
-				setEngine(
-					"Gogoprivate",
-					"https://gogoprivate.com/search?#gsc.q=",
-				)}>Gogoprivate</button
-		>
-		<button
-			class=".button"
-			on:click={() => setEngine("Bing", "https://www.bing.com/search?q=")}
-			>Bing</button
-		>
+<button
+	class=".button"
+	on:click={() => setEngine("Google", "https://www.google.com/search?q=")}
+	>Google (Default)</button
+>
+<button
+	class=".button"
+	on:click={() => setEngine("Wikipedia", "https://en.wikipedia.org/wiki/")}
+	>Wikipedia</button
+>
+<button
+	class=".button"
+	on:click={() =>
+		setEngine("Gogoprivate", "https://gogoprivate.com/search?#gsc.q=")}
+	>Gogoprivate</button
+>
+<button
+	class=".button"
+	on:click={() => setEngine("Bing", "https://www.bing.com/search?q=")}
+	>Bing</button
+>
 <button on:click={set_browser}>Set Search Engine</button>
