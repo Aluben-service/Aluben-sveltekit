@@ -8,43 +8,37 @@
 
 	let selectedTheme;
 	let currentCloak;
-
-	async function initializeStorage() {
+	const initializeStorage = async () => {
 		try {
 			await localforage.setDriver([
-				localforage.INDEXEDDB, // Use IndexedDB first
-				localforage.WEBSQL, // If IndexedDB is unavailable, use WebSQL
-				localforage.LOCALSTORAGE, // If both IndexedDB and WebSQL are unavailable, use LocalStorage
+				localforage.INDEXEDDB,
+				localforage.WEBSQL,
+				localforage.LOCALSTORAGE,
 			]);
-
-			// Get items from localforage
 			const [theme, cloak] = await Promise.all([
 				localforage.getItem("theme"),
 				localforage.getItem("cloak"),
 			]);
-
 			selectedTheme = theme || "N/A";
 			currentCloak = cloak === "Custom" ? "N/A" : cloak || "N/A";
-
-			// Use selectedTheme and currentCloak here
 		} catch (error) {
 			console.error("Error initializing LocalForage:", error);
 		}
-	}
+	};
 
-	async function customcloak(event) {
+	const customcloak = async (event) => {
 		await localforage.setItem("cloak", "Custom");
 		await localforage.setItem("customcloak", { title: event.target.value });
-	}
+	};
 
-	async function customcloakfavicon(event) {
+	const customcloakfavicon = async (event) => {
 		await localforage.setItem("cloak", "Custom");
 		const CustomCloak = await localforage.getItem("customcloak");
 		CustomCloak.favicon = event.target.value;
 		await localforage.setItem("customcloakfavicon", CustomCloak);
-	}
+	};
 
-	async function set_theme() {
+	const set_theme = async () => {
 		try {
 			await localforage.setItem("theme", selectedTheme);
 			Swal.fire({
@@ -54,18 +48,18 @@
 		} catch (error) {
 			console.error("Error setting theme:", error);
 		}
-	}
+	};
 
-	async function set_cloak(event) {
+	const set_cloak = async (event) => {
 		try {
 			await localforage.setItem("cloak", event.target.value);
 			location.reload();
 		} catch (error) {
 			console.error("Error setting cloak:", error);
 		}
-	}
+	};
 
-	async function txtclrpicker(event) {
+	const txtclrpicker = async (event) => {
 		await localforage.setItem("theme", "custom");
 		await localforage.setItem("customTheme", {
 			backcolor: "none",
@@ -73,14 +67,13 @@
 			style: 1,
 		});
 		location.reload();
-	}
+	};
 
-	function toggleDropdown() {
+	const toggleDropdown = () => {
 		const dropdown = document.getElementById("dropdownContent");
 		dropdown.style.display =
 			dropdown.style.display === "block" ? "none" : "block";
-	}
-
+	};
 	onMount(() => {
 		initializeStorage();
 		document
