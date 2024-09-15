@@ -61,3 +61,16 @@
 	gap: 0px;
 	/* Space between cards */
 }
+
+#logo {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+}
+
+a[href="#nothingheretosee"] {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

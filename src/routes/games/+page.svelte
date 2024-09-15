@@ -1,10 +1,9 @@
 <script>
 	import { onMount } from "svelte";
-import "../../app.css"
+	import "../../app.css";
 	import Navbar from "$lib/components/Navbar.svelte";
 
 	onMount(() => {
-
 		// Load external scripts
 		const script1 = document.createElement("script");
 		script1.src = "assets/js/games.js";
@@ -69,7 +68,7 @@ import "../../app.css"
 	title="Search for a game"
 />
 <br />
-<button onclick="searchGames();" class="button"
+<button onclick="searchGames" class="button"
 	>Search(For some reason onkeydown wont work)</button
 >
 <!-- <select id="category" name="category" on:change={showCategory}>
