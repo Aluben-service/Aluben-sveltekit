@@ -2,7 +2,7 @@
 	import { onMount } from "svelte";
 	import Navbar from "$lib/components/Navbar.svelte"; // Adjust the import path as necessary
 	import localforage from "localforage";
-import "../../app.css"
+	import "../../app.css";
 
 	// Function definitions
 	function fullscreen() {
