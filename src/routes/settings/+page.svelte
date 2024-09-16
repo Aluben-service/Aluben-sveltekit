@@ -5,7 +5,38 @@
 	import "../../app.css";
 	import Swal from "sweetalert2";
 	import localforage from "localforage";
-
+	const passcodechange = () => {
+		Swal.fire({
+			title: `enter your old passcode.`,
+			input: "text", // Change input type to password
+			inputAttributes: {
+				autocapitalize: "off",
+			},
+			showCancelButton: true,
+			confirmButtonText: "Ok!",
+			showLoaderOnConfirm: true,
+			preConfirm: async (login) => {
+				if (localStorage.getItem("passcode") === login) {
+					Swal.fire({
+						title: `enter your new passcode.`,
+						input: "password", // Change input type to password
+						inputAttributes: {
+							autocapitalize: "off",
+						},
+						showCancelButton: true,
+						confirmButtonText: "Change Passcode",
+						showLoaderOnConfirm: true,
+						preConfirm: async (newpass) => {
+							localStorage.setItem("passcode", newpass);
+							Swal.fire("Passcode changed successfully!");
+						},
+						allowOutsideClick: () => false,
+					});
+				}
+			},
+			allowOutsideClick: () => false,
+		});
+	};
 	let selectedTheme;
 	let currentCloak;
 	const initializeStorage = async () => {
@@ -162,6 +193,12 @@
 		);
 	}}>Save</button
 >
+<br />
+<br />
+<br />
+<button class="uk-button uk-button-primary" on:click={passcodechange}>
+	change password
+</button>
 <!-- 
 <button
 	class=".button"

@@ -42,18 +42,6 @@ function startTime() {
 	setTimeout(startTime, 1000);
 }
 
-// Function to change passcode with validation
-function passcodechange() {
-	const oldpasscode = prompt("Enter old passcode");
-	const storedPasscode = localStorage.getItem("passcode");
-	if (oldpasscode === storedPasscode) {
-		const newpasscode = prompt("Enter new passcode");
-		localStorage.setItem("passcode", newpasscode);
-	} else {
-		alert("Incorrect passcode");
-	}
-}
-
 function passcodeask() {
 	Swal.fire({
 		title: `${localStorage.getItem("passcode") ? "Enter" : "Set"} your passcode.`,
