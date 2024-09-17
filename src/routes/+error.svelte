@@ -2,8 +2,8 @@
     import Head from '$lib/components/Head.svelte'; // Adjust the import path as necessary
     import Navbar from '$lib/components/Navbar.svelte'; // Adjust the import path as necessary
     import { onMount } from 'svelte';
+    let showStats = false;
 
-    onMount(() => {
 
     let fullUrl = 'Fetching...';
     let pageTitle = 'Fetching...';
@@ -22,7 +22,7 @@
     let ipv6 = 'Fetching...';
     let ipv4 = 'Fetching...';
     let networkIP = 'Fetching...';
-    let showStats = false;
+    
 
     onMount(() => {
         fullUrl = window.location.href;
@@ -54,6 +54,7 @@
             });
     });
 
+
     function toggleStats() {
         showStats = !showStats;
     }
@@ -84,8 +85,8 @@
 <p>
     Error 404 Page not found.
     <br />
-    <button class="button" on:click="{() => window.history.back()}">Go back</button>
-    <button class="button" on:click="{toggleStats}">Stats for nerds</button>
+    <button class="bounce" on:click="{() => window.history.back()}">Go back</button>
+    <button class="bounce" on:click="{toggleStats}">Stats for nerds</button>
 </p>
 {#if showStats}
     <div id="sfn" class="message">

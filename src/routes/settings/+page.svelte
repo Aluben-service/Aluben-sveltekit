@@ -66,33 +66,9 @@ import "../../app.css"
 		}
 	}
 
-	async function txtclrpicker(event) {
-		await localforage.setItem("theme", "custom");
-		await localforage.setItem("customTheme", {
-			backcolor: "none",
-			textcolor: event,
-			style: 1,
-		});
-		location.reload();
-	}
-
-	function toggleDropdown() {
-		const dropdown = document.getElementById("dropdownContent");
-		dropdown.style.display =
-			dropdown.style.display === "block" ? "none" : "block";
-	}
 
 	onMount(() => {
 		initializeStorage();
-		document
-			.getElementById("dropdownDisplay")
-			.addEventListener("click", toggleDropdown);
-		window.onclick = (event) => {
-			if (!event.target.matches(".dropdown-display")) {
-				document.getElementById("dropdownContent").style.display =
-					"none";
-			}
-		};
 	});
 </script>
 
@@ -100,7 +76,7 @@ import "../../app.css"
 
 <Navbar />
 
-<h1>Settings</h1>
+<h1 style="font-size: 2em;">Settings</h1>
 
 
   
@@ -140,11 +116,24 @@ import "../../app.css"
 	</div>
 </div> 
 
-<!--
+<div class="uk-child-width-1-2@m uk-grid-small uk-grid-match" uk-grid>
+	<div>
+	  <div class="uk-card uk-card-body uk-card-default">
+		<h3 class="uk-card-title">Passcode</h3>
+		<p style="font-size: 11px;">
+			Click the button below to change your passcode!
+		</p>
+		<button class="bounce-light" on:click={() => passcodechange()}>Change</button>
+		<!-- This is a bypass to access the js like we are in HTML because normally js doesnt leak into svelte-->
+	  </div>
+	</div>
+</div> 
+
+
 <h3>Themes:</h3>
 <select bind:value={selectedTheme} id="themes">
     <option value="N/A">Choose a theme</option>
-    <option value="Dark">Dark</option>
+    <option value="bannana_split">Bannana Split</option>
     <option value="Light">Light</option>
     <option value="Twilight">Twilight</option>
     <option value="Ocean">Ocean</option>
@@ -156,24 +145,8 @@ import "../../app.css"
     <option value="custom_theme">custom</option>
 </select>
 <button on:click={set_theme}>Save</button>
--->
 
 
-<h3>Panic key/url</h3>
-<input id="panickey" placeholder="key..." />
-<input id="panicurl" placeholder="url..." />
-<button
-	on:click={() => {
-		localforage.setItem(
-			"panicurl",
-			"https://" + document.getElementById("panicurl").value,
-		);
-		localforage.setItem(
-			"panickey",
-			document.getElementById("panickey").value,
-		);
-	}}>Save</button
->
 
 <!--
 		<button

@@ -10,17 +10,30 @@ const Toast = Swal.mixin({
 	},
 });
 
+const passcodePrompt = Swal.mixin({
+	input: "password",
+	inputAttributes: {
+		autocapitalize: "off",
+	},
+	showCancelButton: false,
+	confirmButtonText: "Ok!",
+	allowOutsideClick: () => false,
+	showLoaderOnConfirm: true,
+	preConfirm: async (login) => {
+		return login; // Returns the user input (passcode)
+	},
+});
+
+
 // Password validation function
-typeof validatePassword === "undefined"
-	? (validatePassword = function () {
-			let enteredPassword =
-				document.getElementById("enterPassword").value;
-			let storedPassword = localStorage.getItem("passcode");
-			if (enteredPassword === storedPassword) {
-				document.getElementById("enterPassword").style.display = "none";
-			}
-		})
-	: null;
+let validatePassword = () => {
+	let enteredPassword =
+		document.getElementById("enterPassword").value;
+	let storedPassword = localStorage.getItem("passcode");
+	if (enteredPassword === storedPassword) {
+		document.getElementById("enterPassword").style.display = "none";
+	}
+}
 
 if (Math.floor(Math.random() * 1000001) === 9933)
 	if (document.getElementById("7689"))
@@ -44,44 +57,52 @@ function startTime() {
 
 // Function to change passcode with validation
 function passcodechange() {
-	const oldpasscode = prompt("Enter old passcode");
-	const storedPasscode = localStorage.getItem("passcode");
-	if (oldpasscode === storedPasscode) {
-		const newpasscode = prompt("Enter new passcode");
-		localStorage.setItem("passcode", newpasscode);
-	} else {
-		alert("Incorrect passcode");
-	}
+	passcodePrompt.fire({
+		title: "Set your passcode.",
+	}).then((result) => {
+		if (result.isConfirmed) {
+			try {
+				localStorage.setItem("passcode", result.value);
+				Swal.fire({
+					title: "Successful",
+					text: "Passcode successfully set!",
+					icon: "success",
+				});
+			} catch (error) {
+				Swal.fire({
+					title: "Failed!",
+					text: `Error: ${error}`,
+					icon: "error",
+				});
+			}
+		}
+	});
 }
 
 function passcodeask() {
-	Swal.fire({
-		title: `${localStorage.getItem("passcode") ? "Enter" : "Set"} your passcode.`,
-		input: "password", // Change input type to password
-		inputAttributes: {
-			autocapitalize: "off",
-		},
-		showCancelButton: false,
-		confirmButtonText: "Ok!",
-		showLoaderOnConfirm: true,
-		preConfirm: async (login) => {
+	const savedPasscode = localStorage.getItem("passcode");
+	passcodePrompt.fire({
+		title: `${savedPasscode ? "Enter" : "Set"} your passcode.`,
+	}).then((result) => {
+		if (result.isConfirmed) {
 			try {
-				let passcode = localStorage.getItem("passcode");
-				if (passcode && passcode == login) {
-					Toast.fire({
-						icon: "success",
-						title: "HAHA YOU CANT READ THIS",
-					});
-				} else if (passcode && passcode !== login) {
-					Swal.fire({
-						title: "Failed!",
-						text: "Wrong passcode!",
-						icon: "error",
-					}).then(() => {
-						passcodeask(); // Re-prompt the user
-					});
-				} else if (!localStorage.getItem("passcode")) {
-					localStorage.setItem("passcode", login);
+				const enteredPasscode = result.value;
+				if (savedPasscode) {
+					if (enteredPasscode === savedPasscode) {
+						Toast.fire({
+							icon: "success",
+							title: "HAHA YOU CAN'T READ THIS",
+						});
+					} else {
+						Swal.fire({
+							title: "Failed!",
+							text: "Wrong passcode!",
+							icon: "error",
+						}).then(() => passcodeask()); // Re-prompt the user on wrong passcode
+					}
+				} else {
+					// If no passcode is set, save the entered passcode
+					localStorage.setItem("passcode", enteredPasscode);
 					Swal.fire({
 						title: "Successful",
 						text: "Passcode successfully set!",
@@ -95,8 +116,7 @@ function passcodeask() {
 					icon: "error",
 				});
 			}
-		},
-		allowOutsideClick: () => false,
+		}
 	});
 }
 

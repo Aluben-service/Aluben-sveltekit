@@ -1,118 +1,39 @@
-// Function to fix JSON string
 async function fixJSON(json) {
 	function bulkRegex(str, callback) {
-		if (callback && typeof callback === "function") {
-			return callback(str);
-		} else if (callback && Array.isArray(callback)) {
-			for (let i = 0; i < callback.length; i++) {
-				if (callback[i] && typeof callback[i] === "function") {
-					str = callback[i](str);
-				} else {
-					break;
-				}
-			}
-			return str;
-		}
-		return str;
+		return callback && typeof callback === "function"
+			? callback(str)
+			: callback && Array.isArray(callback)
+			? callback.reduce((s, fn) => (fn ? fn(s) : s), str)
+			: str;
 	}
 
-	if (json && json !== "") {
-		if (typeof json !== "string") {
-			try {
-				json = JSON.stringify(json);
-			} catch (e) {
-				return false;
-			}
-		}
-		if (typeof json === "string") {
-			json = bulkRegex(json, false, [
-				(str) => str.replace(/[\n\t]/gm, ""),
-				(str) => str.replace(/,\}/gm, "}"),
-				(str) => str.replace(/,\]/gm, "]"),
-				(str) => {
-					str = str.split(/(?=[,\}\]])/g);
-					str = str.map((s) => {
-						if (s.includes(":") && s) {
-							let strP = s.split(/:(.+)/, 2);
-							strP[0] = strP[0].trim();
-							if (strP[0]) {
-								let firstP = strP[0].split(/([,\{\[])/g);
-								firstP[firstP.length - 1] = bulkRegex(
-									firstP[firstP.length - 1],
-									false,
-									(p) => p.replace(/[^A-Za-z0-9\-_]/g, ""),
-								);
-								strP[0] = firstP.join("");
-							}
-							let part = strP[1].trim();
-							if (
-								(part.startsWith('"') && part.endsWith('"')) ||
-								(part.startsWith("'") && part.endsWith("'")) ||
-								(part.startsWith("`") && part.endsWith("`"))
-							) {
-								part = part.substr(1, part.length - 2);
-							}
-							part = bulkRegex(part, false, [
-								(p) => p.replace(/(["])/g, "\\$1"),
-								(p) => p.replace(/\\'/g, "'"),
-								(p) => p.replace(/\\`/g, "`"),
-							]);
-							strP[1] = ('"' + part + '"').trim();
-							s = strP.join(":");
-						}
-						return s;
-					});
-					return str.join("");
-				},
-				(str) =>
-					str.replace(/(['"])?([a-zA-Z0-9\-_]+)(['"])?:/g, '"$2":'),
-				(str) => {
-					str = str.split(/(?=[,\}\]])/g);
-					str = str.map((s) => {
-						if (s.includes(":") && s) {
-							let strP = s.split(/:(.+)/, 2);
-							strP[0] = strP[0].trim();
-							if (
-								strP[1].includes('"') &&
-								strP[1].includes(":")
-							) {
-								let part = strP[1].trim();
-								if (
-									part.startsWith('"') &&
-									part.endsWith('"')
-								) {
-									part = part.substr(1, part.length - 2);
-									part = bulkRegex(part, false, (p) =>
-										p.replace(/(?<!\\)"/g, ""),
-									);
-								}
-								strP[1] = ('"' + part + '"').trim();
-							}
-							s = strP.join(":");
-						}
-						return s;
-					});
-					return str.join("");
-				},
-			]);
-			try {
-				json = JSON.parse(json);
-			} catch (e) {
-				return false;
-			}
-		}
-		return json;
+	if (!json) return false;
+	try {
+		json = typeof json !== "string" ? JSON.stringify(json) : json;
+		json = bulkRegex(json, false, [
+			(str) => str.replace(/[\n\t]/g, "").replace(/,\}/g, "}").replace(/,\]/g, "]"),
+			(str) =>
+				str.split(/(?=[,\}\]])/g).map((s) => {
+					if (s.includes(":")) {
+						let [k, v] = s.split(/:(.+)/, 2).map((x) => x.trim());
+						k = bulkRegex(k, false, (p) => p.replace(/[^A-Za-z0-9\-_]/g, ""));
+						v = bulkRegex(v.slice(1, -1), false, [(p) => p.replace(/(["])/g, "\\$1")]);
+						s = `"${k}":"${v}"`;
+					}
+					return s;
+				}).join(""),
+			(str) => str.replace(/(['"])?([a-zA-Z0-9\-_]+)(['"])?:/g, '"$2":'),
+		]);
+		return JSON.parse(json);
+	} catch {
+		return false;
 	}
-	return false;
 }
 
 // Fetch and display games
-// Fetch and display games
 async function loadGames() {
 	try {
-		const response = await fetch("assets/json/games.json");
-		let games = await response.json();
-		games = await fixJSON(games);
+		let games = await fixJSON(await (await fetch("assets/json/games.json")).json());
 		if (!games) throw new Error("Failed to fix JSON");
 
 		games.sort((a, b) => a.name.localeCompare(b.name));
@@ -122,47 +43,28 @@ async function loadGames() {
 			const gameDesc = game.desc || "There is no set description";
 			const gameCategories = game.categories || "all";
 			const gameImg = game.img || "/web.png";
+			const gameName = game.name || "Unknown";
 			gameEl.innerHTML = `
-                <div class="gamecard" data-category="${gameCategories}">
+                <article class="gamecard" data-category="${gameCategories}">
                   <a href="#" onclick='(async () => { await saveGame(${JSON.stringify(game)}); })();'>
-                    <img title='${game.name}' src="${gameImg}" class="gameimage"/>
+                    <figure>
+                      <img title='${gameName}' src="${gameImg}" class="gameimage" alt="${gameName}"/>
+                    </figure>
                   </a>
-                  <i onclick="pin('${game.name}');" style="color:white;" class="fa fa-map-pin" aria-hidden="true"></i>
-                  <a href="#">
-                    <div class="gameinfo">
-                      <b>
-                        <p class="gamename">${game.name}</p>
-                      </b>
-                      <p class="gamedesc">${gameDesc}</p>
-                    </div>
-                  </a>
-                </div>
+                  <button onclick="pin('${gameName}');" style="color:white;" aria-label="Pin game">
+                    <i class="fa fa-map-pin" style="display:block;" aria-hidden="true"></i>
+                  </button>
+                  <div class="gameinfo">
+                    <header>
+                      <h2 class="gamename">${gameName}</h2>
+                    </header>
+                    <p class="gamedesc">${gameDesc}</p>
+                  </div>
+                </article>
             `;
 			document.querySelector(".gamecontainer").appendChild(gameEl);
 
-			if ((await localforage.getItem(game.name)) === "pinned") {
-				const pinnedEl = document.createElement("li");
-				const pinnedDesc = game.desc || " ";
-				const pinnedCategories = game.categories || "all";
-				const pinnedImg = game.img || "/web.png";
-				pinnedEl.innerHTML = `
-                    <div class="gamecard" data-category="${pinnedCategories}">
-                      <a href="#" onclick='(async () => { await saveGame(${JSON.stringify(game)}); })();'>
-                        <img title='${game.name}' src="${pinnedImg}" class="gameimage"/>
-                      </a>
-                      <i onclick="pin('${game.name}');" style="color:white;" class="fa fa-map-pin" aria-hidden="true"></i>
-                      <a href="#">
-                        <div class="gameinfo">
-                          <b>
-                            <p class="gamename">${game.name}</p>
-                          </b>
-                          <p class="gamedesc">${pinnedDesc}</p>
-                        </div>
-                      </a>
-                    </div>
-                `;
-				document.querySelector(".pinned").appendChild(pinnedEl);
-			}
+			if ((await localforage.getItem(game.name)) === "pinned") document.querySelector(".pinned").appendChild(gameEl.cloneNode(true));
 		});
 	} catch (error) {
 		console.error(error);
@@ -237,36 +139,17 @@ async function pin(name) {
 		} catch {
 			const result = await Swal.fire({
 				title: "Error!",
-				text: `There was an issue with ${isPinned ? "unpinning" : "pinning"} this game.`,
+				text: "Something went wrong, please try again.",
 				icon: "error",
-				confirmButtonText: "Try Again",
+				confirmButtonColor: "#3085d6",
+				confirmButtonText: "Ok",
 			});
 
 			if (result.isConfirmed) {
-				attemptPin();
+				location.reload();
 			}
 		}
 	}
-
-	attemptPin(); // Start the process
+	await attemptPin();
 }
-
-// Function to search games
-function searchGames() {
-	var input = document.getElementById("searchInput");
-	var filter = input.value.toUpperCase();
-	var container = document.getElementById("games");
-	var items = container.getElementsByClassName("gamecard");
-
-	for (var i = 0; i < items.length; i++) {
-		var gameName = items[i].getElementsByClassName("gamename")[0].innerText;
-		if (gameName.toUpperCase().indexOf(filter) > -1) {
-			items[i].style.display = "";
-		} else {
-			items[i].style.display = "none";
-		}
-	}
-}
-
-// Initialize the game loading
 loadGames();

@@ -1,0 +1,77 @@
+/* Banana Split Theme */
+
+/* Background */
+body {
+  background: linear-gradient(135deg, #fff7c0 50%, #ffe6b3 50%) !important;
+  color: #5b3e2b !important;
+  font-family: 'Comic Sans MS', 'Comic Sans', cursive !important;
+}
+
+/* Headings */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #ffcc00 !important;
+  font-weight: bold !important;
+  text-shadow: 2px 2px 0 #ff5733 !important;
+}
+
+/* Paragraph text */
+p {
+  color: #5b3e2b !important;
+  font-size: 1.2em !important;
+  line-height: 1.6 !important;
+}
+
+/* Buttons */
+button {
+  background-color: #ffe135 !important;
+  /* Banana yellow */
+  color: #5b3e2b !important;
+  /* Chocolate brown text */
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #ff5733 !important;
+  /* Strawberry pink hover */
+  color: white !important;
+  border-color: #ffe135 !important;
+  /* Banana yellow border */
+  transform: scale(1.05) !important;
+}
+
+/* Links */
+a {
+  color: #ffcc00 !important;
+  text-decoration: none !important;
+}
+
+a:hover {
+  color: #ff5733 !important;
+  text-decoration: underline !important;
+}
+
+/* Input fields */
+input[type="text"],
+input[type="email"],
+textarea {
+  background-color: #fff5e1 !important;
+  /* Light vanilla background */
+  border: 2px solid #ffcc00 !important;
+  border-radius: 5px !important;
+  padding: 10px !important;
+  font-size: 1em !important;
+  color: #5b3e2b !important;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+textarea:focus {
+  border-color: #ff5733 !important;
+  /* Strawberry border on focus */
+  outline: none !important;
+}

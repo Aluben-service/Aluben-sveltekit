@@ -2,7 +2,7 @@
 	import { onMount } from "svelte";
 	import Navbar from "$lib/components/Navbar.svelte"; // Adjust the import path as necessary
 	import localforage from "localforage";
-import "../../app.css"
+	import "../../app.css";
 
 	// Function definitions
 	function fullscreen() {
@@ -15,7 +15,9 @@ import "../../app.css"
 		else if (iframe.mozRequestFullScreen) iframe.mozRequestFullScreen();
 		else if (iframe.msRequestFullscreen) iframe.msRequestFullscreen();
 	}
-
+	let gameName;
+	let gameDesc;
+	let src;
 	onMount(async () => {
 		try {
 			// Set driver explicitly
@@ -28,11 +30,9 @@ import "../../app.css"
 
 			const game = await localforage.getItem("currentgame");
 			if (game) {
-				document.getElementById("gamename").textContent =
-					game.name || "";
-				document.getElementById("gamedesc").textContent =
-					game.desc || "";
-				document.getElementById("game-frame").src = game.url || "";
+				gameName = game.name;
+				gameDesc = game.desc || "";
+				src = game.url || "";
 			}
 		} catch (err) {
 			console.error("Error with localForage:", err);
@@ -65,10 +65,10 @@ import "../../app.css"
 
 <Navbar />
 <div class="container">
-	<h3 style="color: white;" id="gamename"></h3>
-	<p style="color: white;" id="gamedesc"></p>
+	<h3 style="color: white;" id="gamename">{gameName}</h3>
+	<p style="color: white;" id="gamedesc">{gameDesc}</p>
 	<iframe
-		src=""
+		{src}
 		title="Game Frame"
 		id="game-frame"
 		scrolling="yes"
