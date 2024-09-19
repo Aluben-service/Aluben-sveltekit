@@ -46,6 +46,7 @@
 	/>
 	<script src="/assets/lib/fontawesome.js" defer></script>
 	<script src="/assets/lib/sweetAlerts.js" defer></script>
+  <script src="/assets/js/scripts.js" defer></script>
 	<link rel="manifest" href="manifest.json" />
 </svelte:head>
 
