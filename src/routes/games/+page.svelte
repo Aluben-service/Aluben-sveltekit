@@ -2,7 +2,6 @@
 	import { onMount } from "svelte";
 	import "../../app.css";
 	import Navbar from "$lib/components/Navbar.svelte";
-
 	onMount(() => {
 		// Load external scripts
 		const script1 = document.createElement("script");
@@ -47,6 +46,7 @@
 	/>
 	<script src="/assets/lib/fontawesome.js" defer></script>
 	<script src="/assets/lib/sweetAlerts.js" defer></script>
+  <script src="/assets/js/scripts.js" defer></script>
 	<link rel="manifest" href="manifest.json" />
 </svelte:head>
 
