@@ -75,3 +75,16 @@
 	grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 	gap: 0px;
 }
+
+#logo {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+}
+
+a[href="#nothingheretosee"] {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

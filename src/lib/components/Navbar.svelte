@@ -1,7 +1,14 @@
 <script>
 	import Swal from "../utils/sweetAlerts.js"; // Adjust the path as needed
 
+<<<<<<< HEAD
 	//const Byblk = () => open("./byeblock", "_self");
+||||||| 60487ca
+	const Byblk = () => open("./byeblock", "_self");
+=======
+	// const Byblk = () => open("./byeblock", "_self");
+ const apps = () => open("/apps", "_self");
+>>>>>>> stable
 	const games = () => open("/games", "_self");
 	const settings = () => open("/settings", "_self");
 	const home = () => open("/", "_self");
@@ -57,13 +64,13 @@
 	<button class="button" type="button" on:click={calculator}
 		>Calculator</button
 	>
-<!--	<button class="button" type="button" on:click={Byblk}
-		>Byeblocker</button
->-->
+	<button class="button" type="button" on:click={() => games()}>Games</button>
+	<button class="button" type="button" on:click={() => settings()}
+		>Settings</button>
+	 <button class="button" type="button" on:click={apps}
+		>apps</button>
 	<button class="button" type="button" on:click={games}>Games</button>
-	<button class="button" type="button" on:click={settings}
-		>Settings</button
-	>
+	<button class="button" type="button" on:click={settings}>Settings</button>
 </div>
 
 <style>

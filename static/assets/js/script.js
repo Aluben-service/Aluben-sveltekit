@@ -55,6 +55,7 @@ function startTime() {
 	setTimeout(startTime, 1000);
 }
 
+<<<<<<< HEAD
 // Function to change passcode with validation
 function passcodechange() {
 	passcodePrompt.fire({
@@ -79,6 +80,21 @@ function passcodechange() {
 	});
 }
 
+||||||| 60487ca
+// Function to change passcode with validation
+function passcodechange() {
+	const oldpasscode = prompt("Enter old passcode");
+	const storedPasscode = localStorage.getItem("passcode");
+	if (oldpasscode === storedPasscode) {
+		const newpasscode = prompt("Enter new passcode");
+		localStorage.setItem("passcode", newpasscode);
+	} else {
+		alert("Incorrect passcode");
+	}
+}
+
+=======
+>>>>>>> stable
 function passcodeask() {
 	const savedPasscode = localStorage.getItem("passcode");
 	passcodePrompt.fire({

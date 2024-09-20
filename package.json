@@ -4,7 +4,7 @@
 	"private": true,
 	"type": "module",
 	"scripts": {
-		"dev": "vite dev",
+		"dev": "vite dev --open",
 		"build": "vite build",
 		"preview": "vite preview",
 		"format": "echo 'Svelte will automatically minify!'; prettier --write ."
@@ -14,10 +14,11 @@
 		"@sveltejs/kit": "^2.0.0",
 		"@sveltejs/vite-plugin-svelte": "^3.0.0",
 		"autoprefixer": "^10.4.20",
+		"daisyui": "^4.12.10",
 		"postcss": "^8.4.45",
+		"prettier": "^3.3.3",
 		"svelte": "^4.2.7",
 		"tailwindcss": "^3.4.10",
-		"prettier": "^3.3.3",
 		"vite": "^5.0.3"
 	},
 	"dependencies": {

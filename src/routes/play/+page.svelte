@@ -65,8 +65,16 @@
 
 <Navbar />
 <div class="container">
+<<<<<<< HEAD
 	<h3 style="color: white;" id="gamename">{gameName}</h3>
 	<p style="color: white;" id="gamedesc">{gameDesc}</p>
+||||||| 60487ca
+	<h3 style="color: white;" id="gamename"></h3>
+	<p style="color: white;" id="gamedesc"></p>
+=======
+	<h3 style="color: white;" id="gamename">loading...</h3>
+	<p style="color: white;" id="gamedesc"></p>
+>>>>>>> stable
 	<iframe
 		{src}
 		title="Game Frame"
@@ -77,9 +85,7 @@
 	></iframe>
 	<div class="controls">
 		<div id="flbutton">
-			<a href="#" class="flbtn" on:click={() => fullscreen()}
-				><i class="fa-solid fa-expand"></i></a
-			>
+			<button class="flbtn" on:click={fullscreen}></button>
 		</div>
 		<i class="fa-solid fa-code hack"></i>
 	</div>
