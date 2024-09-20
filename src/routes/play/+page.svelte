@@ -15,7 +15,9 @@
 		else if (iframe.mozRequestFullScreen) iframe.mozRequestFullScreen();
 		else if (iframe.msRequestFullscreen) iframe.msRequestFullscreen();
 	}
-
+	let gameName;
+	let gameDesc;
+	let src;
 	onMount(async () => {
 		try {
 			// Set driver explicitly
@@ -28,11 +30,9 @@
 
 			const game = await localforage.getItem("currentgame");
 			if (game) {
-				document.getElementById("gamename").textContent =
-					game.name || "";
-				document.getElementById("gamedesc").textContent =
-					game.desc || "";
-				document.getElementById("game-frame").src = game.url || "";
+				gameName = game.name;
+				gameDesc = game.desc || "";
+				src = game.url || "";
 			}
 		} catch (err) {
 			console.error("Error with localForage:", err);
@@ -65,10 +65,18 @@
 
 <Navbar />
 <div class="container">
+<<<<<<< HEAD
+	<h3 style="color: white;" id="gamename">{gameName}</h3>
+	<p style="color: white;" id="gamedesc">{gameDesc}</p>
+||||||| 60487ca
+	<h3 style="color: white;" id="gamename"></h3>
+	<p style="color: white;" id="gamedesc"></p>
+=======
 	<h3 style="color: white;" id="gamename">loading...</h3>
 	<p style="color: white;" id="gamedesc"></p>
+>>>>>>> stable
 	<iframe
-		src=""
+		{src}
 		title="Game Frame"
 		id="game-frame"
 		scrolling="yes"

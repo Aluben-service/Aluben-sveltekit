@@ -1,8 +1,14 @@
 <script>
 	import Swal from "../utils/sweetAlerts.js"; // Adjust the path as needed
 
+<<<<<<< HEAD
+	//const Byblk = () => open("./byeblock", "_self");
+||||||| 60487ca
+	const Byblk = () => open("./byeblock", "_self");
+=======
 	// const Byblk = () => open("./byeblock", "_self");
  const apps = () => open("/apps", "_self");
+>>>>>>> stable
 	const games = () => open("/games", "_self");
 	const settings = () => open("/settings", "_self");
 	const home = () => open("/", "_self");
@@ -58,27 +64,30 @@
 	<button class="button" type="button" on:click={calculator}
 		>Calculator</button
 	>
+	<button class="button" type="button" on:click={() => games()}>Games</button>
+	<button class="button" type="button" on:click={() => settings()}
+		>Settings</button>
 	 <button class="button" type="button" on:click={apps}
-		>apps</button
-	>
+		>apps</button>
 	<button class="button" type="button" on:click={games}>Games</button>
 	<button class="button" type="button" on:click={settings}>Settings</button>
 </div>
 
 <style>
-	.button {
-		background-color: #0b0724;
-		color: floralwhite;
+	:global(.button) {
+		margin-top: 2px !important;
+		background-color: #0b0724 !important;
+		color: floralwhite !important;
 		border: 1px dotted rgb(43, 207, 21);
 		border-radius: 5px;
-		padding: 2px 4px;
+		padding: 2px 4px !important;
 		margin: 5px;
 		cursor: pointer;
 	}
 
-	.button:hover {
+	:global(.button:hover) {
 		transition: 1000ms;
-		padding: 2px 8px;
+		padding: 2px 8px !important;
 		transform: translateY(-0px);
 		background-color: #0b0724;
 		color: floralwhite;

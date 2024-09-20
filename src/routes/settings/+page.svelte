@@ -58,6 +58,26 @@
 		}
 	};
 
+<<<<<<< HEAD
+
+||||||| 60487ca
+	async function txtclrpicker(event) {
+		await localforage.setItem("theme", "custom");
+		await localforage.setItem("customTheme", {
+			backcolor: "none",
+			textcolor: event,
+			style: 1,
+		});
+		location.reload();
+	}
+
+	function toggleDropdown() {
+		const dropdown = document.getElementById("dropdownContent");
+		dropdown.style.display =
+			dropdown.style.display === "block" ? "none" : "block";
+	}
+
+=======
 	const txtclrpicker = async (event) => {
 		await localforage.setItem("theme", "custom");
 		await localforage.setItem("customTheme", {
@@ -73,17 +93,9 @@
 		dropdown.style.display =
 			dropdown.style.display === "block" ? "none" : "block";
 	};
+>>>>>>> stable
 	onMount(() => {
 		initializeStorage();
-		document
-			.getElementById("dropdownDisplay")
-			.addEventListener("click", toggleDropdown);
-		window.onclick = (event) => {
-			if (!event.target.matches(".dropdown-display")) {
-				document.getElementById("dropdownContent").style.display =
-					"none";
-			}
-		};
 	});
 	const passcodechange = () => {
 		Swal.fire({
@@ -123,7 +135,7 @@
 
 <Navbar />
 
-<h1>Settings</h1>
+<h1 style="font-size: 2em;">Settings</h1>
 
 <div class="uk-child-width-1-2@m uk-grid-small uk-grid-match" uk-grid>
 	<div>
@@ -160,11 +172,24 @@
 	</div>
 </div>
 
-<!--
+<div class="uk-child-width-1-2@m uk-grid-small uk-grid-match" uk-grid>
+	<div>
+	  <div class="uk-card uk-card-body uk-card-default">
+		<h3 class="uk-card-title">Passcode</h3>
+		<p style="font-size: 11px;">
+			Click the button below to change your passcode!
+		</p>
+		<button class="bounce-light" on:click={() => passcodechange()}>Change</button>
+		<!-- This is a bypass to access the js like we are in HTML because normally js doesnt leak into svelte-->
+	  </div>
+	</div>
+</div> 
+
+
 <h3>Themes:</h3>
 <select bind:value={selectedTheme} id="themes">
     <option value="N/A">Choose a theme</option>
-    <option value="Dark">Dark</option>
+    <option value="bannana_split">Bannana Split</option>
     <option value="Light">Light</option>
     <option value="Twilight">Twilight</option>
     <option value="Ocean">Ocean</option>
@@ -176,8 +201,83 @@
     <option value="custom_theme">custom</option>
 </select>
 <button on:click={set_theme}>Save</button>
--->
 
+<<<<<<< HEAD
+
+
+<!--
+		<button
+			class=".button"
+			on:click={() =>
+				setEngine("Google", "https://www.google.com/search?q=")}
+			>Google (Default)</button
+		>
+		<button
+			class=".button"
+			on:click={() =>
+				setEngine("Wikipedia", "https://en.wikipedia.org/wiki/")}
+			>Wikipedia</button
+		>
+		<button
+			class=".button"
+			on:click={() =>
+				setEngine(
+					"Gogoprivate",
+					"https://gogoprivate.com/search?#gsc.q=",
+				)}>Gogoprivate</button
+		>
+		<button
+			class=".button"
+			on:click={() => setEngine("Bing", "https://www.bing.com/search?q=")}
+			>Bing</button
+		>
+<button on:click={set_browser}>Set Search Engine</button>-->
+||||||| 60487ca
+
+<h3>Panic key/url</h3>
+<input id="panickey" placeholder="key..." />
+<input id="panicurl" placeholder="url..." />
+<button
+	on:click={() => {
+		localforage.setItem(
+			"panicurl",
+			"https://" + document.getElementById("panicurl").value,
+		);
+		localforage.setItem(
+			"panickey",
+			document.getElementById("panickey").value,
+		);
+	}}>Save</button
+>
+
+
+		<button
+			class=".button"
+			on:click={() =>
+				setEngine("Google", "https://www.google.com/search?q=")}
+			>Google (Default)</button
+		>
+		<button
+			class=".button"
+			on:click={() =>
+				setEngine("Wikipedia", "https://en.wikipedia.org/wiki/")}
+			>Wikipedia</button
+		>
+		<button
+			class=".button"
+			on:click={() =>
+				setEngine(
+					"Gogoprivate",
+					"https://gogoprivate.com/search?#gsc.q=",
+				)}>Gogoprivate</button
+		>
+		<button
+			class=".button"
+			on:click={() => setEngine("Bing", "https://www.bing.com/search?q=")}
+			>Bing</button
+		>
+<button on:click={set_browser}>Set Search Engine</button>
+=======
 <h3>Panic key/url</h3>
 <input id="panickey" placeholder="key..." />
 <input id="panicurl" placeholder="url..." />
@@ -222,3 +322,4 @@
 	>Bing</button
 >
 <button on:click={set_browser}>Set Search Engine</button> -->
+>>>>>>> stable
