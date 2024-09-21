@@ -17,7 +17,7 @@
 	let setusername = "";
 
 	onMount(() => {
-		socket = io(`http://aluben.org:5484`);
+		socket = io(`https://aluben-assets.onrender.com/`);
 
 		socket.on("chat message", (msg: ChatMessage) => {
 			messages = [...messages, msg];
