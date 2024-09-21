@@ -3,6 +3,7 @@
 	import { onMount } from "svelte";
 	import io from "socket.io-client";
 	import type { Socket } from "socket.io-client";
+	import Navbar from "$lib/components/Navbar.svelte";
 
 	interface ChatMessage {
 		username: string;
@@ -42,9 +43,16 @@
 </script>
 
 <Head />
+
+<!-- body content -->
+
+<Navbar />
 <main>
-    <h1>Aluben Chat</h1>
-    <p>Welcome to Aluben Chat, the one place where you can help each other or wreck havoc. No moderation, no nothing.</p>
+	<h1>Aluben Chat</h1>
+	<p>
+		Welcome to Aluben Chat, the one place where you can help each other or
+		wreck havoc. No moderation, no nothing.
+	</p>
 	{#if !username}
 		<div>
 			<input bind:value={setusername} placeholder="Enter your username" />
