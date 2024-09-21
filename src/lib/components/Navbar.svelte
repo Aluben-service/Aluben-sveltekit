@@ -56,7 +56,7 @@
 
 <div class="navbar" id="navbar">
 	<button class="button" type="button" on:click={home}>Home</button>
-	<button class="button" type="button" on:click={chat}>Chat</button>
+	<button class="button" type="button" on:click={chat}>Chat(Broken)</button>
 	<!--<button class="button" type="button" on:click={calculator}
 		>Calculator</button
 >-->
