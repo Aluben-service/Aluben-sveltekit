@@ -82,6 +82,8 @@
 
 <h1 style="font-size: 2em;">Settings</h1>
 
+<div style="display: gride;">
+
 <div class="uk-child-width-1-2@m uk-grid-small uk-grid-match" uk-grid>
 	<div>
 		<div class="uk-card uk-card-body uk-card-default">
@@ -157,6 +159,8 @@
 			<button on:click={toggleab}>Toggle</button>
 		</div>
 	</div>
+</div>
+
 </div>
 
 <h3>Panic key/ (no https:// or http://)</h3>
