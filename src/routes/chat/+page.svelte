@@ -17,7 +17,7 @@
 	let setusername = "";
 
 	onMount(() => {
-		socket = io(`stable--alubendev.netlify.app:3045`);
+		socket = io(`http://aluben.org:5484`);
 
 		socket.on("chat message", (msg: ChatMessage) => {
 			messages = [...messages, msg];
