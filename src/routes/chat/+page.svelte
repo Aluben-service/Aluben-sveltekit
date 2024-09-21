@@ -16,7 +16,7 @@
 	let setusername = "";
 
 	onMount(() => {
-		socket = io("http://localhost:3045");
+		socket = io(`${location.origin}:3045`);
 
 		socket.on("chat message", (msg: ChatMessage) => {
 			messages = [...messages, msg];
