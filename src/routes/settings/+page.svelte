@@ -24,10 +24,10 @@
 		}
 	};
 
-        const toggleab = async () => {
-                const currentAB = localforage.getItem("ab") || false;
+	const toggleab = async () => {
+		const currentAB = localforage.getItem("ab") || false;
 		await localforage.setItem("ab", !currentAB);
-        }
+	};
 
 	const customcloak = async (event) => {
 		await localforage.setItem("cloak", "Custom");
@@ -136,14 +136,13 @@
 	<div>
 		<div class="uk-card uk-card-body uk-card-default">
 			<h3 class="uk-card-title">Themes</h3>
-			<p style="font-size: 11px;">
-				Are your eyes hurting?
-			</p>
+			<p style="font-size: 11px;">Are your eyes hurting?</p>
 			<select bind:value={selectedTheme} id="themes">
-	<option value="N/A">Choose a theme</option>
-	<option value="bannana_split">Bannana Split</option>
-</select>
-<button on:click={set_theme}>Save</button>
+				<option value="N/A" disabled>Choose a theme</option>
+				<option value="Default">Default</option>
+				<option value="bannana_split">Bannana Split</option>
+			</select>
+			<button on:click={set_theme}>Save</button>
 		</div>
 	</div>
 </div>
@@ -152,14 +151,11 @@
 	<div>
 		<div class="uk-card uk-card-body uk-card-default">
 			<h3 class="uk-card-title">About Blank</h3>
-			<p style="font-size: 11px;">
-				No history?
-			</p>
+			<p style="font-size: 11px;">No history?</p>
 			<button on:click={() => toggleab()}>Toggle</button>
-</div>
+		</div>
 	</div>
 </div>
-
 
 <h3>Panic key/url</h3>
 <input id="panickey" placeholder="key..." />
@@ -205,5 +201,3 @@
 	>Bing</button
 >
 <button on:click={set_browser}>Set Search Engine</button> -->
-
-

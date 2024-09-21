@@ -2,24 +2,26 @@ localforage.setDriver([
 	localforage.INDEXEDDB,
 	localforage.WEBSQL,
 	localforage.LOCALSTORAGE,
-  ]);
-  
-  const themes = {
-    bannana_split: "bannana_split"
+]);
+
+const themes = {
+	bannana_split: "bannana_split",
 };
 
 // Load theme dynamically
 (async () => {
-    const themename = await localforage.getItem("theme");
-    const themefile = "/assets/css/themes/" + themes[themename] + ".css";
-
-    const themeEl = document.createElement('link');
-    themeEl.rel = 'stylesheet';
-    themeEl.type = 'text/css';
-    themeEl.href = themename ? themefile : "/assets/css/styles.css";
-    document.head.appendChild(themeEl);
+	const themename = await localforage.getItem("theme");
+	const themefile = "/assets/css/themes/" + themes[themename] + ".css";
+	if (themename === "Default") {
+		await localforage.clear("theme");
+	}
+	const themeEl = document.createElement("link");
+	themeEl.rel = "stylesheet";
+	themeEl.type = "text/css";
+	themeEl.href = themename ? themefile : "/assets/css/styles.css";
+	document.head.appendChild(themeEl);
 })();
-  
+
 let cloaks;
 
 localforage.getItem("customcloak").then((customCloak) => {
@@ -65,7 +67,9 @@ localforage.getItem("customcloak").then((customCloak) => {
 		},
 		Custom: {
 			title: customCloak?.title || "Google",
-			favicon: customCloak?.favicon || "https://raw.githack.com/Aluben-service/Aluben_icons/main/google.png"
+			favicon:
+				customCloak?.favicon ||
+				"https://raw.githack.com/Aluben-service/Aluben_icons/main/google.png",
 		},
 	};
 });
@@ -96,17 +100,18 @@ function changeFavicon(src) {
 	const settings = cloaks[cloak] || customcloak || cloaks["Google"];
 	changeFavicon(settings?.favicon);
 	document.title = settings?.title;
-
-
-
 })();
 
-window.addEventListener("keydown", function (event) {
+window.addEventListener("keydown", async (event) => {
 	console.log("Typed key: " + event.key);
-	// Handle panic key event if needed
-	// if (event.key === await localforage.getItem("panickey") || "`") window.parent.window.location.replace(await localforage.getItem("panicurl") || "https://google.com");
+	// let panicurl =
+	// 	(await localforage.getItem("panicurl")) || "https://google.com";
+	// panicurl = panicurl.replace(/\/$/, "");
+	// let panickey = await localforage.getItem("panickey");
+	// if (event.key === panickey) {
+	// 	window.location.href = panicurl;
+	// }
 });
-
 function handleVisibilityChange() {
 	localforage.getItem("clickoff_cloaking").then((clickoffCloaking) => {
 		if (clickoffCloaking === "true") {
