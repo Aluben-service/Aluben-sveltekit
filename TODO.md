@@ -23,3 +23,4 @@ custom styles
 offline use
 click off cloaking
 Custom themes
+chat room

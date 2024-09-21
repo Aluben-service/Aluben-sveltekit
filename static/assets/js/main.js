@@ -1,10 +1,25 @@
 localforage.setDriver([
-	localforage.INDEXEDDB, // Use IndexedDB first
-	localforage.WEBSQL, // If IndexedDB is unavailable, use WebSQL
-	localforage.LOCALSTORAGE, // If both IndexedDB and WebSQL are unavailable, use LocalStorage
-]);
+	localforage.INDEXEDDB,
+	localforage.WEBSQL,
+	localforage.LOCALSTORAGE,
+  ]);
+  
+  const themes = {
+    bannana_split: "bannana_split"
+};
 
+// Load theme dynamically
+(async () => {
+    const themename = await localforage.getItem("theme");
+    const themefile = "/assets/css/themes/" + themes[themename] + ".css";
 
+    const themeEl = document.createElement('link');
+    themeEl.rel = 'stylesheet';
+    themeEl.type = 'text/css';
+    themeEl.href = themename ? themefile : "/assets/css/styles.css";
+    document.head.appendChild(themeEl);
+})();
+  
 let cloaks;
 
 localforage.getItem("customcloak").then((customCloak) => {
@@ -49,8 +64,8 @@ localforage.getItem("customcloak").then((customCloak) => {
 			title: "Google",
 		},
 		Custom: {
-			title: customCloak.title || "Google",
-			favicon: customCloak.favicon || "https://raw.githack.com/Aluben-service/Aluben_icons/main/google.png"
+			title: customCloak?.title || "Google",
+			favicon: customCloak?.favicon || "https://raw.githack.com/Aluben-service/Aluben_icons/main/google.png"
 		},
 	};
 });
@@ -78,71 +93,12 @@ function changeFavicon(src) {
 	const cloak = await localforage.getItem("cloak");
 	const customcloak = await localforage.getItem("customcloak");
 
-	const settings = cloaks[cloak] || customcloak;
-	changeFavicon(settings.favicon);
-	document.title = settings.title;
+	const settings = cloaks[cloak] || customcloak || cloaks["Google"];
+	changeFavicon(settings?.favicon);
+	document.title = settings?.title;
 
-	const theme = await localforage.getItem("theme");
 
-	switch (theme) {
-		case "Dark":
-			document.body.style.backgroundColor = "#000000";
-			document.body.style.color = "#ffffff";
-			document.body.style.backgroundImage = "none";
-			break;
-		case "Light":
-			document.body.style.color = "#000000";
-			document.body.style.backgroundColor = "#ffffff";
-			document.body.style.backgroundImage = "none";
-			break;
-		case "Twilight":
-			document.body.style.color = "#c658ca";
-			document.body.style.backgroundColor = "#26233a";
-			document.body.style.backgroundImage = "none";
-			break;
-		case "Ocean":
-			document.body.style.color = "#00ffff";
-			document.body.style.backgroundColor = "#00008B";
-			document.body.style.backgroundImage = "none";
-			break;
-		case "McDonald's":
-			document.body.style.color = "#e1ff00";
-			document.body.style.backgroundColor = "#ff2600";
-			document.body.style.backgroundImage = "none";
-			break;
-		case "UnderGround":
-			document.body.style.color = "#b0afb1";
-			document.body.style.backgroundColor = "#673b00";
-			document.body.style.backgroundImage = "none";
-			break;
-		case "SunnyDay":
-			document.body.style.color = "#f0ff85";
-			document.body.style.backgroundColor = "#93e8ff";
-			document.body.style.backgroundImage = "none";
-			break;
-		case "Grassland":
-			document.body.style.color = "#f45faf";
-			document.body.style.backgroundImage =
-				"url(assets/images/gashopper.jpg)";
-			document.getElementById("grass").style.display = "block";
-			break;
-		case "StormyDay":
-			document.body.style.color = "#b0afb1";
-			document.body.style.backgroundImage =
-				"url(assets/images/StormyDay.gif)";
-			break;
-		case "custom":
-			const customTheme = await localforage.getItem("customTheme");
-			if (customTheme.style === 1) {
-				document.body.style.backgroundColor = customTheme.backcolor;
-				document.body.style.color = customTheme.textcolor;
-			} else if (customTheme.style === 2) {
-				document.body.style.backgroundImage = `url(${customTheme.image})`;
-			}
-			break;
-		default:
-			break;
-	}
+
 })();
 
 window.addEventListener("keydown", function (event) {
