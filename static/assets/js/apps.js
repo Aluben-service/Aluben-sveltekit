@@ -30,57 +30,57 @@ async function fixJSON(json) {
 	}
 }
 
-// Fetch and display games
-async function loadGames() {
+// Fetch and display apps
+async function loadApps() {
 	try {
-		let games = await fixJSON(await (await fetch("assets/json/games.json")).json());
-		if (!games) throw new Error("Failed to fix JSON");
+		let apps = await fixJSON(await (await fetch("assets/json/apps.json")).json());
+		if (!apps) throw new Error("Failed to fix JSON");
 
-		games.sort((a, b) => a.name.localeCompare(b.name));
+		apps.sort((a, b) => a.name.localeCompare(b.name));
 
-		games.forEach(async (game) => {
-			const gameEl = document.createElement("li");
-			const gameDesc = game.desc || "There is no set description";
-			const gameCategories = game.categories || "all";
-			const gameImg = game.img || "/web.png";
-			const gameName = game.name || "Unknown";
-			gameEl.innerHTML = `
-                <article class="gamecard" data-category="${gameCategories}">
-                  <a href="#" onclick='(async () => { await saveGame(${game})}); })();'>
+		apps.forEach(async (app) => {
+			const appEl = document.createElement("li");
+			const appDesc = app.desc || "There is no set description";
+			const appCategories = app.categories || "all";
+			const appImg = app.img || "/web.png";
+			const appName = app.name || "Unknown";
+			appEl.innerHTML = `
+                <article class="appcard" data-category="${appCategories}">
+                  <a href="#" onclick='(async () => { await saveApp(${app})}); })();'>
                     <figure>
-                      <img title='${gameName}' src="${gameImg}" class="gameimage" alt="${gameName}"/>
+                      <img title='${appName}' src="${appImg}" class="appimage" alt="${appName}"/>
                     </figure>
                   </a>
-                  <button onclick="pin('${gameName}');" style="color:white;" aria-label="Pin game">
+                  <button onclick="pin('${appName}');" style="color:white;" aria-label="Pin app">
                     <i class="fa fa-map-pin" style="display:block;" aria-hidden="true"></i>
                   </button>
-                  <div class="gameinfo">
+                  <div class="appinfo">
                     <header>
-                      <h2 class="gamename">${gameName}</h2>
+                      <h2 class="appname">${appName}</h2>
                     </header>
-                    <p class="gamedesc">${gameDesc}</p>
+                    <p class="appdesc">${appDesc}</p>
                   </div>
                 </article>
             `;
-			document.querySelector(".gamecontainer").appendChild(gameEl);
+			document.querySelector(".appcontainer").appendChild(appEl);
 
-			if ((await localforage.getItem(game.name)) === "pinned") document.querySelector(".pinned").appendChild(gameEl.cloneNode(true));
+			if ((await localforage.getItem(app.name)) === "pinned") document.querySelector(".pinned").appendChild(appEl.cloneNode(true));
 		});
 	} catch (error) {
 		console.error(error);
 	}
 }
 
-// Save game data with localforage
-function saveGame(game) {
-	game = JSON.stringify(game);
+// Save app data with localforage
+function saveApp(app) {
+	app = JSON.stringify(app);
 	return localforage
-		.setItem("currentgame", game)
+		.setItem("currentapp", app)
 		.then(() => {
 			window.location.href = "play";
 		})
 		.catch((error) => {
-			console.error("Error saving game:", error);
+			console.error("Error saving app:", error);
 		});
 }
 
@@ -89,43 +89,43 @@ function showCategory() {
 	var selectedCategories = Array.from(
 		document.querySelectorAll("#category option:checked"),
 	).map((option) => option.value);
-	var games = document.getElementsByClassName("gamecard");
+	var apps = document.getElementsByClassName("appcard");
 
-	for (var i = 0; i < games.length; i++) {
-		var game = games[i];
-		var categories = game.getAttribute("data-category").split(" ");
+	for (var i = 0; i < apps.length; i++) {
+		var app = apps[i];
+		var categories = app.getAttribute("data-category").split(" ");
 		if (
 			selectedCategories.length === 0 ||
 			selectedCategories.some((category) => categories.includes(category))
 		) {
-			game.style.display = "block";
+			app.style.display = "block";
 		} else {
-			game.style.display = "none";
+			app.style.display = "none";
 		}
 	}
 }
 
-// Pin or unpin a game
+// Pin or unpin a app
 async function pin(name) {
 	const isPinned = (await localforage.getItem(name)) === "pinned";
 	async function attemptPin() {
 		try {
 			await localforage.setItem(name, isPinned ? "" : "pinned");
-			const gameNotice = await localforage.getItem("gamenotice");
-			if (gameNotice === null || gameNotice !== "true") {
+			const appNotice = await localforage.getItem("appnotice");
+			if (appNotice === null || appNotice !== "true") {
 				const result = await Swal.fire({
 					title: isPinned ? "Unpinned!" : "Pinned!",
-					text: `This game has been ${isPinned ? "unpinned" : "pinned"}!`,
+					text: `This app has been ${isPinned ? "unpinned" : "pinned"}!`,
 					icon: "success",
 					confirmButtonColor: "#3085d6",
 					confirmButtonText: "Don't show me again.",
 				});
 
 				if (result.isConfirmed) {
-					await localforage.setItem("gamenotice", "true");
+					await localforage.setItem("appnotice", "true");
 					await Swal.fire({
 						title: "Success!",
-						text: "When you pin a game this won't be shown again.",
+						text: "When you pin a app this won't be shown again.",
 						icon: "success",
 						confirmButtonColor: "#3085d6",
 						confirmButtonText: "Ok",
@@ -153,23 +153,23 @@ async function pin(name) {
 	}
 	await attemptPin();
 }
-loadGames();
+loadApps();
 
-function searchGames() {
+function searchApps() {
 	// Get the search input and convert it to uppercase for case-insensitive search
 	var input = document.getElementById("searchInput");
 	var filter = input.value.toUpperCase();
 	
-	// Get all the game cards
-	var gameCards = document.querySelectorAll(".gamecard");
+	// Get all the app cards
+	var appCards = document.querySelectorAll(".appcard");
 	
-	// Loop through all game cards and hide those that don't match the search query
-	gameCards.forEach(function(card) {
-	  var gameName = card.querySelector(".gamename").textContent || card.querySelector(".gamename").innerText;
-	  var gameCategory = card.getAttribute("data-category") || "";
+	// Loop through all app cards and hide those that don't match the search query
+	appCards.forEach(function(card) {
+	  var appName = card.querySelector(".appname").textContent || card.querySelector(".appname").innerText;
+	  var appCategory = card.getAttribute("data-category") || "";
   
-	  // Check if the game name or category matches the search query
-	  if (gameName.toUpperCase().indexOf(filter) > -1 || gameCategory.toUpperCase().indexOf(filter) > -1) {
+	  // Check if the app name or category matches the search query
+	  if (appName.toUpperCase().indexOf(filter) > -1 || appCategory.toUpperCase().indexOf(filter) > -1) {
 		card.parentElement.style.display = ""; // Show matching cards
 	  } else {
 		card.parentElement.style.display = "none"; // Hide non-matching cards

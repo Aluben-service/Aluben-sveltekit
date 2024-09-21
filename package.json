@@ -4,7 +4,7 @@
 	"private": true,
 	"type": "module",
 	"scripts": {
-		"dev": "vite dev --open",
+		"dev": "vite dev",
 		"build": "vite build",
 		"preview": "vite preview",
 		"format": "echo 'Svelte will automatically minify!'; prettier --write ."
@@ -26,7 +26,6 @@
 		"@mercuryworkshop/bare-mux": "^2.0.4",
 		"@mercuryworkshop/epoxy-transport": "^2.1.8",
 		"@titaniumnetwork-dev/ultraviolet": "^3.2.7",
-		"localforage": "^1.10.0",
 		"lucide-svelte": "^0.439.0",
 		"socket.io": "^4.7.5",
 		"socket.io-client": "^4.7.5",

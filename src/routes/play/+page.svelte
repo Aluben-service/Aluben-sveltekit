@@ -1,7 +1,6 @@
 <script>
 	import { onMount } from "svelte";
 	import Navbar from "$lib/components/Navbar.svelte"; // Adjust the import path as necessary
-	import localforage from "localforage";
 	import "../../app.css";
 
 	// Function definitions
@@ -65,16 +64,8 @@
 
 <Navbar />
 <div class="container">
-<<<<<<< HEAD
 	<h3 style="color: white;" id="gamename">{gameName}</h3>
 	<p style="color: white;" id="gamedesc">{gameDesc}</p>
-||||||| 60487ca
-	<h3 style="color: white;" id="gamename"></h3>
-	<p style="color: white;" id="gamedesc"></p>
-=======
-	<h3 style="color: white;" id="gamename">loading...</h3>
-	<p style="color: white;" id="gamedesc"></p>
->>>>>>> stable
 	<iframe
 		{src}
 		title="Game Frame"
