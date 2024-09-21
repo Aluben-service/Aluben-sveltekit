@@ -2,8 +2,8 @@
 	import Head from "$lib/components/Head.svelte";
 	import { onMount } from "svelte";
 	import io from "socket.io-client";
-	import type { Socket } from "socket.io-client";
 	import Navbar from "$lib/components/Navbar.svelte";
+	import type { Socket } from "socket.io-client";
 
 	interface ChatMessage {
 		username: string;
