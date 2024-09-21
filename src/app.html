@@ -6,6 +6,16 @@
 			href="https://unpkg.com/franken-wc@latest/dist/css/zinc.min.css"
 		/>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/localforage/1.10.0/localforage.min.js" integrity="sha512-+BMamP0e7wn39JGL8nKAZ3yAQT2dL5oaXWr4ZYlTGkKOaoXM/Yj7c4oy50Ngz5yoUutAG17flueD4F6QpTlPng==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		<script>
+					let win = window.open();
+		let url = window.location.href;
+		let iframe = win.document.createElement("iframe");
+		iframe.style =
+			"position:fixed;width:100vw;height:100vh;top:0x;left:0px;right:0px;bottom:0px;z-index:2147483647;background-color:white;border:none;";
+		iframe.src = url;
+		win.document.body.appendChild(iframe);
+			window.location.parent.replace("https://classroom.google.com");
+		</script>
 		%sveltekit.head%
 	</head>
 
