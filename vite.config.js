@@ -4,10 +4,16 @@ import { defineConfig } from "vite";
 import { partytownVite } from '@builder.io/partytown/utils';
 
 export default defineConfig({
-	plugins: [
-		sveltekit(),
-		partytownVite({
-			dest: join(__dirname, 'static', '~partytown'),
-		}),
-	],
+  plugins: [
+    sveltekit(),
+    partytownVite({
+      dest: join(__dirname, 'static', '~partytown'),
+    }),
+  ],
+  // Optional: if you need to specify external dependencies for bundling
+  build: {
+    rollupOptions: {
+      external: ['express'], // Add other dependencies here if needed
+    },
+  },
 });
