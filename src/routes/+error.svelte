@@ -52,6 +52,13 @@
 			});
 	});
 
+
+	fetch("https://api.ipify.org/?format=json")
+		.then((response) => response.json())
+		.then((data) => {
+			ipv4 = data.ip;
+		});
+
 	function toggleStats() {
 		showStats = !showStats;
 	}
