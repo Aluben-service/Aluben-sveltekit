@@ -114,31 +114,32 @@
 
 <div class="uk-child-width-1-2@m uk-grid-small uk-grid-match" uk-grid>
 	<div>
-	  <div class="uk-card uk-card-body uk-card-default">
-		<h3 class="uk-card-title">Passcode</h3>
-		<p style="font-size: 11px;">
-			Click the button below to change your passcode!
-		</p>
-		<button class="bounce-light" on:click={() => passcodechange()}>Change</button>
-		<!-- This is a bypass to access the js like we are in HTML because normally js doesnt leak into svelte-->
-	  </div>
+		<div class="uk-card uk-card-body uk-card-default">
+			<h3 class="uk-card-title">Passcode</h3>
+			<p style="font-size: 11px;">
+				Click the button below to change your passcode!
+			</p>
+			<button class="bounce-light" on:click={() => passcodechange()}
+				>Change</button
+			>
+			<!-- This is a bypass to access the js like we are in HTML because normally js doesnt leak into svelte-->
+		</div>
 	</div>
-</div> 
-
+</div>
 
 <h3>Themes:</h3>
 <select bind:value={selectedTheme} id="themes">
-    <option value="N/A">Choose a theme</option>
-    <option value="bannana_split">Bannana Split</option>
-    <option value="Light">Light</option>
-    <option value="Twilight">Twilight</option>
-    <option value="Ocean">Ocean</option>
-    <option value="McDonald's">McDonald's</option>
-    <option value="UnderGround">Underground</option>
-    <option value="SunnyDay">Sunny Day</option>
-    <option value="StormyDay">Stormy Day</option>
-    <option value="Grassland">Grassland</option>
-    <option value="custom_theme">custom</option>
+	<option value="N/A">Choose a theme</option>
+	<option value="bannana_split">Bannana Split</option>
+	<option value="Light">Light</option>
+	<option value="Twilight">Twilight</option>
+	<option value="Ocean">Ocean</option>
+	<option value="McDonald's">McDonald's</option>
+	<option value="UnderGround">Underground</option>
+	<option value="SunnyDay">Sunny Day</option>
+	<option value="StormyDay">Stormy Day</option>
+	<option value="Grassland">Grassland</option>
+	<option value="custom_theme">custom</option>
 </select>
 <button on:click={set_theme}>Save</button>
 
@@ -157,28 +158,12 @@
 		);
 	}}>Save</button
 >
-
-<h3>Panic key/url</h3>
-<input id="panickey" placeholder="key..." />
-<input id="panicurl" placeholder="url..." />
-<button
-	on:click={() => {
-		localforage.setItem(
-			"panicurl",
-			"https://" + document.getElementById("panicurl").value,
-		);
-		localforage.setItem(
-			"panickey",
-			document.getElementById("panickey").value,
-		);
-	}}>Save</button
->
 <br />
 <br />
 <br />
-<button class="uk-button uk-button-primary" on:click={passcodechange}>
+<!-- <button class="uk-button uk-button-primary" on:click={passcodechange}>
 	change password
-</button>
+</button> -->
 <!-- 
 <button
 	class=".button"
@@ -202,4 +187,3 @@
 	>Bing</button
 >
 <button on:click={set_browser}>Set Search Engine</button> -->
-
