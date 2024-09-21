@@ -9,7 +9,7 @@
 	const chat = () => open("/chat", "_self");
 	const aboutblank = () => {
 		let win = window.open();
-		let url = "https://aluben.org";
+		let url = window.location.href;
 		let iframe = win.document.createElement("iframe");
 		iframe.style =
 			"position:fixed;width:100vw;height:100vh;top:0x;left:0px;right:0px;bottom:0px;z-index:2147483647;background-color:white;border:none;";

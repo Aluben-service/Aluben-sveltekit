@@ -119,7 +119,7 @@
 			<p style="font-size: 11px;">
 				Click the button below to change your passcode!
 			</p>
-			<button class="bounce-light" on:click={() => passcodechange()}
+			<button class="bounce-light" on:click={passcodechange}
 				>Change</button
 			>
 			<!-- This is a bypass to access the js like we are in HTML because normally js doesnt leak into svelte-->
