@@ -124,7 +124,7 @@
 			<p style="font-size: 11px;">
 				Click the button below to change your passcode!
 			</p>
-			<button class="bounce-light" on:click={() => passcodechange}
+			<button class="bounce-light" on:click={passcodechange}
 				>Change</button
 			>
 			<!-- This is a bypass to access the js like we are in HTML because normally js doesnt leak into svelte-->
@@ -150,14 +150,15 @@
 <div class="uk-child-width-1-2@m uk-grid-small uk-grid-match" uk-grid>
 	<div>
 		<div class="uk-card uk-card-body uk-card-default">
+			<h1>WIP doesn't currently work</h1>
 			<h3 class="uk-card-title">About Blank</h3>
 			<p style="font-size: 11px;">No history?</p>
-			<button on:click={() => toggleab()}>Toggle</button>
+			<button on:click={toggleab}>Toggle</button>
 		</div>
 	</div>
 </div>
 
-<h3>Panic key/url</h3>
+<h3>Panic key/ (no https:// or http://)</h3>
 <input id="panickey" placeholder="key..." />
 <input id="panicurl" placeholder="url..." />
 <button
