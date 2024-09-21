@@ -37,7 +37,7 @@
 	const customcloakfavicon = async (event) => {
 		await localforage.setItem("cloak", "Custom");
 		const CustomCloak = await localforage.getItem("customcloak");
-		CustomCloak.favicon = event.target.value;
+		CustomCloak.favicon = event?.target?.value;
 		await localforage.setItem("customcloakfavicon", CustomCloak);
 	};
 
@@ -156,6 +156,7 @@
 				No history?
 			</p>
 			<button on:click={() => toggleab()}>Toggle</button>
+</div>
 	</div>
 </div>
 
@@ -204,3 +205,5 @@
 	>Bing</button
 >
 <button on:click={set_browser}>Set Search Engine</button> -->
+
+
