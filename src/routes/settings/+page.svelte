@@ -24,6 +24,11 @@
 		}
 	};
 
+        const toggleab = async () => {
+                const currentAB = localforage.getItem("ab") || false;
+		await localforage.setItem("ab", !currentAB);
+        }
+
 	const customcloak = async (event) => {
 		await localforage.setItem("cloak", "Custom");
 		await localforage.setItem("customcloak", { title: event.target.value });
