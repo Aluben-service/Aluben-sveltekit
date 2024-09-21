@@ -2,25 +2,18 @@
 
 **description**:
 
-Aluben is a fast and simple web proxy, with a simple and intuitive ui.
+Aluben is a fast and simple web proxy, with a simple and intuitive ui.(not really cuz this guy is actually making the navbar have to much it has to be simple)
 
-## License
+### Discord:
 
-dsms. (dont steel my stuff)
-but were open source on GitHub.
+The Aluben discord has
 
-### discord:
+-   absolutely nothing
 
-aluben discord has
+### Features
 
--   absolutely nothing was created a few weeks ago and has nothing.
-
-#### features
-
--   premium proxy
--   premium chatroom
--   premium tab cloak
--   premium games
--   premium rammerhead links
--   premium holy unblocker links
--   premium apps
+-   proxy
+-   chatroom
+-   tab cloak
+-   games
+-   apps
