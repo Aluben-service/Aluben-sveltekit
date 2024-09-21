@@ -150,7 +150,7 @@
 			<p style="font-size: 11px;">
 				No history?
 			</p>
-			<button onclick="toggleab();">Toggle</button>
+			<button on:click={() => toggleab()}>Toggle</button>
 	</div>
 </div>
 
