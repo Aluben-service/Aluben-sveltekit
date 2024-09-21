@@ -46,7 +46,7 @@ async function loadGames() {
 			const gameName = game.name || "Unknown";
 			gameEl.innerHTML = `
                 <article class="gamecard" data-category="${gameCategories}">
-                  <a href="#" onclick='(async () => { await saveGame(${JSON.stringify(game)}); })();'>
+                  <a href="#" onclick='(async () => { await saveGame(${game})}); })();'>
                     <figure>
                       <img title='${gameName}' src="${gameImg}" class="gameimage" alt="${gameName}"/>
                     </figure>
@@ -73,6 +73,7 @@ async function loadGames() {
 
 // Save game data with localforage
 function saveGame(game) {
+	game = JSON.stringify(game);
 	return localforage
 		.setItem("currentgame", game)
 		.then(() => {
@@ -153,3 +154,26 @@ async function pin(name) {
 	await attemptPin();
 }
 loadGames();
+
+function searchGames() {
+	// Get the search input and convert it to uppercase for case-insensitive search
+	var input = document.getElementById("searchInput");
+	var filter = input.value.toUpperCase();
+	
+	// Get all the game cards
+	var gameCards = document.querySelectorAll(".gamecard");
+	
+	// Loop through all game cards and hide those that don't match the search query
+	gameCards.forEach(function(card) {
+	  var gameName = card.querySelector(".gamename").textContent || card.querySelector(".gamename").innerText;
+	  var gameCategory = card.getAttribute("data-category") || "";
+  
+	  // Check if the game name or category matches the search query
+	  if (gameName.toUpperCase().indexOf(filter) > -1 || gameCategory.toUpperCase().indexOf(filter) > -1) {
+		card.parentElement.style.display = ""; // Show matching cards
+	  } else {
+		card.parentElement.style.display = "none"; // Hide non-matching cards
+	  }
+	});
+  }
+  

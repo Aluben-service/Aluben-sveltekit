@@ -1,17 +1,12 @@
 <script>
 	import Swal from "../utils/sweetAlerts.js"; // Adjust the path as needed
 
-<<<<<<< HEAD
-	//const Byblk = () => open("./byeblock", "_self");
-||||||| 60487ca
-	const Byblk = () => open("./byeblock", "_self");
-=======
 	// const Byblk = () => open("./byeblock", "_self");
- const apps = () => open("/apps", "_self");
->>>>>>> stable
+	const apps = () => open("/apps", "_self");
 	const games = () => open("/games", "_self");
 	const settings = () => open("/settings", "_self");
 	const home = () => open("/", "_self");
+	const chat = () => open("/chat", "_self");
 	const calculator = async () => {
 		// Prompt the user for input using SweetAlert2
 		const { value: calculation } = await Swal.fire({
@@ -61,14 +56,11 @@
 
 <div class="navbar" id="navbar">
 	<button class="button" type="button" on:click={home}>Home</button>
-	<button class="button" type="button" on:click={calculator}
+	<button class="button" type="button" on:click={chat}>Chat</button>
+	<!--<button class="button" type="button" on:click={calculator}
 		>Calculator</button
-	>
-	<button class="button" type="button" on:click={() => games()}>Games</button>
-	<button class="button" type="button" on:click={() => settings()}
-		>Settings</button>
-	 <button class="button" type="button" on:click={apps}
-		>apps</button>
+>-->
+	<button class="button" type="button" on:click={apps}>Apps</button>
 	<button class="button" type="button" on:click={games}>Games</button>
 	<button class="button" type="button" on:click={settings}>Settings</button>
 </div>

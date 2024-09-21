@@ -1,53 +1,38 @@
 <script>
-	import Head from "$lib/components/Head.svelte";
+	import GamesHead from "$lib/components/GamesHead.svelte";
 	import Navbar from "$lib/components/Navbar.svelte";
 	import "../../app.css";
+	import { onMount } from "svelte";
+
+	onMount(() => {
+		const script1 = document.createElement("script");
+		script1.src = "assets/js/apps.js";
+		script1.async = true;
+		script1.defer = true;
+		document.head.appendChild(script1);
+	});
 </script>
 
-<Head />
+<GamesHead />
 
 <!-- Body content -->
 <Navbar />
 
-<div class="gamecard">
-	<a href="https://nebulaproxy.io/">
-		<div class="gameinfo">
-			<b>
-				<p class="gamename">Nebula</p>
-			</b>
-			<p class="gamedesc">
-				NebulaWeb is a stunning, sleek, and functional web-proxy with
-				support for thousands of popular sites.
-			</p>
-		</div>
-	</a>
-</div>
+<input
+	type="text"
+	on:keyup={() => searchApps()}
+	id="searchInput"
+	placeholder="Search for an app..."
+	title="Search for a app"
+/>
+<select id="category" name="category" on:change={() => showCategory()}>
+	<option value="all">All</option>
+</select>
 
-<div class="gamecard">
-	<a href="https://holyubofficial.net/">
-		<div class="gameinfo">
-			<b>
-				<p class="gamename">holy unblocker</p>
-			</b>
-			<p class="gamedesc">
-				Holy Unblocker is a web proxy service with support for many
-				sites. Unblock websites on Chromebooks at school and work for
-				free!
-			</p>
-		</div>
-	</a>
-</div>
+<h3>Pinned Apps</h3>
+<div class="pinned appscontainer"></div>
 
-<div class="gamecard">
-	<a href="https://g4u-mathisfun.vercel.app/">
-		<div class="gameinfo">
-			<b>
-				<p class="gamename">node unblocker</p>
-			</b>
-			<p class="gamedesc">a basic proxy</p>
-		</div>
-	</a>
-</div>
+<h3>All Apps</h3>
+<div class="appcontainer appscontainer"></div>
 
-<style>
-</style>
+<p id="copyright">© Aluben Services 2024 inc all rights reserved</p>

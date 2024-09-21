@@ -1,23 +1,11 @@
 <script>
-<<<<<<< HEAD
     import Head from '$lib/components/Head.svelte'; // Adjust the import path as necessary
     import Navbar from '$lib/components/Navbar.svelte'; // Adjust the import path as necessary
     import { onMount } from 'svelte';
     let showStats = false;
-||||||| 60487ca
-    import Head from '$lib/components/Head.svelte'; // Adjust the import path as necessary
-    import Navbar from '$lib/components/Navbar.svelte'; // Adjust the import path as necessary
-    import { onMount } from 'svelte';
-=======
-	import Head from "$lib/components/Head.svelte"; // Adjust the import path as necessary
-	import Navbar from "$lib/components/Navbar.svelte"; // Adjust the import path as necessary
-	import { onMount } from "svelte";
->>>>>>> stable
 
-<<<<<<< HEAD
-||||||| 60487ca
-    onMount(() => {
-=======
+
+
 	let fullUrl = "Fetching...";
 	let pageTitle = "Fetching...";
 	let screenHeight = "Fetching...";
@@ -35,48 +23,7 @@
 	let ipv6 = "Fetching...";
 	let ipv4 = "Fetching...";
 	let networkIP = "Fetching...";
-	let showStats = false;
->>>>>>> stable
-
-<<<<<<< HEAD
-    let fullUrl = 'Fetching...';
-    let pageTitle = 'Fetching...';
-    let screenHeight = 'Fetching...';
-    let screenWidth = 'Fetching...';
-    let windowHeight = 'Fetching...';
-    let windowWidth = 'Fetching...';
-    let cookiesEnabled = 'Fetching...';
-    let userAgent = 'Fetching...';
-    let platform = 'Fetching...';
-    let onlineStatus = 'Fetching...';
-    let latitude = 'Fetching...';
-    let longitude = 'Fetching...';
-    let postal = 'Fetching...';
-    let timezone = 'Fetching...';
-    let ipv6 = 'Fetching...';
-    let ipv4 = 'Fetching...';
-    let networkIP = 'Fetching...';
     
-||||||| 60487ca
-    let fullUrl = 'Fetching...';
-    let pageTitle = 'Fetching...';
-    let screenHeight = 'Fetching...';
-    let screenWidth = 'Fetching...';
-    let windowHeight = 'Fetching...';
-    let windowWidth = 'Fetching...';
-    let cookiesEnabled = 'Fetching...';
-    let userAgent = 'Fetching...';
-    let platform = 'Fetching...';
-    let onlineStatus = 'Fetching...';
-    let latitude = 'Fetching...';
-    let longitude = 'Fetching...';
-    let postal = 'Fetching...';
-    let timezone = 'Fetching...';
-    let ipv6 = 'Fetching...';
-    let ipv4 = 'Fetching...';
-    let networkIP = 'Fetching...';
-    let showStats = false;
-=======
 	onMount(() => {
 		fullUrl = window.location.href;
 		pageTitle = document.querySelector("title").textContent;
@@ -88,7 +35,6 @@
 		userAgent = navigator.userAgent;
 		platform = navigator.platform;
 		onlineStatus = navigator.onLine;
->>>>>>> stable
 
 		fetch("https://ipapi.co/json/")
 			.then((response) => response.json())
@@ -108,34 +54,17 @@
 			});
 	});
 
-<<<<<<< HEAD
         fetch("https://api.ipify.org/?format=json")
             .then(response => response.json())
             .then(data => {
                 ipv4 = data.ip;
             });
-    });
+    
 
 
     function toggleStats() {
         showStats = !showStats;
     }
-||||||| 60487ca
-        fetch("https://api.ipify.org/?format=json")
-            .then(response => response.json())
-            .then(data => {
-                ipv4 = data.ip;
-            });
-    });
-
-    function toggleStats() {
-        showStats = !showStats;
-    }
-=======
-	function toggleStats() {
-		showStats = !showStats;
-	}
->>>>>>> stable
 </script>
 
 <Head />
@@ -144,24 +73,10 @@
 <br />
 <h1>Error 404</h1>
 <p>
-<<<<<<< HEAD
     Error 404 Page not found.
     <br />
     <button class="bounce" on:click="{() => window.history.back()}">Go back</button>
     <button class="bounce" on:click="{toggleStats}">Stats for nerds</button>
-||||||| 60487ca
-    Error 404 Page not found.
-    <br />
-    <button class="button" on:click="{() => window.history.back()}">Go back</button>
-    <button class="button" on:click="{toggleStats}">Stats for nerds</button>
-=======
-	Error 404 Page not found.
-	<br />
-	<button class="button" on:click={() => window.history.back()}
-		>Go back</button
-	>
-	<button class="button" on:click={toggleStats}>Stats for nerds</button>
->>>>>>> stable
 </p>
 {#if showStats}
 	<div id="sfn" class="message">

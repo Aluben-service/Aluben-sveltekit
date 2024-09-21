@@ -9,14 +9,9 @@
 		content="A good proxy with custom unblockers (that are completely different proxies) and a proxy list built in games it's amazing"
 	/>
 	<meta name="viewport" content="width=device-width" />
-	<title>Error Page | Ebay</title>
-	<link
-		rel="icon"
-		type="image/x-icon"
-		href="https://www.ebay.com/favicon.ico"
-	/>
 	<script src="/assets/lib/fontawesome.js" defer></script>
 	<script src="/assets/lib/sweetAlerts.js" defer></script>
+	<script src="/assets/js/main.js" defer></script>
     <script src="/assets/js/scripts.js" defer></script>
 	<link rel="manifest" href="manifest.json" />
 </svelte:head>

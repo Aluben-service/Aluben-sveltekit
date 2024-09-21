@@ -4,7 +4,6 @@
 	import { onMount } from "svelte";
 	import "../../app.css";
 	import Swal from "sweetalert2";
-	import localforage from "localforage";
 	let selectedTheme;
 	let currentCloak;
 	const initializeStorage = async () => {
@@ -57,10 +56,6 @@
 			console.error("Error setting cloak:", error);
 		}
 	};
-
-<<<<<<< HEAD
-
-||||||| 60487ca
 	async function txtclrpicker(event) {
 		await localforage.setItem("theme", "custom");
 		await localforage.setItem("customTheme", {
@@ -71,64 +66,9 @@
 		location.reload();
 	}
 
-	function toggleDropdown() {
-		const dropdown = document.getElementById("dropdownContent");
-		dropdown.style.display =
-			dropdown.style.display === "block" ? "none" : "block";
-	}
-
-=======
-	const txtclrpicker = async (event) => {
-		await localforage.setItem("theme", "custom");
-		await localforage.setItem("customTheme", {
-			backcolor: "none",
-			textcolor: event,
-			style: 1,
-		});
-		location.reload();
-	};
-
-	const toggleDropdown = () => {
-		const dropdown = document.getElementById("dropdownContent");
-		dropdown.style.display =
-			dropdown.style.display === "block" ? "none" : "block";
-	};
->>>>>>> stable
 	onMount(() => {
 		initializeStorage();
 	});
-	const passcodechange = () => {
-		Swal.fire({
-			title: `enter your old passcode.`,
-			input: "text", // Change input type to password
-			inputAttributes: {
-				autocapitalize: "off",
-			},
-			showCancelButton: true,
-			confirmButtonText: "Ok!",
-			showLoaderOnConfirm: true,
-			preConfirm: async (login) => {
-				if (localStorage.getItem("passcode") === login) {
-					Swal.fire({
-						title: `enter your new passcode.`,
-						input: "password", // Change input type to password
-						inputAttributes: {
-							autocapitalize: "off",
-						},
-						showCancelButton: true,
-						confirmButtonText: "Change Passcode",
-						showLoaderOnConfirm: true,
-						preConfirm: async (newpass) => {
-							localStorage.setItem("passcode", newpass);
-							Swal.fire("Passcode changed successfully!");
-						},
-						allowOutsideClick: () => false,
-					});
-				}
-			},
-			allowOutsideClick: () => false,
-		});
-	};
 </script>
 
 <Head />
@@ -202,38 +142,6 @@
 </select>
 <button on:click={set_theme}>Save</button>
 
-<<<<<<< HEAD
-
-
-<!--
-		<button
-			class=".button"
-			on:click={() =>
-				setEngine("Google", "https://www.google.com/search?q=")}
-			>Google (Default)</button
-		>
-		<button
-			class=".button"
-			on:click={() =>
-				setEngine("Wikipedia", "https://en.wikipedia.org/wiki/")}
-			>Wikipedia</button
-		>
-		<button
-			class=".button"
-			on:click={() =>
-				setEngine(
-					"Gogoprivate",
-					"https://gogoprivate.com/search?#gsc.q=",
-				)}>Gogoprivate</button
-		>
-		<button
-			class=".button"
-			on:click={() => setEngine("Bing", "https://www.bing.com/search?q=")}
-			>Bing</button
-		>
-<button on:click={set_browser}>Set Search Engine</button>-->
-||||||| 60487ca
-
 <h3>Panic key/url</h3>
 <input id="panickey" placeholder="key..." />
 <input id="panicurl" placeholder="url..." />
@@ -250,34 +158,6 @@
 	}}>Save</button
 >
 
-
-		<button
-			class=".button"
-			on:click={() =>
-				setEngine("Google", "https://www.google.com/search?q=")}
-			>Google (Default)</button
-		>
-		<button
-			class=".button"
-			on:click={() =>
-				setEngine("Wikipedia", "https://en.wikipedia.org/wiki/")}
-			>Wikipedia</button
-		>
-		<button
-			class=".button"
-			on:click={() =>
-				setEngine(
-					"Gogoprivate",
-					"https://gogoprivate.com/search?#gsc.q=",
-				)}>Gogoprivate</button
-		>
-		<button
-			class=".button"
-			on:click={() => setEngine("Bing", "https://www.bing.com/search?q=")}
-			>Bing</button
-		>
-<button on:click={set_browser}>Set Search Engine</button>
-=======
 <h3>Panic key/url</h3>
 <input id="panickey" placeholder="key..." />
 <input id="panicurl" placeholder="url..." />
@@ -322,4 +202,4 @@
 	>Bing</button
 >
 <button on:click={set_browser}>Set Search Engine</button> -->
->>>>>>> stable
+
