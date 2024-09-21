@@ -6,7 +6,7 @@
 	const games = () => open("/games", "_self");
 	const settings = () => open("/settings", "_self");
 	const home = () => open("/", "_self");
-	const chat = () => open("/chat", "_self");
+	const chat = () => open("/chat", "_self");/*
 	const aboutblank = () => {
 		let win = window.open();
 		let url = window.location.href;
@@ -15,7 +15,7 @@
 			"position:fixed;width:100vw;height:100vh;top:0x;left:0px;right:0px;bottom:0px;z-index:2147483647;background-color:white;border:none;";
 		iframe.src = url;
 		win.document.body.appendChild(iframe);
-	};
+	};*/
 	const calculator = async () => {
 		// Prompt the user for input using SweetAlert2
 		const { value: calculation } = await Swal.fire({
@@ -72,9 +72,9 @@
 	<button class="button" type="button" on:click={apps}>Apps</button>
 	<button class="button" type="button" on:click={games}>Games</button>
 	<button class="button" type="button" on:click={settings}>Settings</button>
-	<button class="button" type="button" on:click={aboutblank}
+<!--	<button class="button" type="button" on:click={aboutblank}
 		>open in about:blank</button
-	>
+	> stop trolling me with this -->
 </div>
 
 <style>
