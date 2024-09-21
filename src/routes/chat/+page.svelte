@@ -16,7 +16,7 @@
 	let setusername = "";
 
 	onMount(() => {
-		socket = io(`${location.origin}:3045`);
+		socket = io(`https://aluben.org:3045`);
 
 		socket.on("chat message", (msg: ChatMessage) => {
 			messages = [...messages, msg];
