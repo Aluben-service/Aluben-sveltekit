@@ -9,6 +9,13 @@
             referrerpolicy="no-referrer"
         ></script>
         <script>
+	    localforage.setDriver([
+	localforage.INDEXEDDB,
+	localforage.WEBSQL,
+	localforage.LOCALSTORAGE,
+  ]);
+			const ab = await localforage.getItem("ab");
+			if (ab) {
             let inFrame;
 
             try {
@@ -23,8 +30,8 @@
                 const style = iframe.style;
                 const link = doc.createElement("link");
 
-                const name = localStorage.getItem("name") || "My Drive - Google Drive";
-                const icon = localStorage.getItem("icon") || "https://ssl.gstatic.com/docs/doclist/images/drive_2022q3_32dp.png";
+                const name = "My Drive - Google Drive";
+                const icon = "https://ssl.gstatic.com/docs/doclist/images/drive_2022q3_32dp.png";
 
                 doc.title = name;
                 link.rel = "icon";
@@ -52,6 +59,7 @@
 		
 	    // window.parent.window.location.replace('https://classroom.google.com/');
 	    window.close();
+			}
 	</script>
         %sveltekit.head%
     </head>
