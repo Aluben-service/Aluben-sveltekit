@@ -52,6 +52,7 @@
 			});
 	});
 
+
 	fetch("https://api.ipify.org/?format=json")
 		.then((response) => response.json())
 		.then((data) => {
@@ -76,6 +77,9 @@
 	>
 	<button class="bounce" on:click={toggleStats}>Stats for nerds</button>
 </p>
+<br />
+<br />
+<br />
 {#if showStats}
 	<div id="sfn" class="message">
 		Requested URL: <span>{fullUrl}</span><br />
