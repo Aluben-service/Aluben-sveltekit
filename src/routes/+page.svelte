@@ -3,6 +3,7 @@
 	import Head from "$lib/components/Head.svelte";
 	import Navbar from "$lib/components/Navbar.svelte";
 	import "../app.css";
+	import { fireswal } from "$lib/utils/useswal.js";
 
 	onMount(async () => {
 		const response = await fetch("assets/json/say.json");
