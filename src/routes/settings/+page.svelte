@@ -125,7 +125,7 @@
 				<p style="font-size: 11px;">
 					Click the button below to change your passcode!
 				</p>
-				<button class="bounce-light" on:click={passcodechange}
+				<button class="bounce-light" on:click={() => passcodechange()}
 					>Change</button
 				>
 				<!-- THIS IS FOR A REASON !!!!! -->
