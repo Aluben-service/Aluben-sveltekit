@@ -11,4 +11,4 @@ function fireswal(type, text, callback, confirmtext = "Ok", title) {
 	});
 }
 
-export default fireswal;
+export { fireswal };
