@@ -1,26 +1,26 @@
 <script>
-	  import { onMount } from 'svelte';
+	import { onMount } from "svelte";
 	import Head from "$lib/components/Head.svelte";
 	import Navbar from "$lib/components/Navbar.svelte";
 	import "../app.css";
 
 	onMount(async () => {
-	const response = await fetch("assets/json/say.json");
-	const says = await response.json();
-	let randomSplash = says[Math.floor(Math.random() * says.length)];
+		const response = await fetch("assets/json/say.json");
+		const says = await response.json();
+		let randomSplash = says[Math.floor(Math.random() * says.length)];
 
-	if (randomSplash === "%GAMES_NUMBER%") {
-		const games = await fetch(
-			location.origin + "assets/json/games.json",
-		).json();
-		randomSplash = `There are ${games.length} games currently`;
-	} else if (randomSplash === "%SPLASH_NUMBER%") {
-		const splashCacheAll = await fetch("assets/json/say.json").json();
-		randomSplash = `There are ${splashCacheAll.length} of these messages!`;
-	}
+		if (randomSplash === "%GAMES_NUMBER%") {
+			const games = await fetch(
+				location.origin + "assets/json/games.json",
+			).json();
+			randomSplash = `There are ${games.length} games currently`;
+		} else if (randomSplash === "%SPLASH_NUMBER%") {
+			const splashCacheAll = await fetch("assets/json/say.json").json();
+			randomSplash = `There are ${splashCacheAll.length} of these messages!`;
+		}
 
-	document.querySelector("#splash").textContent = randomSplash;
-	var currentlink = 1;
+		document.querySelector("#splash").textContent = randomSplash;
+		var currentlink = 1;
 		const proxiesContainer = document.getElementById("rammy");
 
 		fetch("assets/json/rammerhead.json")
@@ -34,9 +34,21 @@
 					currentlink++;
 				});
 			});
-	
-
-});
+	});
+	let time;
+	// Function to start time and update every second
+	function startTime() {
+		const today = new Date();
+		const h = today.getHours();
+		let m = today.getMinutes();
+		let s = today.getSeconds();
+		m = m < 10 ? `0${m}` : m;
+		s = s < 10 ? `0${s}` : s;
+		const timeStr = `${h}:${m}:${s}`;
+		time = timeStr;
+		setTimeout(startTime, 1000);
+	}
+	startTime();
 </script>
 
 <Head />
@@ -48,7 +60,6 @@
 	<p>no world zero</p>
 	<h1>touch grass</h1>
 </div>
-
 <main id="main" style="display: block;">
 	<form id="uv-form" class="flex-center">
 		<input
@@ -115,8 +126,9 @@
 		reward
 	</p>
 	<iframe title="proxied" style="display: none;" id="uv-frame"></iframe>
+	<br />
+	<p>{time}</p>
 </main>
-
 
 <style>
 	:global(body) {

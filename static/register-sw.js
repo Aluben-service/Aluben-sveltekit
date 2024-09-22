@@ -13,7 +13,7 @@ const swAllowedHostnames = ["localhost", "127.0.0.1"];
  * Global util
  * Used in 404.html and index.html
  */
-async function registerSW() {
+const registerSW = async () => {
 	if (!navigator.serviceWorker) {
 		if (
 			location.protocol !== "https:" &&
@@ -35,7 +35,9 @@ async function registerSW() {
 
 	let wispUrl =
 		(location.protocol === "https:" ? "wss://" : "ws://") +
-		location.hostname + ":8080" + "/wisp/";
+		location.hostname +
+		":8080" +
+		"/wisp/";
 	BareMux.SetTransport("EpxMod.EpoxyClient", { wisp: wispUrl });
 	//BareMux.SetTransport("CurlMod.LibcurlClient", { wisp: wispUrl });
-}
+};
