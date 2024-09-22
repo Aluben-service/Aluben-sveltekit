@@ -12,14 +12,23 @@ const themes = {
 (async () => {
 	const themename = await localforage.getItem("theme");
 	const themefile = "/assets/css/themes/" + themes[themename] + ".css";
-	if (themename === "Default") {
+
+	if (themename === "Default" || themename == undefined) {
 		await localforage.clear("theme");
-	}
-	const themeEl = document.createElement("link");
-	themeEl.rel = "stylesheet";
-	themeEl.type = "text/css";
-	themeEl.href = themename ? themefile : "/assets/css/styles.css";
+		const themeEl = document.createElement("link");
+		themeEl.rel = "stylesheet";
+		themeEl.type = "text/css";
+		themeEl.href = "/assets/css/styles.css";
+		document.head.appendChild(themeEl);
+
+	} else {
+		const themeEl = document.createElement("link");
+		themeEl.rel = "stylesheet";
+		themeEl.type = "text/css";
+	themeEl.href = themefile;
 	document.head.appendChild(themeEl);
+
+	}
 })();
 
 let cloaks;

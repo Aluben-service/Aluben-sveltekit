@@ -30,6 +30,7 @@
 		"lucide-svelte": "^0.439.0",
 		"socket.io": "^4.7.5",
 		"socket.io-client": "^4.7.5",
-		"sweetalert2": "^11.12.4"
+		"sweetalert2": "^11.12.4",
+		"wisp-server-node": "^1.1.4"
 	}
 }

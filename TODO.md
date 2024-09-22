@@ -21,3 +21,4 @@
 - click off cloaking
 - Custom themes
 - make all game images use webp
+- not use someone elses wisp server lol
