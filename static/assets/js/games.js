@@ -48,7 +48,7 @@ async function loadGames() {
                 <article class="gamecard" data-category="${gameCategories}">
                   <a href="#" onclick='(async () => { await saveGame(${game})}); })();'>
                     <figure>
-                      <img title='${gameName}' src="${gameImg}" class="gameimage" alt="${gameName}"/>
+                      <img loading="lazy" title='${gameName}' src="${gameImg}" class="gameimage" alt="${gameName}"/>
                     </figure>
                   </a>
                   <button onclick="pin('${gameName}');" style="color:white;" aria-label="Pin game">
