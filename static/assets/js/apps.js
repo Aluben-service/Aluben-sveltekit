@@ -48,7 +48,7 @@ async function loadApps() {
                 <article class="appcard" data-category="${appCategories}">
                   <a href="#" onclick='(async () => { await saveApp(${app})}); })();'>
                     <figure>
-                      <img title='${appName}' src="${appImg}" class="appimage" alt="${appName}"/>
+                      <img loading="lazy" title='${appName}' src="${appImg}" class="appimage" alt="${appName}"/>
                     </figure>
                   </a>
                   <button onclick="pin('${appName}');" style="color:white;" aria-label="Pin app">
