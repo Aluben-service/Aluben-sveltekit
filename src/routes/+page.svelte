@@ -3,7 +3,6 @@
 	import Head from "$lib/components/Head.svelte";
 	import Navbar from "$lib/components/Navbar.svelte";
 	import "../app.css";
-	import { fireswal } from "$lib/utils/useswal.js";
 
 	onMount(async () => {
 		const response = await fetch("assets/json/say.json");
@@ -62,24 +61,6 @@
 	<h1>touch grass</h1>
 </div>
 <main id="main" style="display: block;">
-	<form id="uv-form" class="flex-center">
-		<input
-			id="uv-search-engine"
-			value="https://www.google.com/search?q=%s"
-			type="hidden"
-		/>
-		<input
-			id="uv-address"
-			type="text"
-			placeholder="Search the web freely"
-		/>
-	</form>
-	<p id="splash"></p>
-	<div class="desc left-margin">
-		<p id="uv-error"></p>
-		<pre id="uv-error-code"></pre>
-	</div>
-
 	<p id="say"></p>
 
 	&copy; Aluben Services 2024 inc all rights reserved
@@ -132,6 +113,7 @@
 </main>
 
 <style>
+	/*
 	:global(body) {
 		background-color: black;
 		color: white;
@@ -166,4 +148,5 @@
 		margin: 20px;
 		text-align: center;
 	}
+*/
 </style>
