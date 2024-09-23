@@ -10,7 +10,7 @@ export default defineConfig({
     partytownVite({
       dest: join(__dirname, 'static', '~partytown'),
     }),
-    ChemicalVitePlugin(),
+    ChemicalVitePlugin()
   ],
   // Optional: if you need to specify external dependencies for bundling
   build: {
