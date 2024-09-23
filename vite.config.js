@@ -5,20 +5,20 @@ import { defineConfig } from 'vite';
 import { partytownVite } from '@builder.io/partytown/utils';
 import { ChemicalVitePlugin } from 'chemicaljs';
 
-// Get the __dirname equivalent in ES modules
+// Convert module URL to path in ES modules
 const __dirname = fileURLToPath(new URL('.', import.meta.url));
 
 export default defineConfig({
   plugins: [
     sveltekit(),
     partytownVite({
-      dest: join(__dirname, 'static', '~partytown'),  // Correctly join the path
+      dest: join(__dirname, 'static', '~partytown'),
     }),
     ChemicalVitePlugin()
   ],
   build: {
     rollupOptions: {
-      external: ['express'],  // Optional: external dependencies like express
+      external: ['express'],  // External dependencies
     },
   },
 });
