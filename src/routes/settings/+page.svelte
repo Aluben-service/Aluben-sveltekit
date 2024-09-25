@@ -6,6 +6,9 @@
 	import Swal from "sweetalert2";
 	let selectedTheme;
 	let currentCloak;
+	let wispuri;
+	let wispdiv;
+	let wispurl;
 	const initializeStorage = async () => {
 		try {
 			await localforage.setDriver([
@@ -70,9 +73,19 @@
 		});
 		location.reload();
 	}
-
+	function setwisp() {
+		wispuri = wispurl;
+		localStorage.setItem("wispuri", wispuri);
+	}
+	function wisp() {
+		wispuri =
+			localStorage.getItem("wispuri") ||
+			"wss://wispserver.onrender.com/wisp/";
+		localStorage.setItem("wispuri", wispuri);
+	}
 	onMount(() => {
 		initializeStorage();
+		wisp();
 	});
 </script>
 
@@ -161,6 +174,14 @@
 	</div>
 </div>
 
+<div class="uk-child-width-1-2@m uk-grid-small uk-grid-match" uk-grid>
+	<div>
+		<div class="uk-card uk-card-body uk-card-default">
+			<h1>set wisp url by default is alubens wisp server</h1>
+			<input type="text" bind:value={wispurl} on:change={setwisp} />
+		</div>
+	</div>
+</div>
 <h3>Panic key/ (no https:// or http://)</h3>
 <input id="panickey" placeholder="key..." />
 <input id="panicurl" placeholder="url..." />
