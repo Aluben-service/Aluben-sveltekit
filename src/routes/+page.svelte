@@ -79,7 +79,7 @@
 			>Forward</button
 		>
 		<button on:click={() => open(document.getElementById("web").src)}
-			>Open</button
+			>Open in a new tab</button
 		>
 		<button on:click={() => chemicalAction("reload", "web")}>Reload</button>
 		<button on:click={() => chemicalAction("close", "web")}>Close</button>
