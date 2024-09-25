@@ -78,6 +78,9 @@
 		<button on:click={() => chemicalAction("forward", "web")}
 			>Forward</button
 		>
+		<button on:click={() => open(document.getElementById("web").src)}
+			>Open</button
+		>
 		<button on:click={() => chemicalAction("reload", "web")}>Reload</button>
 		<button on:click={() => chemicalAction("close", "web")}>Close</button>
 	</section>
