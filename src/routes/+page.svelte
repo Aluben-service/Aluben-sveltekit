@@ -61,6 +61,17 @@
 	<h1>touch grass</h1>
 </div>
 <main id="main" style="display: block;">
+	<input autofocus spellcheck="false" autocomplete="off" id="search" data-frame="web" data-auto-https data-search-engine="https://www.google.com/search?q=%s" placeholder="Search or Enter a URL" is="chemical-input">
+
+  
+	<section id="controls" is="chemical-controls">
+	  <button on:click={() => chemicalAction('back', 'web')}>Back</button>
+	  <button on:click={() => chemicalAction('forward', 'web')}>Forward</button>
+	  <button on:click={() => chemicalAction('reload', 'web')}>Reload</button>
+	  <button on:click={() => chemicalAction('close', 'web')}>Close</button>
+	</section>
+	
+	<iframe id="web" data-controls="controls" is="chemical-iframe"></iframe>
 	<p id="say"></p>
 
 	&copy; Aluben Services 2024 inc all rights reserved
