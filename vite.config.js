@@ -14,7 +14,7 @@ export default defineConfig({
     partytownVite({
       dest: join(__dirname, 'static', '~partytown'),  // Correctly join the path
     }),
-    ChemicalVitePlugin(),
+    ChemicalVitePlugin({meteor: false})
   ],
   build: {
     rollupOptions: {
