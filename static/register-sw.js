@@ -32,8 +32,12 @@ const registerSW = async () => {
 
 	// This is the line you change to change the wisp server (essential for static hosting ofc)
 	//let wispUrl = "wss://phantom.lol/wisp/";
+<<<<<<< HEAD
 	await fetch("https://wispserver.onrender.com");
 	let wispUrl = "https://wispserver.onrender.com/";
+=======
+	let wispUrl = "wss://wispserver.onrender.com/wisp/";
+>>>>>>> 5a6388dbd2c2c861fc3d5009f510a5618c19540f
 	BareMux.SetTransport("EpxMod.EpoxyClient", { wisp: wispUrl });
 	//BareMux.SetTransport("CurlMod.LibcurlClient", { wisp: wispUrl });
 };
