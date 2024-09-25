@@ -13,12 +13,4 @@
 	<script src="/assets/js/scripts.js" defer></script>
     <script src="/chemical.js"></script>
     <script src="/chemical.components.js"></script>
-	<script src="/baremux/bare.cjs" defer></script>
-	<script src="/epoxy/index.js" defer></script>
-	<script src="/libcurl/index.cjs" defer></script>
-	<script src="/ultraviolet/uv.bundle.js" defer></script>
-	<script src="/ultraviolet/uv.config.js" defer></script>
-	<script src="/register-sw.js" defer></script>
-	<script src="/search.js" defer></script>
-	<script src="/index.js" defer></script>
 </svelte:head>
