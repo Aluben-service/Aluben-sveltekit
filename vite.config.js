@@ -1,4 +1,4 @@
-import { join } from "path";
+import { join } from "node:path";
 import { sveltekit } from "@sveltejs/kit/vite";
 import { defineConfig } from "vite";
 import { partytownVite } from "@builder.io/partytown/utils";
