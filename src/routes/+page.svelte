@@ -12,15 +12,17 @@
 		if (randomSplash === "%GAMES_NUMBER%") {
 			const games = await fetch(
 				location.origin + "assets/json/games.json",
-			).json();
+			).then((res) => res.json());
 			randomSplash = `There are ${games.length} games currently`;
 		} else if (randomSplash === "%SPLASH_NUMBER%") {
-			const splashCacheAll = await fetch("assets/json/say.json").json();
+			const splashCacheAll = await fetch("assets/json/say.json").then(
+				(res) => res.json(),
+			);
 			randomSplash = `There are ${splashCacheAll.length} of these messages!`;
 		}
 
 		document.querySelector("#splash").textContent = randomSplash;
-		var currentlink = 1;
+		let currentlink = 1;
 		const proxiesContainer = document.getElementById("rammy");
 
 		fetch("assets/json/rammerhead.json")
@@ -35,6 +37,7 @@
 				});
 			});
 	});
+
 	let time;
 	// Function to start time and update every second
 	function startTime() {
