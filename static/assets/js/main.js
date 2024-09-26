@@ -104,13 +104,13 @@ function changeFavicon(src) {
 
 window.addEventListener("keydown", async (event) => {
 	console.log("Typed key: " + event.key);
-	// let panicurl =
-	// 	(await localforage.getItem("panicurl")) || "https://google.com";
-	// panicurl = panicurl.replace(/\/$/, "");
-	// let panickey = await localforage.getItem("panickey");
-	// if (event.key === panickey) {
-	// 	window.location.href = panicurl;
-	// }
+	let panicurl =
+		(await localforage.getItem("panicurl")) || "https://google.com";
+	panicurl = panicurl.replace(/\/$/, "");
+	let panickey = await localforage.getItem("panickey");
+	if (event.key === panickey) {
+		window.location.href = panicurl;
+	}
 });
 function handleVisibilityChange() {
 	localforage.getItem("clickoff_cloaking").then((clickoffCloaking) => {
@@ -139,3 +139,5 @@ document.onkeydown = (e) => {
 		}
 	}
 };
+
+console.log(this);

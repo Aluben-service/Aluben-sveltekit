@@ -45,3 +45,13 @@ select {
 	top: 0px;
 	z-index: 1000;
 }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: bold !important;
+  text-shadow: 2px 2px 0 #ff5733 !important;
+}
