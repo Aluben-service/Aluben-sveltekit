@@ -3,7 +3,6 @@
 	import Head from "$lib/components/Head.svelte";
 	import Navbar from "$lib/components/Navbar.svelte";
 	import "../app.css";
-	import { fireswal } from "$lib/utils/useswal.js";
 
 	onMount(async () => {
 		const response = await fetch("assets/json/say.json");
@@ -13,15 +12,17 @@
 		if (randomSplash === "%GAMES_NUMBER%") {
 			const games = await fetch(
 				location.origin + "assets/json/games.json",
-			).json();
+			).then((res) => res.json());
 			randomSplash = `There are ${games.length} games currently`;
 		} else if (randomSplash === "%SPLASH_NUMBER%") {
-			const splashCacheAll = await fetch("assets/json/say.json").json();
+			const splashCacheAll = await fetch("assets/json/say.json").then(
+				(res) => res.json(),
+			);
 			randomSplash = `There are ${splashCacheAll.length} of these messages!`;
 		}
 
 		document.querySelector("#splash").textContent = randomSplash;
-		var currentlink = 1;
+		let currentlink = 1;
 		const proxiesContainer = document.getElementById("rammy");
 
 		fetch("assets/json/rammerhead.json")
@@ -36,6 +37,7 @@
 				});
 			});
 	});
+
 	let time;
 	// Function to start time and update every second
 	function startTime() {
@@ -62,24 +64,34 @@
 	<h1>touch grass</h1>
 </div>
 <main id="main" style="display: block;">
-	<form id="uv-form" class="flex-center">
-		<input
-			id="uv-search-engine"
-			value="https://www.google.com/search?q=%s"
-			type="hidden"
-		/>
-		<input
-			id="uv-address"
-			type="text"
-			placeholder="Search the web freely"
-		/>
-	</form>
-	<p id="splash"></p>
-	<div class="desc left-margin">
-		<p id="uv-error"></p>
-		<pre id="uv-error-code"></pre>
-	</div>
+	<input
+		spellcheck="false"
+		autocomplete="off"
+		id="search"
+		data-frame="web"
+		data-auto-https
+		data-search-engine="https://www.google.com/search?q=%s"
+		placeholder="Search or Enter a URL"
+		is="chemical-input"
+	/>
 
+	<section id="controls" is="chemical-controls">
+		<button on:click={() => chemicalAction("back", "web")}>Back |</button>
+		<button on:click={() => chemicalAction("forward", "web")}>
+			Forward |</button
+		>
+		<button on:click={() => open(document.getElementById("web").src)}>
+			Open in a new tab |</button
+		>
+		<button on:click={() => chemicalAction("reload", "web")}>
+			Reload |</button
+		>
+		<button on:click={() => chemicalAction("close", "web")}>
+			Close |</button
+		>
+	</section>
+
+	<iframe id="web" data-controls="controls" is="chemical-iframe"></iframe>
 	<p id="say"></p>
 
 	&copy; Aluben Services 2024 inc all rights reserved
@@ -132,6 +144,7 @@
 </main>
 
 <style>
+	/*
 	:global(body) {
 		background-color: black;
 		color: white;
@@ -166,4 +179,5 @@
 		margin: 20px;
 		text-align: center;
 	}
+*/
 </style>

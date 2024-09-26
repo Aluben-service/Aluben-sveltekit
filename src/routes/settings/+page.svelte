@@ -70,7 +70,24 @@
 		});
 		location.reload();
 	}
-
+	async function setpanic() {
+		await localforage.setItem(
+			"panicurl",
+			"https://" + document.getElementById("panicurl").value,
+		);
+		await localforage.setItem(
+			"panickey",
+			document.getElementById("panickey").value,
+		);
+	}
+	async function setpanickey() {
+		const panickey = document.getElementById("panickey").value;
+		await localforage.setItem("panickey", panickey);
+	}
+	async function setpanicurl() {
+		const panicurl = document.getElementById("panicurl").value;
+		await localforage.setItem("panicurl" + panicurl);
+	}
 	onMount(() => {
 		initializeStorage();
 	});
@@ -162,20 +179,9 @@
 </div>
 
 <h3>Panic key/ (no https:// or http://)</h3>
-<input id="panickey" placeholder="key..." />
-<input id="panicurl" placeholder="url..." />
-<button
-	on:click={() => {
-		localforage.setItem(
-			"panicurl",
-			"https://" + document.getElementById("panicurl").value,
-		);
-		localforage.setItem(
-			"panickey",
-			document.getElementById("panickey").value,
-		);
-	}}>Save</button
->
+<input id="panickey" placeholder="key..." on:change={setpanickey} />
+<input id="panicurl" placeholder="url..." on:change={setpanicurl} />
+<button on:click={() => alert("Saved.")}>Save</button>
 <br />
 <br />
 <br />

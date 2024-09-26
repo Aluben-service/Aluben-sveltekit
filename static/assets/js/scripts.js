@@ -3,7 +3,7 @@
  **/
 //document.addEventListener("DOMContentLoaded", (event) => {
 try {
-	let scripts = 5;
+	let scripts = 4;
 	let currentscript = 1;
 
 	function script(text) {
@@ -18,11 +18,6 @@ try {
 	function isMobileDevice() {
 		return /Mobi|Android/i.test(navigator.userAgent);
 	}
-
-	const analytics = document.createElement("script");
-	analytics.setAttribute("src", "/assets/lib/analytics.js");
-	document.head.append(analytics);
-	script("Simple Analytics");
 
 	const font = document.createElement("script");
 	font.setAttribute("src", "/assets/lib/fontawesome.js");
@@ -86,3 +81,9 @@ try {
 } catch (e) {
 	console.error("Error: " + e);
 }
+
+document.addEventListener("keypress", async (e) => {
+	if (e.key === (await localforage.getItem(panickey))) {
+		window.location.href = panicurl;
+	}
+});
