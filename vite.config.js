@@ -8,7 +8,7 @@ export default defineConfig({
 	plugins: [
 		sveltekit(),
 		partytownVite({
-			dest: join(__dirname, "static", "~partytown"),
+			dest: join("static", "~partytown"),
 		}),
 		ChemicalVitePlugin({ meteor: false }),
 	],
