@@ -1,9 +1,9 @@
-var theme = localStorage.getItem("theme");
-var cloak = localStorage.getItem("cloak");
+let theme = localStorage.getItem("theme");
+let cloak = localStorage.getItem("cloak");
 
 function set_theme() {
-	var themes = document.getElementById("themes");
-	var selectedTheme = themes.options[themes.selectedIndex].value;
+	let themes = document.getElementById("themes");
+	let selectedTheme = themes.options[themes.selectedIndex].value;
 	if (selectedTheme == "custom_theme") {
 		let style = prompt("1. Solid 2. Image");
 		if (style == 1) {
@@ -24,18 +24,22 @@ function set_theme() {
 	location.reload();
 }
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", async () => {
 	// Get the saved theme from localStorage
-	var savedTheme = localStorage.getItem("theme");
+	let savedTheme = await localStorage.getItem("theme");
 
 	// If there's a saved theme, set the corresponding option as selected
-	if (savedTheme) {
-		var themesDropdown = document.getElementById("themes");
-		for (var i = 0; i < themesDropdown.options.length; i++) {
-			if (themesDropdown.options[i].value === savedTheme) {
-				themesDropdown.selectedIndex = i;
-				break;
-			}
-		}
+	if (savedTheme && savedTheme == "Default") {
+		const link = document.createElement("link");
+		link.rel = "stylesheet";
+		link.href = "/assets/css/styles.css";
+	} else if (savedTheme) {
+		let themesDropdown = document.getElementById("themes");
+		let themeurl = "/assets/css/themes/" + savedTheme + ".css";
+		themesDropdown.selectedIndex = savedTheme;
+	} else {
+		const link = document.createElement("link");
+		link.rel = "stylesheet";
+		link.href = "/assets/css/styles.css";
 	}
 });

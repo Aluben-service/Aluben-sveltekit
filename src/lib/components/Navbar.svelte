@@ -6,7 +6,13 @@
 	const games = () => open("/games", "_self");
 	const settings = () => open("/settings", "_self");
 	const home = () => open("/", "_self");
+<<<<<<< HEAD
 	const chat = () => open("/chat", "_self");/*
+=======
+	const chat = () => open("/chat", "_self");
+	const prox = () => open("/prox", "_self");
+	/*
+>>>>>>> 6ecf9246d06a7f357fff72d9fa08eaebb2dd2982
 	const aboutblank = () => {
 		let win = window.open();
 		let url = window.location.href;
@@ -79,19 +85,19 @@
 
 <style>
 	:global(.button) {
-		margin-top: 2px !important;
-		background-color: #0b0724 !important;
-		color: floralwhite !important;
+		margin-top: 2px;
+		background-color: #0b0724;
+		color: floralwhite;
 		border: 1px dotted rgb(43, 207, 21);
 		border-radius: 5px;
-		padding: 2px 4px !important;
+		padding: 2px 4px;
 		margin: 5px;
 		cursor: pointer;
 	}
 
 	:global(.button:hover) {
 		transition: 1000ms;
-		padding: 2px 8px !important;
+		padding: 2px 8px;
 		transform: translateY(-0px);
 		background-color: #0b0724;
 		color: floralwhite;
