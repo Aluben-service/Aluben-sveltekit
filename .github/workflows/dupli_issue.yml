@@ -3,6 +3,7 @@ name: Detect Duplicate Issues
 on:
   issues:
     types: [opened, reopened]
+  workflow_dispatch:
 
 jobs:
   find_duplicates:
