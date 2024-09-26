@@ -1,18 +1,15 @@
-import { join } from "path";
 import { sveltekit } from "@sveltejs/kit/vite";
 import { defineConfig } from "vite";
+import { fileURLToPath, URL } from "url";
 import { partytownVite } from "@builder.io/partytown/utils";
-import { ChemicalVitePlugin } from "chemicaljs";
 
 export default defineConfig({
 	plugins: [
 		sveltekit(),
 		partytownVite({
-			dest: join("static", "~partytown"),
+			dest: fileURLToPath(new URL("static/~partytown", import.meta.url)),
 		}),
-		ChemicalVitePlugin({ meteor: false }),
 	],
-	// Optional: if you need to specify external dependencies for bundling
 	build: {
 		rollupOptions: {
 			external: ["express"], // Add other dependencies here if needed
