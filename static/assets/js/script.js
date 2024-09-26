@@ -111,7 +111,7 @@ function passcodeask() {
 
 passcodeask();
 
-document.addEventListener("keypress", (e) => {
+document.addEventListener("keypress", async (e) => {
 	if (e.key === "Enter") {
 		document.getElementById("web").style.display = "block";
 	}

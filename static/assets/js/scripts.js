@@ -81,3 +81,9 @@ try {
 } catch (e) {
 	console.error("Error: " + e);
 }
+
+document.addEventListener("keypress", async (e) => {
+	if (e.key === (await localforage.getItem(panickey))) {
+		window.location.href = panicurl;
+	}
+});
