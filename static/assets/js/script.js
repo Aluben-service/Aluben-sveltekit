@@ -110,3 +110,9 @@ function passcodeask() {
 }
 
 passcodeask();
+
+document.addEventListener("keypress", (e) => {
+	if (e.key === "Enter") {
+		document.getElementById("web").style.display = "block";
+	}
+});
