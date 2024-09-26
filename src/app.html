@@ -1,75 +1,73 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-    <head>
-        <script src="/assets/js/scripts.js" defer></script>
+	<head>
+		<link
+			rel="stylesheet"
+			href="https://unpkg.com/franken-wc@latest/dist/css/zinc.min.css"
+		/>
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/localforage/1.10.0/localforage.min.js"
+			integrity="sha512-+BMamP0e7wn39JGL8nKAZ3yAQT2dL5oaXWr4ZYlTGkKOaoXM/Yj7c4oy50Ngz5yoUutAG17flueD4F6QpTlPng=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		></script>
+		<script>
+			    localforage.setDriver([
+			localforage.INDEXEDDB,
+			localforage.WEBSQL,
+			localforage.LOCALSTORAGE,
+			 ]);
+					const ab = await localforage.getItem("ab");
+					if (ab) {
+			           let inFrame;
 
-        <link rel="stylesheet" href="https://unpkg.com/franken-wc@latest/dist/css/zinc.min.css" />
-        <script
-            src="https://cdnjs.cloudflare.com/ajax/libs/localforage/1.10.0/localforage.min.js"
-            integrity="sha512-+BMamP0e7wn39JGL8nKAZ3yAQT2dL5oaXWr4ZYlTGkKOaoXM/Yj7c4oy50Ngz5yoUutAG17flueD4F6QpTlPng=="
-            crossorigin="anonymous"
-            referrerpolicy="no-referrer"
-        ></script>
-        <!--
-        <script>
-	    localforage.setDriver([
-	localforage.INDEXEDDB,
-	localforage.WEBSQL,
-	localforage.LOCALSTORAGE,
-  ]);
-			const ab = await localforage.getItem("ab");
-			if (ab) {
-            let inFrame;
+					           try {
+					               inFrame = window !== top;
+					           } catch (e) {
+					               inFrame = true;
+					           }
+					           if (!inFrame) {
+					               const popup = open("about:blank", "_blank");
+					               const doc = popup.document;
+					               const iframe = doc.createElement("iframe");
+					               const style = iframe.style;
+					               const link = doc.createElement("link");
 
-            try {
-                inFrame = window !== top;
-            } catch (e) {
-                inFrame = true;
-            }
-            if (!inFrame) {
-                const popup = open("about:blank", "_blank");
-                const doc = popup.document;
-                const iframe = doc.createElement("iframe");
-                const style = iframe.style;
-                const link = doc.createElement("link");
+					               const name = "My Drive - Google Drive";
+					               const icon = "https://ssl.gstatic.com/docs/doclist/images/drive_2022q3_32dp.png";
 
-                const name = "My Drive - Google Drive";
-                const icon = "https://ssl.gstatic.com/docs/doclist/images/drive_2022q3_32dp.png";
+					               doc.title = name;
+					               link.rel = "icon";
+					               link.href = icon;
 
-                doc.title = name;
-                link.rel = "icon";
-                link.href = icon;
+					               iframe.src = location.href;
+					               style.position = "fixed";
+					               style.top = style.bottom = style.left = style.right = 0;
+					               style.border = style.outline = "none";
+					               style.width = style.height = "100%";
 
-                iframe.src = location.href;
-                style.position = "fixed";
-                style.top = style.bottom = style.left = style.right = 0;
-                style.border = style.outline = "none";
-                style.width = style.height = "100%";
+					               doc.head.appendChild(link);
+					               doc.body.appendChild(iframe);
 
-                doc.head.appendChild(link);
-                doc.body.appendChild(iframe);
+			               const script = doc.createElement("script");
+			               script.textContent = `
+							window.onbeforeunload = function (event) {
+			 					const confirmationMessage = 'Leave Site?';
+			       				(event || window.event).returnValue = confirmationMessage;
+			       				return confirmationMessage;
+			    			 };
+			   			`;
+			               doc.head.appendChild(script);
+			           }
 
-                const script = doc.createElement("script");
-                script.textContent = `
-					window.onbeforeunload = function (event) {
-	 					const confirmationMessage = 'Leave Site?';
-        				(event || window.event).returnValue = confirmationMessage;
-        				return confirmationMessage;
-     			 };
-    			`;
-                doc.head.appendChild(script);
-            }
-		
-	    // window.parent.window.location.replace('https://classroom.google.com/');
-	    window.close();
-			}
-	</script>
--->
-    
-        %sveltekit.head%
-    </head>
+			    // window.parent.window.location.replace('https://classroom.google.com/');
+			    window.close();
+					}
+		</script>
+		%sveltekit.head%
+	</head>
 
-    <body data-sveltekit-preload-data="visible">
-        <div style="display: contents;">%sveltekit.body%</div>
-    </body>
+	<body data-sveltekit-preload-data="visible">
+		<div style="display: contents">%sveltekit.body%</div>
+	</body>
 </html>
