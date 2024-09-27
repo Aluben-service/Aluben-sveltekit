@@ -6,13 +6,9 @@
 	const games = () => open("/games", "_self");
 	const settings = () => open("/settings", "_self");
 	const home = () => open("/", "_self");
-<<<<<<< HEAD
-	const chat = () => open("/chat", "_self");/*
-=======
 	const chat = () => open("/chat", "_self");
-	const prox = () => open("/prox", "_self");
+	// const prox = () => open("/prox", "_self");
 	/*
->>>>>>> 6ecf9246d06a7f357fff72d9fa08eaebb2dd2982
 	const aboutblank = () => {
 		let win = window.open();
 		let url = window.location.href;
@@ -78,7 +74,7 @@
 	<button class="button" type="button" on:click={apps}>Apps</button>
 	<button class="button" type="button" on:click={games}>Games</button>
 	<button class="button" type="button" on:click={settings}>Settings</button>
-<!--	<button class="button" type="button" on:click={aboutblank}
+	<!--	<button class="button" type="button" on:click={aboutblank}
 		>open in about:blank</button
 	> stop trolling me with this -->
 </div>

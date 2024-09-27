@@ -8,6 +8,7 @@
 		name="description"
 		content="A good proxy with custom unblockers(that are completly different proxies) and a proxy list built in games it's amazing"
 	/>
+	<script src="/assets/js/main.js"></script>
 	<script data-transport="libcurl" src="/chemical.js" defer></script>
-    <script src="/chemical.components.js" defer></script>
+	<script src="/chemical.components.js" defer></script>
 </svelte:head>

@@ -64,12 +64,6 @@
 	<h1>touch grass</h1>
 </div>
 <main id="main" style="display: block;">
-<<<<<<< HEAD
-<<<<<<< HEAD
-	<input spellcheck="false" autocomplete="off" id="search" data-frame="web" data-auto-https data-search-engine="https://www.google.com/search?q=%s" placeholder="Search or Enter a URL" is="chemical-input">
-=======
-=======
->>>>>>> a0bcb7266d1efb346ce1452cc37fc9206988d402
 	<input
 		spellcheck="false"
 		autocomplete="off"
@@ -80,10 +74,6 @@
 		placeholder="Search or Enter a URL"
 		is="chemical-input"
 	/>
-<<<<<<< HEAD
->>>>>>> a0bcb7266d1efb346ce1452cc37fc9206988d402
-=======
->>>>>>> a0bcb7266d1efb346ce1452cc37fc9206988d402
 
 	<section id="controls" is="chemical-controls">
 		<button on:click={() => chemicalAction("back", "web")}>Back |</button>
@@ -100,15 +90,6 @@
 			Close |</button
 		>
 	</section>
-<<<<<<< HEAD
-<<<<<<< HEAD
-	
-=======
-
->>>>>>> a0bcb7266d1efb346ce1452cc37fc9206988d402
-=======
-
->>>>>>> a0bcb7266d1efb346ce1452cc37fc9206988d402
 	<iframe id="web" data-controls="controls" is="chemical-iframe"></iframe>
 	<p id="say"></p>
 

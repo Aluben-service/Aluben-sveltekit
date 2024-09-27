@@ -59,20 +59,20 @@ try {
 		// Style the dialog
 		const style = document.createElement("style");
 		style.textContent = `
-		dialog {
-			width: 80%;
-			max-width: 500px;
-			border: none;
-			border-radius: 8px;
-			box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-			background: white;
-			padding: 20px;
-			text-align: center;
-		}
-		dialog::backdrop {
-			background: rgba(0, 0, 0, 0.5);
-		}
-	`;
+			dialog {
+				width: 80%;
+				max-width: 500px;
+				border: none;
+				border-radius: 8px;
+				box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+				background: white;
+				padding: 20px;
+				text-align: center;
+			}
+			dialog::backdrop {
+				background: rgba(0, 0, 0, 0.5);
+			}
+		`;
 		document.head.appendChild(style);
 
 		// Show the dialog modal
