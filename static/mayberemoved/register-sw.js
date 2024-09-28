@@ -13,7 +13,7 @@ const swAllowedHostnames = ["localhost", "127.0.0.1"];
  * Global util
  * Used in 404.html and index.html
  */
-async function registerSW() {
+const registerSW = async () => {
 	if (!navigator.serviceWorker) {
 		if (
 			location.protocol !== "https:" &&
@@ -31,7 +31,8 @@ async function registerSW() {
 	});
 
 	// This is the line you change to change the wisp server (essential for static hosting ofc)
-	let wispUrl = "wss://phantom.lol/wisp/";
+	//let wispUrl = "wss://phantom.lol/wisp/";
+	let wispUrl = "wss://wispserver.onrender.com/wisp/";
 	BareMux.SetTransport("EpxMod.EpoxyClient", { wisp: wispUrl });
 	//BareMux.SetTransport("CurlMod.LibcurlClient", { wisp: wispUrl });
-}
+};

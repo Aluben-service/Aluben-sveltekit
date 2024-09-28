@@ -12,14 +12,23 @@ const themes = {
 (async () => {
 	const themename = await localforage.getItem("theme");
 	const themefile = "/assets/css/themes/" + themes[themename] + ".css";
-	if (themename === "Default") {
+
+	if (themename === "Default" || themename == undefined) {
 		await localforage.clear("theme");
-	}
-	const themeEl = document.createElement("link");
-	themeEl.rel = "stylesheet";
-	themeEl.type = "text/css";
-	themeEl.href = themename ? themefile : "/assets/css/styles.css";
+		const themeEl = document.createElement("link");
+		themeEl.rel = "stylesheet";
+		themeEl.type = "text/css";
+		themeEl.href = "/assets/css/styles.css";
+		document.head.appendChild(themeEl);
+
+	} else {
+		const themeEl = document.createElement("link");
+		themeEl.rel = "stylesheet";
+		themeEl.type = "text/css";
+	themeEl.href = themefile;
 	document.head.appendChild(themeEl);
+
+	}
 })();
 
 let cloaks;
@@ -104,13 +113,13 @@ function changeFavicon(src) {
 
 window.addEventListener("keydown", async (event) => {
 	console.log("Typed key: " + event.key);
-	// let panicurl =
-	// 	(await localforage.getItem("panicurl")) || "https://google.com";
-	// panicurl = panicurl.replace(/\/$/, "");
-	// let panickey = await localforage.getItem("panickey");
-	// if (event.key === panickey) {
-	// 	window.location.href = panicurl;
-	// }
+	let panicurl =
+		(await localforage.getItem("panicurl")) || "https://google.com";
+	panicurl = panicurl.replace(/\/$/, "");
+	let panickey = await localforage.getItem("panickey");
+	if (event.key === panickey) {
+		window.location.href = panicurl;
+	}
 });
 function handleVisibilityChange() {
 	localforage.getItem("clickoff_cloaking").then((clickoffCloaking) => {
@@ -139,3 +148,5 @@ document.onkeydown = (e) => {
 		}
 	}
 };
+
+console.log(this);
