@@ -7,7 +7,7 @@
 	const settings = () => open("/settings", "_self");
 	const home = () => open("/", "_self");
 	const chat = () => open("/chat", "_self");
-	const prox = () => open("/prox", "_self");
+	// const prox = () => open("/prox", "_self");
 	/*
 	const aboutblank = () => {
 		let win = window.open();
@@ -74,7 +74,7 @@
 	<button class="button" type="button" on:click={apps}>Apps</button>
 	<button class="button" type="button" on:click={games}>Games</button>
 	<button class="button" type="button" on:click={settings}>Settings</button>
-<!--	<button class="button" type="button" on:click={aboutblank}
+	<!--	<button class="button" type="button" on:click={aboutblank}
 		>open in about:blank</button
 	> stop trolling me with this -->
 </div>
@@ -84,8 +84,12 @@
 		margin-top: 2px;
 		background-color: #0b0724;
 		color: floralwhite;
+		margin-top: 2px;
+		background-color: #0b0724;
+		color: floralwhite;
 		border: 1px dotted rgb(43, 207, 21);
 		border-radius: 5px;
+		padding: 2px 4px;
 		padding: 2px 4px;
 		margin: 5px;
 		cursor: pointer;
@@ -93,6 +97,7 @@
 
 	:global(.button:hover) {
 		transition: 1000ms;
+		padding: 2px 8px;
 		padding: 2px 8px;
 		transform: translateY(-0px);
 		background-color: #0b0724;
