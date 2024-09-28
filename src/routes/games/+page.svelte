@@ -1,21 +1,21 @@
 <script>
-    import { onMount } from "svelte";
-    import Navbar from "$lib/components/Navbar.svelte";
-    import "../../app.css";
+	import { onMount } from "svelte";
+	import Navbar from "$lib/components/Navbar.svelte";
+	import "../../app.css";
 	import GamesHead from "$lib/components/GamesHead.svelte";
 
-    let searchInput = "";
-    let pinnedApps = [];
-    let allApps = [];
+	let searchInput = "";
+	let pinnedApps = [];
+	let allApps = [];
 
-    // Function to load external scripts
-    onMount(() => {
-        const script1 = document.createElement("script");
-        script1.src = "assets/js/apps.js";
-        script1.async = true;
-        script1.defer = true;
-        document.head.appendChild(script1);
-    });
+	// Function to load external scripts
+	onMount(() => {
+		const script1 = document.createElement("script");
+		script1.src = "assets/js/apps.js";
+		script1.async = true;
+		script1.defer = true;
+		document.head.appendChild(script1);
+	});
 </script>
 
 <GamesHead />
@@ -26,37 +26,35 @@
 <!-- Main content -->
 <input
 	type="text"
-    on:keyup={() => searchApps()}
+	on:keyup={() => searchApps()}
 	id="searchInput"
 	placeholder="Search For A Game..."
 	title="Search for a game"
 />
 <select id="category" name="category" on:change={() => showCategory()}>
-        <option value="all">All</option>
-        <option value="2P">Multiplayer</option>
-        <option value="sports">Sports</option>
-        <option value="flash">Flash</option>
-        <option value="local">Local</option>
-    </select>
+	<option value="all">All</option>
+	<option value="2P">Multiplayer</option>
+	<option value="sports">Sports</option>
+	<option value="flash">Flash</option>
+	<option value="local">Local</option>
+</select>
 
-    <h3>Pinned Apps</h3>
-    <div class="pinned">
-    </div>
+<h3>Pinned Apps</h3>
+<div class="pinned"></div>
 
-    <h3>All Apps</h3>
-    <div class="gamecontainer">
-    </div>
+<h3>All Apps</h3>
+<div class="gamecontainer"></div>
 
-    <p id="copyright">© Aluben Services 2024 inc all rights reserved</p>
+<p id="copyright">© Aluben Services 2024 inc all rights reserved</p>
 
 <style>
-    :global(html) {
-        width: 100%;
-        height: 100%;
-        background-color: black;
-        text-align: center;
-    }
-/*
+	:global(html) {
+		width: 100%;
+		height: 100%;
+		background-color: black;
+		text-align: center;
+	}
+	/*
     .button {
         background-color: #0b0724;
         color: floralwhite;
@@ -76,23 +74,23 @@
         border: solid 3px rgb(252, 245, 115);
     }
 */
-    input[type="text"] {
-        height: 2px;
-        width: 480px;
-        padding: 10px;
-        border: 2px solid skyblue;
-        border-radius: 5px;
-    }
+	input[type="text"] {
+		height: 2px;
+		width: 480px;
+		padding: 10px;
+		border: 2px solid skyblue;
+		border-radius: 5px;
+	}
 
-    #copyright {
-        color: floralwhite;
-    }
+	#copyright {
+		color: floralwhite;
+	}
 
-    #logo {
-        width: 400px;
-        height: 200px;
-    }
-/*
+	#logo {
+		width: 400px;
+		height: 200px;
+	}
+	/*
 
     .game {
         margin: 5px;

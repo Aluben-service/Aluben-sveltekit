@@ -7,6 +7,17 @@
 	const settings = () => open("/settings", "_self");
 	const home = () => open("/", "_self");
 	const chat = () => open("/chat", "_self");
+	// const prox = () => open("/prox", "_self");
+	/*
+	const aboutblank = () => {
+		let win = window.open();
+		let url = window.location.href;
+		let iframe = win.document.createElement("iframe");
+		iframe.style =
+			"position:fixed;width:100vw;height:100vh;top:0x;left:0px;right:0px;bottom:0px;z-index:2147483647;background-color:white;border:none;";
+		iframe.src = url;
+		win.document.body.appendChild(iframe);
+	};*/
 	const calculator = async () => {
 		// Prompt the user for input using SweetAlert2
 		const { value: calculation } = await Swal.fire({
@@ -57,29 +68,32 @@
 <div class="navbar" id="navbar">
 	<button class="button" type="button" on:click={home}>Home</button>
 	<button class="button" type="button" on:click={chat}>Chat</button>
-	<!--<button class="button" type="button" on:click={calculator}
+	<!-- imma add this to like a utilities thing, testuserforlearning	<button class="button" type="button" on:click={calculator}
 		>Calculator</button
->-->
+	>-->
 	<button class="button" type="button" on:click={apps}>Apps</button>
 	<button class="button" type="button" on:click={games}>Games</button>
 	<button class="button" type="button" on:click={settings}>Settings</button>
+	<!--	<button class="button" type="button" on:click={aboutblank}
+		>open in about:blank</button
+	> stop trolling me with this -->
 </div>
 
 <style>
 	:global(.button) {
-		margin-top: 2px !important;
-		background-color: #0b0724 !important;
-		color: floralwhite !important;
+		margin-top: 2px;
+		background-color: #0b0724;
+		color: floralwhite;
 		border: 1px dotted rgb(43, 207, 21);
 		border-radius: 5px;
-		padding: 2px 4px !important;
+		padding: 2px 4px;
 		margin: 5px;
 		cursor: pointer;
 	}
 
 	:global(.button:hover) {
 		transition: 1000ms;
-		padding: 2px 8px !important;
+		padding: 2px 8px;
 		transform: translateY(-0px);
 		background-color: #0b0724;
 		color: floralwhite;

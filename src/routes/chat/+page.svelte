@@ -2,6 +2,7 @@
 	import Head from "$lib/components/Head.svelte";
 	import { onMount } from "svelte";
 	import io from "socket.io-client";
+	import Navbar from "$lib/components/Navbar.svelte";
 	import type { Socket } from "socket.io-client";
 
 	interface ChatMessage {
@@ -15,8 +16,9 @@
 	let username = "";
 	let setusername = "";
 
-	onMount(() => {
-		socket = io(`${location.origin}:3045`);
+	onMount(async () => {
+		await fetch("https://aluben-assets.onrender.com/");
+		socket = io("https://aluben-assets.onrender.com/");
 
 		socket.on("chat message", (msg: ChatMessage) => {
 			messages = [...messages, msg];
@@ -42,9 +44,16 @@
 </script>
 
 <Head />
+
+<!-- body content -->
+
+<Navbar />
 <main>
-    <h1>Aluben Chat</h1>
-    <p>Welcome to Aluben Chat, the one place where you can help each other or wreck havoc. No moderation, no nothing.</p>
+	<h1>Aluben Chat</h1>
+	<p>
+		Welcome to Aluben Chat, the one place where you can help each other or
+		wreck havoc. No moderation, no nothing.
+	</p>
 	{#if !username}
 		<div>
 			<input bind:value={setusername} placeholder="Enter your username" />

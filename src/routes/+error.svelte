@@ -1,10 +1,8 @@
 <script>
-    import Head from '$lib/components/Head.svelte'; // Adjust the import path as necessary
-    import Navbar from '$lib/components/Navbar.svelte'; // Adjust the import path as necessary
-    import { onMount } from 'svelte';
-    let showStats = false;
-
-
+	import Head from "$lib/components/Head.svelte"; // Adjust the import path as necessary
+	import Navbar from "$lib/components/Navbar.svelte"; // Adjust the import path as necessary
+	import { onMount } from "svelte";
+	let showStats = false;
 
 	let fullUrl = "Fetching...";
 	let pageTitle = "Fetching...";
@@ -23,7 +21,7 @@
 	let ipv6 = "Fetching...";
 	let ipv4 = "Fetching...";
 	let networkIP = "Fetching...";
-    
+
 	onMount(() => {
 		fullUrl = window.location.href;
 		pageTitle = document.querySelector("title").textContent;
@@ -54,17 +52,16 @@
 			});
 	});
 
-        fetch("https://api.ipify.org/?format=json")
-            .then(response => response.json())
-            .then(data => {
-                ipv4 = data.ip;
-            });
-    
 
+	fetch("https://api.ipify.org/?format=json")
+		.then((response) => response.json())
+		.then((data) => {
+			ipv4 = data.ip;
+		});
 
-    function toggleStats() {
-        showStats = !showStats;
-    }
+	function toggleStats() {
+		showStats = !showStats;
+	}
 </script>
 
 <Head />
@@ -73,11 +70,16 @@
 <br />
 <h1>Error 404</h1>
 <p>
-    Error 404 Page not found.
-    <br />
-    <button class="bounce" on:click="{() => window.history.back()}">Go back</button>
-    <button class="bounce" on:click="{toggleStats}">Stats for nerds</button>
+	Error 404 Page not found.
+	<br />
+	<button class="bounce" on:click={() => window.history.back()}
+		>Go back</button
+	>
+	<button class="bounce" on:click={toggleStats}>Stats for nerds</button>
 </p>
+<br />
+<br />
+<br />
 {#if showStats}
 	<div id="sfn" class="message">
 		Requested URL: <span>{fullUrl}</span><br />
