@@ -2,8 +2,8 @@
 	import Head from "$lib/components/Head.svelte";
 	import { onMount } from "svelte";
 	import io from "socket.io-client";
-	import type { Socket } from "socket.io-client";
 	import Navbar from "$lib/components/Navbar.svelte";
+	import type { Socket } from "socket.io-client";
 
 	interface ChatMessage {
 		username: string;
@@ -16,8 +16,9 @@
 	let username = "";
 	let setusername = "";
 
-	onMount(() => {
-		socket = io(`https://aluben-assets.onrender.com/`);
+	onMount(async () => {
+		await fetch("https://aluben-assets.onrender.com/");
+		socket = io("https://aluben-assets.onrender.com/");
 
 		socket.on("chat message", (msg: ChatMessage) => {
 			messages = [...messages, msg];
