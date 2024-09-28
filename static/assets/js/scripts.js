@@ -18,6 +18,10 @@ try {
 	function isMobileDevice() {
 		return /Mobi|Android/i.test(navigator.userAgent);
 	}
+	const localforage = document.createElement("script");
+	localforage.setAttribute("src", "localforage/dist/localforage.js");
+	document.head.append(localforage);
+	script("LocalForage");
 
 	const font = document.createElement("script");
 	font.setAttribute("src", "/assets/lib/fontawesome.js");
@@ -85,5 +89,25 @@ try {
 document.addEventListener("keypress", async (e) => {
 	if (e.key === (await localforage.getItem(panickey))) {
 		window.location.href = panicurl;
+	}
+});
+
+document.addEventListener("DOMContentLoaded", async () => {
+	// Get the saved theme from localStorage
+	let savedTheme = await localforage.getItem("theme");
+
+	// If there's a saved theme, set the corresponding option as selected
+	if (savedTheme && savedTheme == "Default") {
+		const link = document.createElement("link");
+		link.rel = "stylesheet";
+		link.href = "/assets/css/styles.css";
+	} else if (savedTheme) {
+		let themesDropdown = document.getElementById("themes");
+		let themeurl = "/assets/css/themes/" + savedTheme + ".css";
+		themesDropdown.selectedIndex = savedTheme;
+	} else {
+		const link = document.createElement("link");
+		link.rel = "stylesheet";
+		link.href = "/assets/css/styles.css";
 	}
 });

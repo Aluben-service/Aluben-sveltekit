@@ -13,12 +13,12 @@
     "@sveltejs/kit": "^2.0.0",
     "@sveltejs/vite-plugin-svelte": "^3.0.0",
     "autoprefixer": "^10.4.20",
+    "chemicaljs": "^1.7.3",
     "daisyui": "^4.12.10",
     "postcss": "^8.4.45",
     "prettier": "^3.3.3",
     "svelte": "^4.2.7",
     "tailwindcss": "^3.4.10",
-    "chemicaljs": "^1.7.3",
     "vite": "^5.4.7"
   },
   "dependencies": {
@@ -27,6 +27,7 @@
     "@mercuryworkshop/epoxy-transport": "^2.1.8",
     "@titaniumnetwork-dev/ultraviolet": "^3.2.7",
     "http": "^0.0.1-security",
+    "localforage": "^1.10.0",
     "lucide-svelte": "^0.439.0",
     "socket.io": "^4.7.5",
     "socket.io-client": "^4.7.5",
