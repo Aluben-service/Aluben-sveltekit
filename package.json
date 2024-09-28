@@ -1,44 +1,36 @@
 {
-  "name": "Aluben",
-  "version": "1.0.0",
-  "type": "module",
-  "scripts": {
-    "dev": "vite dev",
-    "build": "vite build",
-    "preview": "vite preview",
-    "format": "echo 'Svelte will automatically minify!'; prettier --write ."
-  },
-  "devDependencies": {
-    "@sveltejs/adapter-netlify": "^4.3.3",
-    "@sveltejs/kit": "^2.0.0",
-    "@sveltejs/vite-plugin-svelte": "^3.0.0",
-    "autoprefixer": "^10.4.20",
-    "chemicaljs": "^1.7.3",
-    "daisyui": "^4.12.10",
-    "postcss": "^8.4.45",
-    "prettier": "^3.3.3",
-    "svelte": "^4.2.7",
-    "tailwindcss": "^3.4.10",
-    "vite": "^5.4.7"
-  },
-  "dependencies": {
-    "@builder.io/partytown": "^0.10.2",
-    "@mercuryworkshop/bare-mux": "^2.0.4",
-    "@mercuryworkshop/epoxy-transport": "^2.1.8",
-    "@titaniumnetwork-dev/ultraviolet": "^3.2.7",
-    "http": "^0.0.1-security",
-    "localforage": "^1.10.0",
-    "lucide-svelte": "^0.439.0",
-    "socket.io": "^4.7.5",
-    "socket.io-client": "^4.7.5",
-    "sweetalert2": "^11.12.4",
-    "wisp-server-node": "^1.1.4"
-  },
-  "trustedDependencies": [
-    "@rubynetwork/rh",
-    "@sveltejs/kit",
-    "bufferutil",
-    "esbuild",
-    "utf-8-validate"
-  ]
+	"name": "my-app",
+	"version": "0.0.1",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"dev": "vite dev",
+		"build": "vite build",
+		"preview": "vite preview",
+		"format": "echo 'Svelte will automatically minify!'; prettier --write ."
+	},
+	"devDependencies": {
+		"@sveltejs/adapter-netlify": "^4.3.3",
+		"@sveltejs/kit": "^2.0.0",
+		"@sveltejs/vite-plugin-svelte": "^3.0.0",
+		"autoprefixer": "^10.4.20",
+		"daisyui": "^4.12.10",
+		"postcss": "^8.4.45",
+		"prettier": "^3.3.3",
+		"svelte": "^4.2.7",
+		"tailwindcss": "^3.4.10",
+		"vite": "^5.4.7"
+	},
+	"dependencies": {
+		"@builder.io/partytown": "^0.10.2",
+		"@mercuryworkshop/bare-mux": "^2.0.4",
+		"@mercuryworkshop/epoxy-transport": "^2.1.8",
+		"@titaniumnetwork-dev/ultraviolet": "^3.2.7",
+		"http": "^0.0.1-security",
+		"lucide-svelte": "^0.439.0",
+		"socket.io": "^4.7.5",
+		"socket.io-client": "^4.7.5",
+		"sweetalert2": "^11.12.4",
+		"wisp-server-node": "^1.1.4"
+	}
 }

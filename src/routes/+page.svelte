@@ -13,8 +13,12 @@
 			const games = await fetch(
 				location.origin + "assets/json/games.json",
 			).then((res) => res.json());
+			).then((res) => res.json());
 			randomSplash = `There are ${games.length} games currently`;
 		} else if (randomSplash === "%SPLASH_NUMBER%") {
+			const splashCacheAll = await fetch("assets/json/say.json").then(
+				(res) => res.json(),
+			);
 			const splashCacheAll = await fetch("assets/json/say.json").then(
 				(res) => res.json(),
 			);
@@ -22,6 +26,7 @@
 		}
 
 		document.querySelector("#splash").textContent = randomSplash;
+		let currentlink = 1;
 		let currentlink = 1;
 		const proxiesContainer = document.getElementById("rammy");
 
@@ -37,6 +42,7 @@
 				});
 			});
 	});
+
 
 	let time;
 	// Function to start time and update every second
@@ -144,6 +150,7 @@
 
 <style>
 	/*
+	/*
 	:global(body) {
 		background-color: black;
 		color: white;
@@ -178,5 +185,6 @@
 		margin: 20px;
 		text-align: center;
 	}
+*/
 */
 </style>
