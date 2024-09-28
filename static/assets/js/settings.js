@@ -24,22 +24,22 @@ function set_theme() {
 	location.reload();
 }
 
-// document.addEventListener("DOMContentLoaded", async () => {
-// 	// Get the saved theme from localStorage
-// 	let savedTheme = await localforage.getItem("theme");
+document.addEventListener("DOMContentLoaded", async () => {
+	// Get the saved theme from localStorage
+	let savedTheme = await localforage.getItem("theme");
 
-// 	// If there's a saved theme, set the corresponding option as selected
-// 	if (savedTheme && savedTheme == "Default") {
-// 		const link = document.createElement("link");
-// 		link.rel = "stylesheet";
-// 		link.href = "/assets/css/styles.css";
-// 	} else if (savedTheme) {
-// 		let themesDropdown = document.getElementById("themes");
-// 		let themeurl = "/assets/css/themes/" + savedTheme + ".css";
-// 		themesDropdown.selectedIndex = savedTheme;
-// 	} else {
-// 		const link = document.createElement("link");
-// 		link.rel = "stylesheet";
-// 		link.href = "/assets/css/styles.css";
-// 	}
-// });
+	// If there's a saved theme, set the corresponding option as selected
+	if (savedTheme && savedTheme == "Default") {
+		const link = document.createElement("link");
+		link.rel = "stylesheet";
+		link.href = "/assets/css/styles.css";
+	} else if (savedTheme) {
+		let themesDropdown = document.getElementById("themes");
+		let themeurl = "/assets/css/themes/" + savedTheme + ".css";
+		themesDropdown.selectedIndex = savedTheme;
+	} else {
+		const link = document.createElement("link");
+		link.rel = "stylesheet";
+		link.href = "/assets/css/styles.css";
+	}
+});
