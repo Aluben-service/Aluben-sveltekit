@@ -1,69 +1,62 @@
-<script>
+<script lang="ts">
 	import { onMount } from "svelte";
 	import Head from "$lib/components/Head.svelte";
 	import Navbar from "$lib/components/Navbar.svelte";
 	import "../app.css";
 
+	let randomSplash = "";
+	let time = "";
+	let rammerheadLinks: string[] = [];
+
 	onMount(async () => {
 		const response = await fetch("assets/json/say.json");
 		const says = await response.json();
-		let randomSplash = says[Math.floor(Math.random() * says.length)];
+		randomSplash = says[Math.floor(Math.random() * says.length)];
 
 		if (randomSplash === "%GAMES_NUMBER%") {
 			const games = await fetch(
-				location.origin + "assets/json/games.json",
+				`${location.origin}/assets/json/games.json`,
 			).then((res) => res.json());
 			randomSplash = `There are ${games.length} games currently`;
 		} else if (randomSplash === "%SPLASH_NUMBER%") {
-			const splashCacheAll = await fetch("assets/json/say.json").then(
-				(res) => res.json(),
-			);
-			randomSplash = `There are ${splashCacheAll.length} of these messages!`;
+			randomSplash = `There are ${says.length} of these messages!`;
 		}
 
-		document.querySelector("#splash").textContent = randomSplash;
-		let currentlink = 1;
-		const proxiesContainer = document.getElementById("rammy");
+		// Fetch Rammerhead links
+		const rammerheadResponse = await fetch("assets/json/rammerhead.json");
+		rammerheadLinks = await rammerheadResponse.json();
 
-		fetch("assets/json/rammerhead.json")
-			.then((res) => res.json())
-			.then((proxies) => {
-				proxies.forEach((proxy) => {
-					const proxyEl = document.createElement("option");
-					proxyEl.textContent = "Link " + currentlink.toString();
-					proxyEl.value = proxy;
-					proxiesContainer.appendChild(proxyEl);
-					currentlink++;
-				});
-			});
+		startTime();
 	});
 
-	let time;
-	// Function to start time and update every second
 	function startTime() {
-		const today = new Date();
-		const h = today.getHours();
-		let m = today.getMinutes();
-		let s = today.getSeconds();
-		m = m < 10 ? `0${m}` : m;
-		s = s < 10 ? `0${s}` : s;
-		const timeStr = `${h}:${m}:${s}`;
-		time = timeStr;
-		setTimeout(startTime, 1000);
+		const updateTime = () => {
+			const today = new Date();
+			const h = today.getHours();
+			let m: string | number = today.getMinutes();
+			let s: string | number = today.getSeconds();
+			m = m < 10 ? `0${m}` : m;
+			s = s < 10 ? `0${s}` : s;
+			time = `${h}:${m}:${s}`;
+			setTimeout(updateTime, 1000);
+		};
+		updateTime();
 	}
-	startTime();
+
+	function goToLink(selectId: string) {
+		const select = document.getElementById(selectId) as HTMLSelectElement;
+		const value = select.value;
+		if (value) {
+			window.location.href = value;
+		}
+	}
 </script>
 
 <Head />
 
-<!-- Body content -->
 <Navbar />
 
-<div id="grass" style="display: none;">
-	<p>no world zero</p>
-	<h1>touch grass</h1>
-</div>
-<main id="main" style="display: block;">
+<main id="main">
 	<input
 		spellcheck="false"
 		autocomplete="off"
@@ -75,41 +68,43 @@
 		is="chemical-input"
 	/>
 
-	<section id="controls" is="chemical-controls">
-		<button on:click={() => chemicalAction("back", "web")}>Back |</button>
-		<button on:click={() => chemicalAction("forward", "web")}>
-			Forward |</button
+	<!-- <section id="controls" is="chemical-controls">
+		<button on:click={() => chemicalAction("back", "web")}>Back</button>
+		<button on:click={() => chemicalAction("forward", "web")}
+			>Forward</button
 		>
-		<button on:click={() => open(document.getElementById("web").src)}>
-			Open in a new tab |</button
+		<button on:click={() => window.open(document.getElementById("web").src)}
+			>Open in a new tab</button
 		>
-		<button on:click={() => chemicalAction("reload", "web")}>
-			Reload |</button
-		>
-		<button on:click={() => chemicalAction("close", "web")}>
-			Close |</button
-		>
-	</section>
+		<button on:click={() => chemicalAction("reload", "web")}>Reload</button>
+		<button on:click={() => chemicalAction("close", "web")}>Close</button>
+	</section> -->
 
-	<iframe id="web" data-controls="controls" is="chemical-iframe"></iframe>
-	<p id="say"></p>
+	<iframe
+		id="web"
+		data-controls="controls"
+		is="chemical-iframe"
+		title="Web content"
+		style="display: none;"
+	></iframe>
 
-	&copy; Aluben Services 2024 inc all rights reserved
+	<p id="splash">{randomSplash}</p>
+
+	<p>&copy; Aluben Services 2024 inc all rights reserved</p>
 
 	<div id="timer">
-		<div id="txt"></div>
+		<div id="txt">{time}</div>
 	</div>
 
 	<section>
 		<h2>Rammerhead</h2>
 		<select id="rammy">
 			<option disabled selected value="">Select a Link...</option>
+			{#each rammerheadLinks as link, index}
+				<option value={link}>Link {index + 1}</option>
+			{/each}
 		</select>
-		<button
-			class="button"
-			onclick="window.location = (v => v && v)(document.getElementById('rammy').value);"
-			>Go</button
-		>
+		<button class="button" on:click={() => goToLink("rammy")}>Go</button>
 	</section>
 
 	<section>
@@ -127,24 +122,16 @@
 			<option value="https://televisionrepair.us/">Link 9</option>
 			<option value="https://ur2ndlibrary.com/">Link 10</option>
 		</select>
-		<button
-			class="button"
-			onclick="window.location = (v => v && v)(document.getElementById('holyub').value);"
-			>Go</button
-		>
+		<button class="button" on:click={() => goToLink("holyub")}>Go</button>
 	</section>
 
 	<p id="s!lol">
 		go to the Aluben discord server and go to claim then type "s!lol" for a
 		reward
 	</p>
-	<iframe title="proxied" style="display: none;" id="uv-frame"></iframe>
-	<br />
-	<p>{time}</p>
 </main>
 
 <style>
-	/*
 	:global(body) {
 		background-color: black;
 		color: white;
@@ -156,16 +143,13 @@
 	:global(.navbar) {
 		flex-shrink: 0;
 	}
-	#uv-frame {
-		width: 100%;
-		height: 100%;
-		border: none;
-		display: none;
+
+	main {
+		padding: 20px;
 	}
 
-	.desc {
-		color: red;
-		font-weight: bold;
+	section {
+		margin: 20px 0;
 		text-align: center;
 	}
 
@@ -175,9 +159,13 @@
 		text-align: center;
 	}
 
-	section {
-		margin: 20px;
-		text-align: center;
+	button {
+		margin: 0 5px;
 	}
-*/
+
+	iframe {
+		width: 100%;
+		height: 500px;
+		border: none;
+	}
 </style>
