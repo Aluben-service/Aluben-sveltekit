@@ -35,6 +35,20 @@
 	border-radius: 6px;
 	padding: 0.25rem 0.5rem;
 }
+/* 
+#web {
+    position: fixed;
+    top: 2.5rem;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: calc(100% - 2.5rem);
+    border: none;
+    background: #212121;
+    user-select: none;
+    display:none;
+} */
 
 #web {
 	position: fixed;
@@ -47,5 +61,4 @@
 	border: none;
 	background: #212121;
 	user-select: none;
-	display: none;
 }
