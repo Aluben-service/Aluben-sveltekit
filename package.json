@@ -32,6 +32,7 @@
 		"socket.io-client": "^4.7.5",
 		"sweetalert2": "^11.12.4",
 		"wisp-server-node": "^1.1.4",
-		"chemicaljs": "1.8.6"
+		"chemicaljs": "1.8.6",
+		"localforage": "1.10.0"
 	}
 }
