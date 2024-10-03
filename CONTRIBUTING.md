@@ -1,12 +1,13 @@
-# contributing
+# Contributing
 
-if you want to contribute you may open a pull request
-we'll accept or deny your code and see if it's ok to put on pruduction build. 
-### you may not
+Ff you want to contribute, you may open a pull request
+We'll accept or deny your code and see if it's OK to put on production build. 
+### You may not
 
-- put any inapproprate content for users
-- add maleware obv lol.
-- change the whole way the app works
+- Put any inapproprate content for users
+- Add maleware (**obv** *lol*.
+- Change the whole way the app works
 
-### you can 
-- use common sence
+### You can 
+- Use common sense
+- Visit the following Web site: [www.silvanzwick.com](https://silvanzwick.com)
