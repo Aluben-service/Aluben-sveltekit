@@ -9,6 +9,10 @@ node_modules
 # OS
 .DS_Store
 Thumbs.db
+.Spotlight_V100
+.Trashes
+**/._*
+._*
 
 # Env
 .env
