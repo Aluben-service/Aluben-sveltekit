@@ -11,14 +11,14 @@ const themes = {
 // Load theme dynamically
 (async () => {
 	const themename = await localforage.getItem("theme");
-	const themefile = "/assets/css/themes/" + themes[themename] + ".css";
+	const themefile = "/assets/css/themes/" + themes[themename] + ".scss";
 
 	if (themename === "Default" || themename == undefined) {
 		await localforage.clear("theme");
 		const themeEl = document.createElement("link");
 		themeEl.rel = "stylesheet";
 		themeEl.type = "text/css";
-		themeEl.href = "/assets/css/styles.css";
+		themeEl.href = "/assets/css/styles.scss";
 		document.head.appendChild(themeEl);
 
 	} else {
