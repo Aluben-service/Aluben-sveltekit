@@ -1,66 +1,90 @@
 <script lang="ts">
-	import Head from "$lib/components/Head.svelte";
-	import { onMount } from "svelte";
+	import { onMount, onDestroy } from "svelte";
 	import io from "socket.io-client";
-	import Navbar from "$lib/components/Navbar.svelte";
 	import type { Socket } from "socket.io-client";
 
-	interface ChatMessage {
-		username: string;
-		text: string;
-	}
-
 	let socket: Socket;
-	let messages: ChatMessage[] = [];
+	let messages: { username: string; text: string }[] = [];
 	let newMessage = "";
 	let username = "";
-	let setusername = "";
+	let setUsername = ""; // Changed to camelCase for consistency
+	let isConnected = false;
 
-	onMount(async () => {
-		await fetch("https://aluben-assets.onrender.com/");
+	onMount(() => {
 		socket = io("https://aluben-assets.onrender.com/");
 
-		socket.on("chat message", (msg: ChatMessage) => {
+		socket.on("connect", () => {
+			isConnected = true;
+		});
+
+		socket.on("disconnect", () => {
+			isConnected = false;
+		});
+
+		socket.on("chat message", (msg: { username: string; text: string }) => {
 			messages = [...messages, msg];
+			// Auto-scroll to bottom when new message arrives
+			setTimeout(() => {
+				const chatContainer = document.querySelector(".chat-container");
+				if (chatContainer) {
+					chatContainer.scrollTop = chatContainer.scrollHeight;
+				}
+			}, 0);
 		});
 	});
 
-	function sendMessage(): void {
-		if (newMessage.trim() && username.trim()) {
-			socket.emit("chat message", { username, text: newMessage });
+	onDestroy(() => {
+		if (socket) {
+			socket.disconnect();
+		}
+	});
+
+	function joinChat() {
+		if (setUsername.trim()) {
+			username = setUsername.trim();
+		}
+	}
+
+	function sendMessage() {
+		if (newMessage.trim() && username.trim() && isConnected) {
+			socket.emit("chat message", { username, text: newMessage.trim() });
 			newMessage = "";
 		}
 	}
 
-	function handleKeyPress(event: KeyboardEvent): void {
+	function handleKeyPress(event: KeyboardEvent) {
 		if (event.key === "Enter") {
-			sendMessage();
+			if (!username) {
+				joinChat();
+			} else {
+				sendMessage();
+			}
 		}
-	}
-
-	function handleUsername(): void {
-		username = setusername;
 	}
 </script>
 
-<Head />
-
-<!-- body content -->
-
-<Navbar />
 <main>
 	<h1>Aluben Chat</h1>
 	<p>
 		Welcome to Aluben Chat, the one place where you can help each other or
-		wreck havoc. No moderation, no nothing.
+		wreak havoc. No moderation, no nothing.
 	</p>
 	{#if !username}
-		<div>
-			<input bind:value={setusername} placeholder="Enter your username" />
-			<button on:click={handleUsername}>Join Chat</button>
+		<div class="input-container">
+			<input
+				bind:value={setUsername}
+				placeholder="Enter your username"
+				on:keypress={handleKeyPress}
+			/>
+			<button on:click={joinChat}>Join Chat</button>
 		</div>
 	{:else}
-		<h1>Chatroom</h1>
+		<h2>Chatroom</h2>
+		{#if !isConnected}
+			<p class="error">
+				Disconnected from server. Trying to reconnect...
+			</p>
+		{/if}
 		<div class="chat-container">
 			<ul>
 				{#each messages as msg}
@@ -73,32 +97,13 @@
 				bind:value={newMessage}
 				on:keypress={handleKeyPress}
 				placeholder="Type a message..."
+				disabled={!isConnected}
 			/>
-			<button on:click={sendMessage}>Send</button>
+			<button on:click={sendMessage} disabled={!isConnected}>Send</button>
 		</div>
 	{/if}
 </main>
 
 <style>
-	.chat-container {
-		height: 400px;
-		overflow-y: auto;
-		border: 1px solid #ccc;
-		padding: 10px;
-		margin-bottom: 10px;
-	}
-	.input-container {
-		display: flex;
-	}
-	input {
-		flex-grow: 1;
-		margin-right: 10px;
-	}
-	ul {
-		list-style-type: none;
-		padding: 0;
-	}
-	li {
-		margin-bottom: 5px;
-	}
+	@import url("/assets/css/chat.scss");
 </style>
