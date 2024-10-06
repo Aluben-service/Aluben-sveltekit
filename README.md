@@ -4,14 +4,15 @@ Aluben is a fast and simple web proxy, with a simple and intuitive ui.
 
 ## Discord:
 
-The Aluben discord has
+The Aluben discord has:
 
--   absolutely nothing
+-   Absolutely nothing
 
 ### Features
 
--   proxy
--   chatroom
--   tab cloak
--   games
--   apps
+-   Proxy
+-   Chatroom
+-   Tab cloak
+-   Games
+-   Apps
+ 
