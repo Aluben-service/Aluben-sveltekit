@@ -77,6 +77,17 @@
 	<!--	<button class="button" type="button" on:click={aboutblank}
 		>open in about:blank</button
 	> stop trolling me with this -->
+	<section id="controls" is="chemical-controls">
+		<button on:click={() => chemicalAction("back", "web")}>Back</button>
+		<button on:click={() => chemicalAction("forward", "web")}
+			>Forward</button
+		>
+		<button on:click={() => window.open(document.getElementById("web").src)}
+			>Open in a new tab</button
+		>
+		<button on:click={() => chemicalAction("reload", "web")}>Reload</button>
+		<button on:click={() => chemicalAction("close", "web")}>Close</button>
+	</section>
 </div>
 
 <style>

@@ -92,17 +92,19 @@ document.addEventListener("DOMContentLoaded", async () => {
 	let savedTheme = await localforage.getItem("theme");
 
 	// If there's a saved theme, set the corresponding option as selected
-	if (savedTheme && savedTheme == "Default") {
+	if (savedTheme === null || savedTheme === undefined) {
 		const link = document.createElement("link");
 		link.rel = "stylesheet";
-		link.href = "/assets/css/styles.css";
-	} else if (savedTheme) {
-		let themesDropdown = document.getElementById("themes");
-		let themeurl = "/assets/css/themes/" + savedTheme + ".css";
-		themesDropdown.selectedIndex = savedTheme;
+		link.href = "/assets/css/styles.scss";
+	} else if (savedTheme === "Default") {
+		const link = document.createElement("link");
+		link.rel = "stylesheet";
+		link.href = "/assets/css/styles.scss";
 	} else {
 		const link = document.createElement("link");
 		link.rel = "stylesheet";
-		link.href = "/assets/css/styles.css";
+		link.href = `/assets/css/themes/${savedTheme}.scss`;
+		const themesDropdown = document.getElementById("themes");
+		themesDropdown.value = savedTheme;
 	}
 });

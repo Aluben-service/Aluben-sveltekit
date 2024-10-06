@@ -11,6 +11,6 @@
 	<script src="/assets/js/main.js"></script>
 	<script data-transport="libcurl" src="/chemical.js" defer></script>
 	<script src="/chemical.components.js" defer></script>
-	<link rel="stylesheet" href="/assets/css/styles.css" />
+	<link rel="stylesheet" href="/assets/css/styles.scss" />
 	<script src="localforage/dist/localforage.js"></script>
 </svelte:head>
