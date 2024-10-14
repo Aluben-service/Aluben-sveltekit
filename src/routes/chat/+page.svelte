@@ -10,7 +10,7 @@
 	let setUsername = ""; // Changed to camelCase for consistency
 	let isConnected = false;
 
-	onMount(() => {
+	onMount(async () => {
 		socket = io("https://aluben-assets.onrender.com/");
 
 		socket.on("connect", () => {
@@ -32,7 +32,7 @@
 			}, 0);
 		});
 	});
-
+	if (!isConnected) fetch("https://aluben-assets.onrender.com/");
 	onDestroy(() => {
 		if (socket) {
 			socket.disconnect();

@@ -66,18 +66,19 @@
 </script>
 
 <div class="navbar" id="navbar">
-	<button class="button" type="button" on:click={home}>Home</button>
-	<button class="button" type="button" on:click={chat}>Chat</button>
-	<!-- imma add this to like a utilities thing, testuserforlearning	<button class="button" type="button" on:click={calculator}
+	<button class="button" on:click={home}>Home</button>
+	<button class="button" on:click={chat}>Chat</button>
+	<!-- imma add this to like a utilities thing, testuserforlearning	<button class="button" on:click={calculator}
 		>Calculator</button
 	>-->
-	<button class="button" type="button" on:click={apps}>Apps</button>
-	<button class="button" type="button" on:click={games}>Games</button>
-	<button class="button" type="button" on:click={settings}>Settings</button>
+	<button class="button" on:click={apps}>Apps</button>
+	<button class="button" on:click={games}>Games</button>
+	<button class="button" on:click={settings}>Settings</button>
 	<!--	<button class="button" type="button" on:click={aboutblank}
 		>open in about:blank</button
 	> stop trolling me with this -->
-	<section id="controls" is="chemical-controls">
+	<!-- fine lol -->
+	<!-- <section id="controls" is="chemical-controls">
 		<button on:click={() => chemicalAction("back", "web")}>Back</button>
 		<button on:click={() => chemicalAction("forward", "web")}
 			>Forward</button
@@ -87,7 +88,7 @@
 		>
 		<button on:click={() => chemicalAction("reload", "web")}>Reload</button>
 		<button on:click={() => chemicalAction("close", "web")}>Close</button>
-	</section>
+	</section> -->
 </div>
 
 <style>
@@ -103,7 +104,6 @@
 		padding: 2px 4px;
 		padding: 2px 4px;
 		margin: 5px;
-		cursor: pointer;
 	}
 
 	:global(.button:hover) {

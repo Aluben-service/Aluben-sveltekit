@@ -1,7 +1,7 @@
 <script>
 	import { onMount } from "svelte";
 	import Navbar from "$lib/components/Navbar.svelte";
-	import "../../app.css";
+	import "../../tailwind.css";
 	import GamesHead from "$lib/components/GamesHead.svelte";
 
 	let searchInput = "";

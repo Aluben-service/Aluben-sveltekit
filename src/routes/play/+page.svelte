@@ -1,7 +1,7 @@
 <script>
 	import { onMount } from "svelte";
 	import Navbar from "$lib/components/Navbar.svelte"; // Adjust the import path as necessary
-	import "../../app.css";
+	import "../../tailwind.css";
 
 	// Function definitions
 	function fullscreen() {

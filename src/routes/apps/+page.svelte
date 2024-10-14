@@ -1,7 +1,7 @@
 <script>
 	import GamesHead from "$lib/components/GamesHead.svelte";
 	import Navbar from "$lib/components/Navbar.svelte";
-	import "../../app.css";
+	import "../../tailwind.css";
 	import { onMount } from "svelte";
 
 	onMount(() => {
@@ -18,16 +18,16 @@
 <!-- Body content -->
 <Navbar />
 
-<input
+<!-- <input
 	type="text"
 	on:keyup={() => searchApps()}
 	id="searchInput"
 	placeholder="Search for an app..."
 	title="Search for a app"
-/>
-<select id="category" name="category" on:change={() => showCategory()}>
+/> -->
+<!-- <select id="category" name="category" on:change={() => showCategory()}>
 	<option value="all">All</option>
-</select>
+</select> -->
 
 <h3>Pinned Apps</h3>
 <div class="pinned appscontainer"></div>

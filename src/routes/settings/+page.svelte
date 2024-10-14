@@ -2,7 +2,7 @@
 	import Navbar from "$lib/components/Navbar.svelte";
 	import Head from "$lib/components/Head.svelte";
 	import { onMount } from "svelte";
-	import "../../app.css";
+	import "../../tailwind.css";
 	import Swal from "sweetalert2";
 	let selectedTheme;
 	let currentCloak;
