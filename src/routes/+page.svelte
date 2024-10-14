@@ -2,7 +2,7 @@
 	import { onMount } from "svelte";
 	import Head from "$lib/components/Head.svelte";
 	import Navbar from "$lib/components/Navbar.svelte";
-	import "../app.css";
+	import "../tailwind.css";
 
 	let randomSplash = "";
 	let time = "";
@@ -55,7 +55,15 @@
 <Head />
 
 <Navbar />
-
+<section id="controls" is="chemical-controls">
+	<button on:click={() => chemicalAction("back", "web")}>Back</button>
+	<button on:click={() => chemicalAction("forward", "web")}>Forward</button>
+	<button on:click={() => window.open(document.getElementById("web").src)}
+		>Open in a new tab</button
+	>
+	<button on:click={() => chemicalAction("reload", "web")}>Reload</button>
+	<button on:click={() => chemicalAction("close", "web")}>Close</button>
+</section>
 <main id="main">
 	<input
 		spellcheck="false"

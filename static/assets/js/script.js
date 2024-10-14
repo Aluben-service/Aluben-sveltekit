@@ -23,7 +23,6 @@ const passcodePrompt = Swal.mixin({
 		return login; // Returns the user input (passcode)
 	},
 });
-
 // Password validation function
 let validatePassword = () => {
 	let enteredPassword = document.getElementById("enterPassword").value;
