@@ -1,6 +1,6 @@
 # Contributing
 
-Ff you want to contribute, you may open a pull request
+if you want to contribute, you may open a pull request
 We'll accept or deny your code and see if it's OK to put on production build.
 
 ### You may not
